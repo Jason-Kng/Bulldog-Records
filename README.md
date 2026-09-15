@@ -26,7 +26,7 @@ For this website we plan to use:
 - JavaScript
 - React
 
-## Team:
+## Team
 - Jason King
 - Camila Da Silva
 - Alex Sales
