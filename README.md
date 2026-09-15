@@ -1,6 +1,5 @@
 # Bulldog-Records
 
-
 ## About
 Bulldog Records is a web application that will allow users to both sell and purchase physical music media, including CDs, vinyl records, and cassettes.
 
@@ -11,24 +10,23 @@ Bulldog Records is a web application that will allow users to both sell and purc
 - Manage account information
 - Purchase Items
 - Apply to become a seller
+- Review Items
 
 ## Users
 The system supports the following types of users:
-
-- Guests
+- Visitors / Unregistered
 - Buyers
 - Sellers
 - Administrators
 
 ## Technologies
 For this website we plan to use:
-
 - HTML
 - CSS
 - JavaScript
 - React
 
-## Contributors:
+## Team:
 - Jason King
 - Camila Da Silva
 - Alex Sales
