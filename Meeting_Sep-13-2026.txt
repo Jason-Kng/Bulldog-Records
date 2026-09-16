@@ -1,0 +1,34 @@
+Meeting - 30 mins 
+
+Online meeting on Discord, September 13, 2026 
+
+Members present: Jason King, Camila Da Silva, Timothy Pepper 
+
+
+After reviewing the current state of the project, we assigned sections that were incomplete/missing to different members:
+
+Final edit of user stories assigned to Camila 
+
+Section 1 of SRS document assigned to Camila 
+
+Section 2 of SRS document assigned to Alex 
+
+Section 4 and 5 of SRS document assigned to Jason 
+
+System features of buyer assigned to Jason 
+
+System features of seller assigned to Alex 
+
+System features of unregistered user assigned to Camila 
+
+System features of admin assigned to Timothy 
+
+README assigned to Jason 
+
+ 
+
+After writing the system features, we agreed on revising them and seeing if there is any overlap between them. If so, we will edit/merge them. 
+
+ 
+
+On Monday, we agreed on discussing on Discord where we are at with our assignments and then deciding if we need to meet again on Monday or Tuesday. 
