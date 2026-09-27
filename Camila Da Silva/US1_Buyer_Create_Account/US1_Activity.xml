@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="3b2U97OvdsSwYzpR10QO">
-    <mxGraphModel dx="584" dy="381" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="983" dy="642" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -46,7 +46,7 @@
             <mxPoint x="275" y="495" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ImOD42yxP_hOt8_LF551-14" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;fillColor=light-dark(#FFFFFF,#4D4D4D);strokeColor=light-dark(#000000,#000000);" value="&lt;font style=&quot;font-size: 8px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;User clicks Submit button&lt;/font&gt;" vertex="1">
+        <mxCell id="ImOD42yxP_hOt8_LF551-14" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;fillColor=light-dark(#FFFFFF,#4D4D4D);strokeColor=light-dark(#000000,#000000);" value="&lt;font style=&quot;font-size: 8px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;User clicks Create Account button&lt;/font&gt;" vertex="1">
           <mxGeometry height="50" width="110" x="200.08" y="505" as="geometry" />
         </mxCell>
         <mxCell id="ImOD42yxP_hOt8_LF551-15" edge="1" parent="1" source="ImOD42yxP_hOt8_LF551-14" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=light-dark(#000000,#000000);" value="">
@@ -109,7 +109,7 @@
             <mxPoint x="8" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ImOD42yxP_hOt8_LF551-35" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;fillColor=light-dark(#FFFFFF,#4D4D4D);strokeColor=light-dark(#000000,#000000);" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); font-size: 6px;&quot;&gt;System displays error message about what field(s) received invalid information&lt;/font&gt;" vertex="1">
+        <mxCell id="ImOD42yxP_hOt8_LF551-35" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;fillColor=light-dark(#FFFFFF,#4D4D4D);strokeColor=light-dark(#000000,#000000);" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); font-size: 6px;&quot;&gt;System displays error message about what field(s) received invalid/no information&lt;/font&gt;" vertex="1">
           <mxGeometry height="50" width="140" x="185" y="705" as="geometry" />
         </mxCell>
         <mxCell id="ImOD42yxP_hOt8_LF551-36" edge="1" parent="1" source="ImOD42yxP_hOt8_LF551-35" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;strokeColor=light-dark(#000000,#000000);entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="ImOD42yxP_hOt8_LF551-19" value="">
@@ -186,10 +186,10 @@
           <mxGeometry height="50" width="110" x="335" y="780" as="geometry" />
         </mxCell>
         <mxCell id="ImOD42yxP_hOt8_LF551-56" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;fillColor=light-dark(#FFFFFF,#4D4D4D);strokeColor=light-dark(#000000,#000000);" value="&lt;font style=&quot;font-size: 8px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;User is re-directed to their account page&lt;/font&gt;" vertex="1">
-          <mxGeometry height="50" width="110" x="335" y="855" as="geometry" />
+          <mxGeometry height="50" width="110" x="335" y="920" as="geometry" />
         </mxCell>
-        <mxCell id="ImOD42yxP_hOt8_LF551-57" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;fillColor=light-dark(#FFFFFF,#4D4D4D);strokeColor=light-dark(#000000,#000000);" value="&lt;font style=&quot;font-size: 8px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;User receives confirmation email&lt;/font&gt;" vertex="1">
-          <mxGeometry height="50" width="110" x="335" y="930" as="geometry" />
+        <mxCell id="ImOD42yxP_hOt8_LF551-57" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;fillColor=light-dark(#FFFFFF,#4D4D4D);strokeColor=light-dark(#000000,#000000);" value="&lt;font style=&quot;font-size: 8px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;System sends confirmation email to user&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="110" x="335" y="995" as="geometry" />
         </mxCell>
         <mxCell id="ImOD42yxP_hOt8_LF551-58" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=light-dark(#000000,#000000);entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ImOD42yxP_hOt8_LF551-55" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -197,7 +197,7 @@
             <mxPoint x="389.83" y="795" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ImOD42yxP_hOt8_LF551-60" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=light-dark(#000000,#000000);entryX=0.5;entryY=0;entryDx=0;entryDy=0;" value="">
+        <mxCell id="ImOD42yxP_hOt8_LF551-60" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=light-dark(#000000,#000000);entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ImOD42yxP_hOt8_LF551-66" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="389.89" y="830" as="sourcePoint" />
             <mxPoint x="390.06" y="855" as="targetPoint" />
@@ -205,24 +205,33 @@
         </mxCell>
         <mxCell id="ImOD42yxP_hOt8_LF551-61" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=light-dark(#000000,#000000);entryX=0.5;entryY=0;entryDx=0;entryDy=0;" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="389.89" y="905" as="sourcePoint" />
-            <mxPoint x="390.06" y="930" as="targetPoint" />
+            <mxPoint x="389.89" y="970" as="sourcePoint" />
+            <mxPoint x="390.06" y="995" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="ImOD42yxP_hOt8_LF551-62" parent="1" style="ellipse;html=1;shape=endState;fillColor=light-dark(#000000,#000000);strokeColor=light-dark(#000000,#000000);" value="" vertex="1">
           <mxGeometry height="10" width="10" x="540" y="330" as="geometry" />
         </mxCell>
         <mxCell id="ImOD42yxP_hOt8_LF551-63" parent="1" style="ellipse;html=1;shape=endState;fillColor=light-dark(#000000,#000000);strokeColor=light-dark(#000000,#000000);" value="" vertex="1">
-          <mxGeometry height="10" width="10" x="385" y="1005" as="geometry" />
+          <mxGeometry height="10" width="10" x="385" y="1070" as="geometry" />
         </mxCell>
         <mxCell id="ImOD42yxP_hOt8_LF551-64" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=light-dark(#000000,#000000);entryX=0.5;entryY=0;entryDx=0;entryDy=0;" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="389.78" y="980" as="sourcePoint" />
-            <mxPoint x="389.95" y="1005" as="targetPoint" />
+            <mxPoint x="389.78" y="1045" as="sourcePoint" />
+            <mxPoint x="389.95" y="1070" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="ImOD42yxP_hOt8_LF551-65" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); font-size: 5px;&quot;&gt;(See diagram for seller account creation)&lt;/font&gt;" vertex="1">
           <mxGeometry height="30" width="70" x="510" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="ImOD42yxP_hOt8_LF551-66" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;fillColor=light-dark(#FFFFFF,#4D4D4D);strokeColor=light-dark(#000000,#000000);" value="&lt;br class=&quot;Apple-interchange-newline&quot;&gt;&lt;font style=&quot;font-size: 8px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;System logs in user and creates new session&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="110" x="335" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="ImOD42yxP_hOt8_LF551-67" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=light-dark(#000000,#000000);entryX=0.5;entryY=0;entryDx=0;entryDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="389.86" y="900" as="sourcePoint" />
+            <mxPoint x="389.97" y="920" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
