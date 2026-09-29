@@ -1,0 +1,22 @@
+Meeting - 1 hour 
+
+Library, Study Room 1112
+September 24, 2026 
+
+Members present: Jason King, Camila Da Silva, Timothy Pepper, Meeting_Sep-13-2026.txt
+
+We agreed on what user stories each member is going to do for the diagrams. 
+
+Alex started and finished the use case diagrams; sent them to the TA for feedback.
+
+We drafted the context diagram in the whiteboard and researched what external sources we would need, such as the MusicBrainz API for the barcode/UPC/EAN.
+
+We agreed that Jason would finish the context diagram.
+
+We discussed the classes needed for the class diagram.
+
+We agreed Camila will finish the class diagram.
+
+We started listing the different components the system would need. We agreed we would assign components to different group members later.
+
+We agreed that Timothy would do the component diagrams needed for Admin. 
