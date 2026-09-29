@@ -1,0 +1,28 @@
+Meeting - 1 hour 
+
+Butler, Student Lounge
+September 29, 2026
+
+Members present: Jason King, Camila Da Silva, Timothy Pepper, Elian Ixcajoc-sales
+
+Assigned component diagrams:
+- Camila: account service, login service, checkout service
+- Jason: listing/inventory service, order service
+- Alex: cart service, payment service
+- Timothy: report service, ban service
+
+Camila already pushed her 4 individual user story diagrams
+Camila will finish UML class diagram today and push to the repo and send through Discord
+
+Jason finished context diagram
+Jason is working on other diagrams
+
+Elian finished all activity diagrams, only has to finish 2 sequence diagrams
+
+Timothy finished all activity diagrams and 3 sequence diagrams
+
+
+
+
+
+
