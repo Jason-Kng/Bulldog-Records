@@ -1,0 +1,211 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="6JdaORko71DL5LraZoJ8">
+    <mxGraphModel dx="777" dy="528" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-2" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="420" y="60" as="sourcePoint" />
+            <mxPoint x="421" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="Seller clicks &quot;View My Listing&quot;" vertex="1">
+          <mxGeometry height="40" width="120" x="361" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-4" edge="1" parent="1" source="yAxZ8lcvyDGBKpVVRf1A-3" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="321" y="170" as="sourcePoint" />
+            <mxPoint x="421" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="System displays seller&#39;s listings" vertex="1">
+          <mxGeometry height="40" width="120" x="361" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-6" edge="1" parent="1" source="yAxZ8lcvyDGBKpVVRf1A-5" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="321" y="330" as="sourcePoint" />
+            <mxPoint x="421" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="Seller selects a listing" vertex="1">
+          <mxGeometry height="40" width="120" x="361" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="Seller clicks &quot;Edit Listing&quot;" vertex="1">
+          <mxGeometry height="40" width="120" x="361" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-9" edge="1" parent="1" source="yAxZ8lcvyDGBKpVVRf1A-7" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" target="yAxZ8lcvyDGBKpVVRf1A-8" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="420.8" y="285" as="sourcePoint" />
+            <mxPoint x="420.8" y="315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-13" parent="1" style="rhombus;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Does seller make changes?" vertex="1">
+          <mxGeometry height="50" width="111" x="364.5" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-15" edge="1" parent="1" source="yAxZ8lcvyDGBKpVVRf1A-13" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="405" />
+            </Array>
+            <mxPoint x="281" y="410" as="sourcePoint" />
+            <mxPoint x="260" y="405" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-18" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;" value="no" vertex="1">
+          <mxGeometry height="30" width="60" x="310" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-19" edge="1" parent="1" source="yAxZ8lcvyDGBKpVVRf1A-13" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="405" />
+            </Array>
+            <mxPoint x="321" y="450" as="sourcePoint" />
+            <mxPoint x="560" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-21" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;" value="yes" vertex="1">
+          <mxGeometry height="30" width="60" x="481" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-34" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="System displays pop up that no changes were made" vertex="1">
+          <mxGeometry height="40" width="120" x="140" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-37" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="Seller dismisses pop up" vertex="1">
+          <mxGeometry height="40" width="120" x="140" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-39" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="199.76" y="430" as="sourcePoint" />
+            <mxPoint x="199.76" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-40" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" target="yAxZ8lcvyDGBKpVVRf1A-41" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="199.76" y="500" as="sourcePoint" />
+            <mxPoint x="199.76" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-41" parent="1" style="ellipse;html=1;shape=endState;labelBackgroundColor=none;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="185" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-42" parent="1" style="ellipse;html=1;shape=startState;labelBackgroundColor=none;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="405" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-44" parent="1" style="rhombus;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Does seller clear a required field?" vertex="1">
+          <mxGeometry height="50" width="111" x="504" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-46" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <Array as="points">
+              <mxPoint x="419" y="484.71" />
+            </Array>
+            <mxPoint x="504" y="484.71" as="sourcePoint" />
+            <mxPoint x="420" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-48" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <Array as="points">
+              <mxPoint x="699" y="485" />
+            </Array>
+            <mxPoint x="615" y="485" as="sourcePoint" />
+            <mxPoint x="700" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-49" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="420.75" y="350" as="sourcePoint" />
+            <mxPoint x="420.75" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-50" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="Seller makes changes to non required fields" vertex="1">
+          <mxGeometry height="40" width="120" x="360" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-51" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="System prompts seller to fill in required field." vertex="1">
+          <mxGeometry height="40" width="120" x="640" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-53" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;" value="no" vertex="1">
+          <mxGeometry height="30" width="60" x="444" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-54" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;" value="yes" vertex="1">
+          <mxGeometry height="30" width="60" x="620" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-55" parent="1" style="rhombus;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Does seller fill in required field?" vertex="1">
+          <mxGeometry height="50" width="111" x="644.5" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-57" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="699.6800000000001" y="560" as="sourcePoint" />
+            <mxPoint x="699.6800000000001" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-58" edge="1" parent="1" source="yAxZ8lcvyDGBKpVVRf1A-55" style="endArrow=classic;html=1;rounded=0;curved=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="580" />
+            </Array>
+            <mxPoint x="590" y="590" as="sourcePoint" />
+            <mxPoint x="640" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-59" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="no" vertex="1">
+          <mxGeometry height="30" width="60" x="580" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-60" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="699.68" y="640" as="sourcePoint" />
+            <mxPoint x="699.68" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-61" parent="1" style="ellipse;html=1;shape=endState;labelBackgroundColor=none;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="685" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-62" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;" value="yes" vertex="1">
+          <mxGeometry height="30" width="60" x="695.5" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-63" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="419.68" y="560" as="sourcePoint" />
+            <mxPoint x="419.68" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-64" parent="1" style="rhombus;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="Does seller save changes?" vertex="1">
+          <mxGeometry height="50" width="111" x="364.5" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-66" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <Array as="points">
+              <mxPoint x="280.5" y="614.68" />
+            </Array>
+            <mxPoint x="365.5" y="614.68" as="sourcePoint" />
+            <mxPoint x="260.5" y="614.68" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-67" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="no" vertex="1">
+          <mxGeometry height="30" width="60" x="300" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-70" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="Seller dismisses pop up" vertex="1">
+          <mxGeometry height="40" width="120" x="140" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-71" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="419.68" y="640" as="sourcePoint" />
+            <mxPoint x="419.68" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-72" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="System displays pop up saying changes have been saved" vertex="1">
+          <mxGeometry height="40" width="120" x="360" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-73" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="System updates listing" vertex="1">
+          <mxGeometry height="40" width="120" x="361" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="yAxZ8lcvyDGBKpVVRf1A-75" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="419.68" y="710" as="sourcePoint" />
+            <mxPoint x="419.68" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,164 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="xot-f7hVcgGx8Z7bwYGh">
+    <mxGraphModel dx="892" dy="2806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-1" parent="1" style="ellipse;html=1;shape=startState;labelBackgroundColor=none;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="404" y="-1126" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-3" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="420" y="-1030" as="sourcePoint" />
+            <mxPoint x="420" y="-1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="Seller clicks &quot;View My Listing&quot;" vertex="1">
+          <mxGeometry height="40" width="120" x="360" y="-1000" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-6" edge="1" parent="1" source="7BH7dEW2dmfgW7YPLDK5-4" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="320" y="-930" as="sourcePoint" />
+            <mxPoint x="420" y="-930" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="System displays seller&#39;s listings" vertex="1">
+          <mxGeometry height="40" width="120" x="360" y="-930" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-9" edge="1" parent="1" source="7BH7dEW2dmfgW7YPLDK5-8" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="320" y="-770" as="sourcePoint" />
+            <mxPoint x="420" y="-860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="Seller selects a listing" vertex="1">
+          <mxGeometry height="40" width="120" x="360" y="-860" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="Seller clicks &quot;Remove Listing&quot;" vertex="1">
+          <mxGeometry height="40" width="120" x="360" y="-790" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-13" edge="1" parent="1" source="7BH7dEW2dmfgW7YPLDK5-10" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" target="7BH7dEW2dmfgW7YPLDK5-12" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="419.8" y="-815" as="sourcePoint" />
+            <mxPoint x="419.8" y="-785" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="System asks for confirmation with pop up" vertex="1">
+          <mxGeometry height="40" width="120" x="495" y="-670" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-15" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="419.8" y="-750" as="sourcePoint" />
+            <mxPoint x="419.8" y="-720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-19" parent="1" style="rhombus;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="&lt;font style=&quot;font-size: 7px;&quot;&gt;Is there a pending order attached?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="80" x="380" y="-720" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-22" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="559.63" y="-635" as="sourcePoint" />
+            <mxPoint x="559.63" y="-605" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-34" edge="1" parent="1" source="7BH7dEW2dmfgW7YPLDK5-19" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" target="7BH7dEW2dmfgW7YPLDK5-35" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="280" y="-690" as="sourcePoint" />
+            <mxPoint x="330" y="-630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-35" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="System informs user that a pending order is attached and cannot be removed" vertex="1">
+          <mxGeometry height="80" width="120" x="210" y="-740" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-36" edge="1" parent="1" source="7BH7dEW2dmfgW7YPLDK5-35" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.526;exitY=0.048;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;labelBackgroundColor=none;fontColor=default;" target="7BH7dEW2dmfgW7YPLDK5-8" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="250" y="-700.2" as="sourcePoint" />
+            <mxPoint x="200" y="-700.2" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-37" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;" value="yes" vertex="1">
+          <mxGeometry height="30" width="60" x="330" y="-730" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-40" parent="1" style="rhombus;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="&lt;font&gt;Does Seller confirm?&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="100" x="510" y="-605" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-43" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;" value="no" vertex="1">
+          <mxGeometry height="30" width="60" x="450" y="-725" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-44" edge="1" parent="1" source="7BH7dEW2dmfgW7YPLDK5-40" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="-550" />
+              <mxPoint x="160" y="-700" />
+            </Array>
+            <mxPoint x="420" y="-470" as="sourcePoint" />
+            <mxPoint x="200" y="-760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-45" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;" value="no" vertex="1">
+          <mxGeometry height="30" width="60" x="400" y="-590" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-47" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="-570" />
+            </Array>
+            <mxPoint x="600" y="-570" as="sourcePoint" />
+            <mxPoint x="630" y="-540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-50" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="System displays pop up that listing has been removed&amp;nbsp;" vertex="1">
+          <mxGeometry height="40" width="120" x="570" y="-430" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-51" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="&lt;font&gt;System removes listing and inventory and Buyers are no longer able to see listings&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="120" x="570" y="-540" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-53" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="629.63" y="-460" as="sourcePoint" />
+            <mxPoint x="629.63" y="-430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-54" edge="1" parent="1" source="7BH7dEW2dmfgW7YPLDK5-50" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" target="7BH7dEW2dmfgW7YPLDK5-55" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="629.7" y="-430" as="sourcePoint" />
+            <mxPoint x="629.7" y="-400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-55" parent="1" style="ellipse;html=1;shape=endState;labelBackgroundColor=none;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="615" y="-350" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-57" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;" value="System closes pop up and no removal is done" vertex="1">
+          <mxGeometry height="70" width="120" x="140" y="-830" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-58" edge="1" parent="1" source="7BH7dEW2dmfgW7YPLDK5-57" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" target="7BH7dEW2dmfgW7YPLDK5-8" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="226.5" y="-650" as="sourcePoint" />
+            <mxPoint x="313.5" y="-912" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-59" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="yes" vertex="1">
+          <mxGeometry height="30" width="60" x="610" y="-590" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-62" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;labelBackgroundColor=none;fontStyle=4" value="Seller is currently logged in and is at dashboard" vertex="1">
+          <mxGeometry height="40" width="120" x="365" y="-1070" as="geometry" />
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-65" edge="1" parent="1" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="419.63" y="-1100" as="sourcePoint" />
+            <mxPoint x="419.63" y="-1070" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7BH7dEW2dmfgW7YPLDK5-72" edge="1" parent="1" source="7BH7dEW2dmfgW7YPLDK5-19" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=none;fontColor=default;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="7BH7dEW2dmfgW7YPLDK5-14" value="">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <Array as="points">
+              <mxPoint x="555" y="-700" />
+            </Array>
+            <mxPoint x="530" y="-760" as="sourcePoint" />
+            <mxPoint x="490" y="-650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
