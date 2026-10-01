@@ -1,0 +1,60 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="BY1hrzmQ6xhku2Iw8Qkd">
+    <mxGraphModel dx="1204" dy="818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dRWDCMg-3twuUMSooOu2-8" parent="1" style="swimlane;startSize=0;" value="" vertex="1">
+          <mxGeometry height="260" width="520" x="60" y="130" as="geometry">
+            <mxRectangle height="40" width="50" x="60" y="170" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dRWDCMg-3twuUMSooOu2-9" parent="dRWDCMg-3twuUMSooOu2-8" style="html=1;dropTarget=0;whiteSpace=wrap;" value="Add to Cart" vertex="1">
+          <mxGeometry height="60" width="140" x="50" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="dRWDCMg-3twuUMSooOu2-16" parent="dRWDCMg-3twuUMSooOu2-8" style="html=1;dropTarget=0;whiteSpace=wrap;" value="Remove from Cart" vertex="1">
+          <mxGeometry height="60" width="140" x="330" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="dRWDCMg-3twuUMSooOu2-18" parent="dRWDCMg-3twuUMSooOu2-8" style="html=1;dropTarget=0;whiteSpace=wrap;" value="View Cart" vertex="1">
+          <mxGeometry height="60" width="140" x="190" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="dRWDCMg-3twuUMSooOu2-25" parent="dRWDCMg-3twuUMSooOu2-8" style="html=1;whiteSpace=wrap;" value="«component»&lt;br&gt;&lt;b&gt;Cart Service&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="110" as="geometry" />
+        </mxCell>
+        <mxCell id="dRWDCMg-3twuUMSooOu2-11" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" value="" vertex="1">
+          <mxGeometry height="60" width="60" x="660" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="dRWDCMg-3twuUMSooOu2-12" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Database" vertex="1">
+          <mxGeometry height="30" width="60" x="660" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="dRWDCMg-3twuUMSooOu2-15" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;aspect=fixed;fillColor=none;strokeColor=none;resizable=0;perimeter=centerPerimeter;rotatable=0;allowArrows=0;points=[];outlineConnect=1;" value="" vertex="1">
+          <mxGeometry height="10" width="10" x="475" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="3CZk_QSd0Hm59yrknwHM-9" parent="1" style="html=1;dropTarget=0;whiteSpace=wrap;" value="Lisiting" vertex="1">
+          <mxGeometry height="60" width="140" x="120" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="dRWDCMg-3twuUMSooOu2-20" parent="1" style="html=1;dropTarget=0;whiteSpace=wrap;" value="Order Service" vertex="1">
+          <mxGeometry height="60" width="140" x="380" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="dRWDCMg-3twuUMSooOu2-21" edge="1" parent="1" source="3CZk_QSd0Hm59yrknwHM-9" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" target="dRWDCMg-3twuUMSooOu2-8" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="310" y="370" as="sourcePoint" />
+            <mxPoint x="360" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dRWDCMg-3twuUMSooOu2-22" edge="1" parent="1" source="dRWDCMg-3twuUMSooOu2-20" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" target="dRWDCMg-3twuUMSooOu2-8" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="310" y="370" as="sourcePoint" />
+            <mxPoint x="360" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dRWDCMg-3twuUMSooOu2-23" edge="1" parent="1" source="dRWDCMg-3twuUMSooOu2-8" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" target="dRWDCMg-3twuUMSooOu2-11" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="310" y="370" as="sourcePoint" />
+            <mxPoint x="360" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

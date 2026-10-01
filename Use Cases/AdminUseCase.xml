@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="ZeuGJs1HK9JFoVWFwZZO">
-    <mxGraphModel dx="1003" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1047" dy="711" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -87,7 +86,12 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="GKW5zyCloWBi1Ihj8FT5-41" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Admin Use Cases" vertex="1">
-          <mxGeometry height="50" width="180" x="335" y="70" as="geometry" />
+          <mxGeometry height="50" width="180" x="330" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="RvjhqacjBDvezGF3dzkI-1" parent="1" style="swimlane;startSize=0;" value="" vertex="1">
+          <mxGeometry height="400" width="160" x="340" y="140" as="geometry">
+            <mxRectangle height="40" width="50" x="360" y="120" as="alternateBounds" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
