@@ -1,0 +1,1 @@
+Keeps data folder in GitHub. bulldog-records.db is created here automatically by database.js.
