@@ -5,8 +5,14 @@ CREATE TABLE IF NOT EXISTS "User" (
     "email"    TEXT NOT NULL UNIQUE COLLATE NOCASE,
     "registerDate"    TEXT DEFAULT CURRENT_TIMESTAMP,
     "userType"    TEXT NOT NULL CHECK (userType IN ('buyer', 'seller', 'admin')),
-    "passwordHash" TEXT NOT NULL,
     PRIMARY KEY("userID")
+);
+--Login Table
+CREATE TABLE IF NOT EXISTS "Login" (
+    "loginID"    INTEGER,
+    "userID"    INTEGER NOT NULL UNIQUE REFERENCES User(userID) on DELETE CASCADE,
+    "passwordHash" TEXT NOT NULL,
+    PRIMARY KEY("loginID")
 );
 --Address Table
 CREATE TABLE IF NOT EXISTS "Address" (
