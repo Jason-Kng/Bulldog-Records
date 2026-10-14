@@ -10,7 +10,7 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.sendStatus(400);
+    return res.sendStatus(401).json({ message: 'Invalid email or password' });
   }
 
   const user = db.prepare(`
@@ -44,13 +44,13 @@ router.post('/register', async (req, res) => {
   // get data out of body and check if all required fields exist
   const { password, email, name, userType, street, city, state, zip } = req.body;
   if (!password || !email || !name || !userType || !street || !city || !state || !zip) {
-    return res.sendStatus(400)
+    return res.sendStatus(401).json({ message: "Invalid Fields" });
   }
 
   // Check if email already exists
   const existingUser = db.prepare('SELECT email FROM User WHERE email=?').get(email);
   if (existingUser) {
-    return res.sendStatus(409)
+    return res.sendStatus(409).json({ message: "Email already exists" });
   }
 
   const hash = await bcrypt.hash(password, 10);
@@ -74,7 +74,7 @@ router.post('/register', async (req, res) => {
   try {
     createAccount();
   } catch (error) {
-    return res.sendStatus(500);
+    return res.sendStatus(500).json({ message: "Failed to create Account" });
   }
 
   res.sendStatus(201).json({
@@ -84,21 +84,4 @@ router.post('/register', async (req, res) => {
 
 });
 
-// router.post('/compare', (req, res) => {
-//
-//
-//   const hash = db.prepare('SELECT passwordHash FROM Login WHERE userID = (SELECT userID FROM User WHERE email=?)').get(req.body.email);
-//
-//   console.log("Hash: ", hash.passwordHash);
-//   console.log("Password: ", req.body.password);
-//   const comp = bcrypt.compareSync(req.body.password, hash.passwordHash);
-//
-//   if (!comp) {
-//     return res.sendStatus(400);
-//   }
-//
-//   res.json({
-//     "Status": "Authorized"
-//   })
-// });
 export default router;
