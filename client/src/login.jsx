@@ -7,6 +7,12 @@ function Login() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    navigate("/register");
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -54,6 +60,7 @@ function Login() {
         </div>
         <button type="submit">Log In</button>
       </form>
+      <button type="submit" onClick={handleClick}>Create Account</button>
       <p>{message}</p>
     </div>
   );
