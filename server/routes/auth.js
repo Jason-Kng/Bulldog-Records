@@ -1,0 +1,24 @@
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const db = require('../database/database.cjs')
+
+const router = express.Router();
+
+router.post('/login', (req, res) => {
+  // Authenticate
+  const user = db.prepare('SELECT * FROM User WHERE name = ?').get(req.body.username);
+  if (!user) {
+    return res.sendStatus(403);
+  }
+
+  const accessToken = jwt.sign({ name: user.name }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+
+  res.json({
+    accessToken: accessToken
+  });
+});
+
+export default router;
