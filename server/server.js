@@ -1,5 +1,5 @@
 const express = require('express');
-const currentSeller = require("./middleware/currentSeller");
+const currentSeller = require("./middleware/tempSeller");
 const sellerRoutes = require("./routes/seller");
 const app = express();
 const port = 3000;

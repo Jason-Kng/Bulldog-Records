@@ -7,6 +7,7 @@ const router = express.Router();
 
 // get seller
 // will be from api/seller (the BASE = api/seller is in api in client)
+// testing on HTTPIE: worked
 router.get("/", (req, res) => {
   const query = db.prepare("SELECT * FROM Seller WHERE sellerID = ?");
   const seller = query.get(req.sellerID);
@@ -18,7 +19,9 @@ router.get("/", (req, res) => {
 });
 
 // create a listing
+// testing on HTTPIE: 
 router.post("/listings", (req, res) => {
+  console.log("POST hit", req.body);
   // db fields
   const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo } = req.body;
 
@@ -31,6 +34,8 @@ router.post("/listings", (req, res) => {
   try {
     const query = db.prepare(`INSERT INTO Listing (sellerID, title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
     const values = query.run(req.sellerID, title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, price, photo)
+
+    res.status(201).json({ listingID: values.lastInsertRowid });
   }
   catch (error) {
     res.status(400).json({ error: error.message });
@@ -42,6 +47,7 @@ router.post("/listings", (req, res) => {
 
 
 // get seller's listings
+// testing on HTTPIE: worked
 router.get("/listings", (req, res) => {
   const query = db.prepare("SELECT * FROM Listing WHERE sellerID = ? AND listingStatus != 'removed'");
   const listings = query.all(req.sellerID);
@@ -50,6 +56,7 @@ router.get("/listings", (req, res) => {
 });
 
 // edit the fields of a listing
+// testing on HTTPIE: worked
 router.put("/listings/:id", (req, res) => {
   // db fields
   const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo } = req.body;
@@ -61,10 +68,10 @@ router.put("/listings/:id", (req, res) => {
 
   try {
     const query = db.prepare(`UPDATE Listing SET title = ?, artist = ?, releaseDate = ?, mediaType = ?, genre = ?, EAN = ?, condition = ?, stock = ?, price = ?, photo = ? WHERE listingID = ? AND sellerID = ? AND listingStatus != 'removed'`);
-    const values = query.run(req.sellerID, title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, price, photo, req.params.id, req.sellerID)
+    const values = query.run(title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, price, photo, req.params.id, req.sellerID)
 
     // would send like updated: 10, confirming update to the listing
-    res.json({ updated: req.params.id });
+    res.status(200).json({ updated: req.params.id });
   }
   catch (error) {
     res.status(400).json({ error: error.message});
@@ -73,7 +80,8 @@ router.put("/listings/:id", (req, res) => {
 });
 
 // remove listing, soft delete (set status to removed)
-router.delete("/listings/:id", (res, req) => {
+// testing on HTTPIE: worked
+router.delete("/listings/:id", (req, res) => {
   const query = db.prepare("UPDATE Listing SET listingStatus = 'removed' WHERE listingID = ? AND sellerID = ? AND listingStatus != 'removed'");
   const remove = query.run(req.params.id, req.sellerID);
 
@@ -83,6 +91,7 @@ router.delete("/listings/:id", (res, req) => {
 })
 
 // get one listing from seller
+// testing on HTTPIE: worked
 router.get("/listings/:id", (req, res) => {
   const query = db.prepare("SELECT * FROM Listing WHERE listingID = ? AND sellerID = ? AND listingStatus != 'removed'");
   // query.get(req.params.id) gets id from URL
