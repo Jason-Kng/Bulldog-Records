@@ -1,0 +1,20 @@
+Meeting - 1 hour 
+
+Library, Study Room 1023
+October 15, 2026
+
+Members present: Jason King, Camila Da Silva, Timothy Pepper, Elian Ixcajoc-sales
+
+Actions:
+- Camila and Jason's branches were merged into Sprint3.2
+- Elian will also merge into 3.2
+- We'll start working from 3.2 from now on
+
+Updates:
+- Camila figured out how to work the MusicBrainz API, is currently writing the script to check item's barcode
+- Elian finished the create account form (frontend)
+- Jason started working on the buyer dashboard
+- Timothy is working on admin frontend
+
+Pending:
+- Need to do a page template we can all reuse
