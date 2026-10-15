@@ -1,6 +1,6 @@
-const db = require("./database");
+import db from './database.js'
 
-const populateData = db.transaction(()=> {
+const populateData = db.transaction(() => {
   // Need users
   const userQuery = db.prepare(`INSERT INTO User (name, email, userType) VALUES (?, ?, ?)`);
   const user = userQuery.run("Seller 1", "seller1@bulldogrecords.com", "seller");
@@ -25,8 +25,8 @@ const populateData = db.transaction(()=> {
 try {
   populateData()
 
-} catch(e) {
-  res.status(500).json({ error: error.message});
+} catch (e) {
+  res.status(500).json({ error: error.message });
 }
 
 

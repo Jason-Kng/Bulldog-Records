@@ -1,5 +1,5 @@
-const express = require("express");
-const db = require("../database/database");
+import express from 'express';
+import db from '../database/database.js';
 
 const router = express.Router();
 
@@ -21,13 +21,13 @@ router.get("/", (req, res) => {
 // create a listing
 // testing on HTTPIE: worked
 router.post("/listings", (req, res) => {
-  
+
   // db fields
   const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo } = req.body;
 
   // check required fields are there
   if (!title || !artist || !mediaType || !genre || !condition || !price || !photo) {
-    return res.status(400).json({ error: "New listing fields are missing"});
+    return res.status(400).json({ error: "New listing fields are missing" });
   }
 
   // create entry in db
@@ -63,7 +63,7 @@ router.put("/listings/:id", (req, res) => {
 
   // check required fields are there
   if (!title || !artist || !mediaType || !genre || !condition || !price || !photo) {
-    return res.status(400).json({ error: "New listing fields are missing"});
+    return res.status(400).json({ error: "New listing fields are missing" });
   }
 
   try {
@@ -74,7 +74,7 @@ router.put("/listings/:id", (req, res) => {
     res.status(200).json({ updated: req.params.id });
   }
   catch (error) {
-    res.status(400).json({ error: error.message});
+    res.status(400).json({ error: error.message });
   }
 
 });
@@ -99,7 +99,7 @@ router.get("/listings/:id", (req, res) => {
   const listing = query.get(req.params.id, req.sellerID);
 
   if (!listing) {
-    return res.status(404).json({ error: "Listing not found"});
+    return res.status(404).json({ error: "Listing not found" });
   }
 
   res.json(listing);
