@@ -1,4 +1,4 @@
-const db = require("./database");
+import db from './database.js'
 
 const populateData = db.transaction(() => {
   // Need users
