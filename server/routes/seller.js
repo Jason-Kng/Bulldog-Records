@@ -19,9 +19,9 @@ router.get("/", (req, res) => {
 });
 
 // create a listing
-// testing on HTTPIE: 
+// testing on HTTPIE: worked
 router.post("/listings", (req, res) => {
-  console.log("POST hit", req.body);
+  
   // db fields
   const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo } = req.body;
 
@@ -107,3 +107,6 @@ router.get("/listings/:id", (req, res) => {
 
 module.exports = router;
 
+// view order history
+
+// view payment history
