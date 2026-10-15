@@ -105,7 +105,7 @@ router.get("/listings/:id", (req, res) => {
   res.json(listing);
 });
 
-module.exports = router;
+export default router;
 
 // view order history
 

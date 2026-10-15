@@ -6,4 +6,4 @@ function tempSeller(req, res, next) {
   next()
 }
 
-module.exports = tempSeller;
+export default tempSeller;
