@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS "Listing" (
     --photo set to text to hold path or URL
     "photo" TEXT NOT NULL,
     "removedDate" TEXT,
-    "isVerified" INTEGER NOT NULL DEFAULT 0
+    "isVerified" INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY("listingID")
 );
 CREATE TABLE IF NOT EXISTS "Cart" (
