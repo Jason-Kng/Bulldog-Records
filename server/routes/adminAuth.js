@@ -1,8 +1,5 @@
-import { createRequire } from 'node:module';
 import jwt from 'jsonwebtoken';
-
-const require = createRequire(import.meta.url);
-const db = require('../database/database.cjs');
+import db from "../database/database.js"
 
 export function requireAdmin(req, res, next) {
     const authHeader = req.headers.authorization;

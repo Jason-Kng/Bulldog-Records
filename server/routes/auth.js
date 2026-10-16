@@ -1,9 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import { createRequire } from 'node:module';
-
-const require = createRequire(import.meta.url);
-const db = require('../database/database.cjs')
+import db from "../database/database.js"
 
 const router = express.Router();
 

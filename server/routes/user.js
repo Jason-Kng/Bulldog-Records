@@ -1,8 +1,5 @@
 import express from 'express';
-import { createRequire } from 'node:module';
-
-const require = createRequire(import.meta.url);
-const db = require('../database/database.cjs');
+import db from "../database/database.js"
 
 import authenticateToken from '../middleware/auth.js';
 

@@ -1,9 +1,6 @@
 import express from 'express';
-import { createRequire } from 'node:module';
 import { requireAdmin } from './adminAuth.js';
-
-const require = createRequire(import.meta.url);
-const db = require('../database/database.cjs');
+import db from "../database/database.js"
 
 const router = express.Router();
 
