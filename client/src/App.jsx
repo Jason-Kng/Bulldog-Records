@@ -3,12 +3,12 @@ import './App.css'
 
 import SellerAccountPage from "./pages/seller/SellerAccountPage";
 import SellerListingsPage from "./pages/seller/SellerListingsPage";
-import ListingDetailPage from "./pages/seller/ListingDetailPage";
-import AddListingPage from "./pages/seller/AddListingPage";
+// import ListingDetailPage from "./pages/seller/ListingDetailPage";
+import AddListingPage from "./pages/seller/AddListingPage.jsx";
 import EditListingPage from "./pages/seller/EditListingPage";
 import { Link, Route, Routes } from 'react-router-dom';
-import Login from './login.jsx';
-import Buyer from './buyerDashboard.jsx';
+// import Login from './login.jsx';
+import Buyer from './pages/buyer/buyerDashboard.jsx';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -38,13 +38,12 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/buyer' element={<Buyer />} />
- <Route path="/" element={<Navigate to="/seller" />} />
+        {/* <Route path="/" element={<Navigate to="/seller" />} /> */}
+        <Route path="/buyer" element={<Buyer />} />
         <Route path="/seller" element={<SellerAccountPage />} />
         <Route path="/seller/listings" element={<SellerListingsPage />} />
         <Route path="/seller/listings/add" element={<AddListingPage />} />
-        <Route path="/seller/listings/:id" element={<ListingDetailPage />} />
+        {/* <Route path="/seller/listings/:id" element={<ListingDetailPage />} /> */}
         <Route path="/seller/listings/:id/edit" element={<EditListingPage />} />
       </Routes>
 

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import AddListingForm from "../../components/seller/AddListingForm";
+import AddListingForm from "../../components/seller/AddListingForm.jsx";
 import { addListing } from "../../api/sellerApi";
 
 function AddListingPage() {

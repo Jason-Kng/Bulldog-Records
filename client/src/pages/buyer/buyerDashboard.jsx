@@ -1,8 +1,8 @@
-import Card from './listingCard.jsx';
-import placeholder from './assets/placeholder.png';
+import Card from '../../components/listingCard.jsx';
+import placeholder from '../../assets/placeholder.png';
 import './buyerDashboard.css';
 import { useState, useEffect } from 'react';
-import { getListings } from './api/dashboard.js';
+import { getListings } from '../../api/dashboard.js';
 function Buyer() {
   const [listings, setlistings] = useState([]);
 
