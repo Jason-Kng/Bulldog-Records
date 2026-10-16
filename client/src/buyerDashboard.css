@@ -1,0 +1,39 @@
+.buyer-dashboard {
+  width: 100%;
+  padding: 20px;
+}
+
+.dashboard-header {
+  margin-bottom: 24px;
+}
+
+.dashboard-header h1 {
+  margin-bottom: 6px;
+}
+
+.listing-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.listing-section {
+  padding: 20px;
+}
+
+.listing-scroll {
+  display: flex;
+  gap: 20px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding: 10px 0;
+
+  scroll-behavior: smooth;
+}
+
+.listing-scroll .card-container {
+  flex: 0 0 auto;
+}

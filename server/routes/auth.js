@@ -9,6 +9,7 @@ router.post('/login', async (req, res) => {
   // Authenticate
   const { email, password } = req.body;
 
+  // Need to check if they are in the correct format
   if (!email || !password) {
     return res.sendStatus(401).json({ message: 'Invalid email or password' });
   }
@@ -55,7 +56,8 @@ router.post('/register', async (req, res) => {
 
   const hash = await bcrypt.hash(password, 10);
 
-  const createAccount = db.transaction(() => {
+  // add seperate creates for different types of accounts
+  const createSeller = db.transaction(() => {
 
     const regUser = db.prepare('INSERT INTO User (name, email, userType) VALUES (?, ?, ?)').run(name, email, userType);
 
@@ -71,8 +73,32 @@ router.post('/register', async (req, res) => {
 
   });
 
+  const createBuyer = db.transaction(() => {
+
+    const regUser = db.prepare('INSERT INTO User (name, email, userType) VALUES (?, ?, ?)').run(name, email, userType);
+
+    const userID = regUser.lastInsertRowid;
+
+    db.prepare('INSERT INTO Login (userID, passwordHash) VALUES (?, ?)').run(userID, hash);
+
+    const regAddress = db.prepare('INSERT INTO Address (street, city, state, zip) VALUES (?, ?, ?, ?)').run(street, city, state, zip);
+
+    const addressID = regAddress.lastInsertRowid;
+
+    db.prepare('INSERT INTO Buyer (userID, shippingAddressID) VALUES (?, ?)').run(userID, addressID);
+
+  });
+
   try {
-    createAccount();
+    switch (userType) {
+      case Buyer:
+        createBuyer();
+        break;
+      case Seller:
+        createSeller();
+      default:
+        break;
+    }
   } catch (error) {
     return res.sendStatus(500).json({ message: "Failed to create Account" });
   }

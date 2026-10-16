@@ -25,7 +25,7 @@ function Login() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          navigate("/hello");
+          navigate("/buyer");
         } else {
           setMessage(data.message);
         }
