@@ -8,8 +8,6 @@ import AdminSellerApprovals from './AdminSellerApproval'
 function App() {
   const [count, setCount] = useState(0)
 
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFuZSBEb2UiLCJpYXQiOjE3OTIxNjYyMDgsImV4cCI6MTc5MjE2OTgwOH0.iiV_As9bnKrSmAp9GMG5eKNhxRET-JpMULxB7iwnbeA'
-
   return (
     <>
       <AdminSellerApprovals token={token} />
