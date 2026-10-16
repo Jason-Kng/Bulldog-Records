@@ -1,7 +1,12 @@
 // import { useState } from 'react'
 import './App.css'
+
+import SellerAccountPage from "./pages/seller/SellerAccountPage";
+import SellerListingsPage from "./pages/seller/SellerListingsPage";
+import ListingDetailPage from "./pages/seller/ListingDetailPage";
+import AddListingPage from "./pages/seller/AddListingPage";
+import EditListingPage from "./pages/seller/EditListingPage";
 import { Link, Route, Routes } from 'react-router-dom';
-// import { useMessages } from './context/MessagesContext.jsx';
 import Login from './login.jsx';
 import Buyer from './buyerDashboard.jsx';
 
@@ -35,6 +40,12 @@ function App() {
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/buyer' element={<Buyer />} />
+ <Route path="/" element={<Navigate to="/seller" />} />
+        <Route path="/seller" element={<SellerAccountPage />} />
+        <Route path="/seller/listings" element={<SellerListingsPage />} />
+        <Route path="/seller/listings/add" element={<AddListingPage />} />
+        <Route path="/seller/listings/:id" element={<ListingDetailPage />} />
+        <Route path="/seller/listings/:id/edit" element={<EditListingPage />} />
       </Routes>
 
 
@@ -42,4 +53,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
