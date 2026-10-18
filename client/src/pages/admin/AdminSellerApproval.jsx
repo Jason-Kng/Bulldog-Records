@@ -121,7 +121,7 @@ export default function AdminSellerApprovals({ token }) {
                     <p>Status: {seller.approvalStatus}</p>
 
                     <button
-                        diabled={updatingID !== null}
+                        disabled={updatingID !== null}
                         onClick={() =>
                             updateSeller(seller.sellerID, 'approved')
                         }
