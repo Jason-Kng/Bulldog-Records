@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 function Login() {
   //changed username to email
@@ -7,12 +8,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-
-  const handleClick = (e) => {
-    e.preventDefault();
-
-    navigate("/register");
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,10 +26,20 @@ function Login() {
         return res.json();
       }) //{res.json())
       .then((data) => {
-        if (data.success) {
-          navigate("/buyer");
-        } else {
-          setMessage(data.message);
+        if (data === null) {
+          return;
+        }
+        console.log(data);
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+
+          const decoded = jwtDecode(data.accessToken);
+
+          if (decoded.userType === "buyer") {
+            navigate("/buyer");
+          } else {
+            navigate("/seller");
+          }
         }
       })
       .catch((err) => console.error(err));
@@ -66,9 +71,6 @@ function Login() {
         </div>
         <button type="submit">Log In</button>
       </form>
-      <button type="submit" onClick={handleClick}>
-        Create Account
-      </button>
       <p>{message}</p>
     </div>
   );

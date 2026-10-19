@@ -1,0 +1,27 @@
+{
+  "name": "bulldog-records",
+  "version": "1.0.0",
+  "description": "Bulldog Records is a web application that will allow users to both sell and purchase physical music media, including CDs, vinyl records, and cassettes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm --prefix client run dev",
+    "server": "npm --prefix server start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jason-Kng/Bulldog-Records.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "modules",
+  "bugs": {
+    "url": "https://github.com/Jason-Kng/Bulldog-Records/issues"
+  },
+  "homepage": "https://github.com/Jason-Kng/Bulldog-Records#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}

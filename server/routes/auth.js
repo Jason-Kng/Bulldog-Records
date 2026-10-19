@@ -11,7 +11,7 @@ router.post('/login', async (req, res) => {
 
   // Need to check if they are in the correct format
   if (!email || !password) {
-    return res.sendStatus(401).json({ message: 'Invalid email or password' });
+    return res.status(401).json({ message: 'Invalid email or password' });
   }
 
   const user = db.prepare(`
@@ -22,13 +22,13 @@ router.post('/login', async (req, res) => {
   `).get(email);
 
   if (!user) {
-    return res.sendStatus(401).json({ message: 'Invalid email or password' });
+    return res.status(401).json({ message: 'Invalid email' });
   }
 
   const validPass = await bcrypt.compare(password, user.passwordHash);
 
   if (!validPass) {
-    return res.sendStatus(401).json({ message: 'Invalid email or password' });
+    return res.status(401).json({ message: 'Invalid password' });
   }
 
 
@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
   const accessToken = jwt.sign({ email: user.email, name: user.name, userType: user.userType }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
 
   res.json({
-    accessToken: accessToken
+    accessToken: accessToken,
   });
 });
 
@@ -45,13 +45,13 @@ router.post('/register', async (req, res) => {
   // get data out of body and check if all required fields exist
   const { password, email, name, userType, street, city, state, zip } = req.body;
   if (!password || !email || !name || !userType || !street || !city || !state || !zip) {
-    return res.sendStatus(401).json({ message: "Invalid Fields" });
+    return res.status(401).json({ message: "Invalid Fields" });
   }
 
   // Check if email already exists
   const existingUser = db.prepare('SELECT email FROM User WHERE email=?').get(email);
   if (existingUser) {
-    return res.sendStatus(409).json({ message: "Email already exists" });
+    return res.status(409).json({ message: "Email already exists" });
   }
 
   const hash = await bcrypt.hash(password, 10);
@@ -91,19 +91,19 @@ router.post('/register', async (req, res) => {
 
   try {
     switch (userType) {
-      case Buyer:
+      case ('buyer'):
         createBuyer();
         break;
-      case Seller:
+      case ('seller'):
         createSeller();
       default:
         break;
     }
   } catch (error) {
-    return res.sendStatus(500).json({ message: "Failed to create Account" });
+    return res.status(500).json({ message: "Failed to create Account", error: `${error}` });
   }
 
-  res.sendStatus(201).json({
+  res.status(201).json({
     "Status": "Registered"
   });
 

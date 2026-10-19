@@ -1,6 +1,6 @@
 import Card from '../../components/listingCard.jsx';
-import placeholder from '../../assets/placeholder.png';
-import './buyerDashboard.css';
+// import placeholder from '../../assets/placeholder.png';
+import './BuyerDashboard.css';
 import { useState, useEffect } from 'react';
 import { getListings } from '../../api/dashboard.js';
 function Buyer() {
@@ -8,7 +8,7 @@ function Buyer() {
 
   useEffect(() => {
     getListings()
-      .then(data => { console.log(data); setlistings(data); })
+      .then(data => { setlistings(data); })
       .catch(error => console.error('Error fetching listings: ', error));
   }, []);
 
@@ -21,7 +21,7 @@ function Buyer() {
           <h2>Featured Listings</h2>
           <div className='listing-scroll'>
             {listings.map((listing) => (
-              <Card key={listing.listingID} listingID={listing.listingID} image={placeholder} title={listing.title} artist={listing.artist} price={listing.price} seller={listing.sellerID} />
+              <Card key={listing.listingID} listingID={listing.listingID} image={listing.photo} title={listing.title} artist={listing.artist} price={listing.price} seller={listing.name} />
             ))}
 
           </div>
