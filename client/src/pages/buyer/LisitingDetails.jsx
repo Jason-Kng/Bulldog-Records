@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getListing } from "../../api/dashboard";
 import "./ListingDetails.css";
 
 function ListingDetails() {
+  let navigate = useNavigate();
   let params = useParams();
   const [listing, setListing] = useState({});
   // console.log(params);
@@ -13,6 +14,14 @@ function ListingDetails() {
       .then(data => { setListing(data); })
       .catch(error => console.error('Error fetching listing: ', error));
   }, [params.id]);
+
+  const handleAdd = () => {
+    console.log("Add to cart");
+  };
+  const handleClick = () => {
+    navigate(-1);
+
+  };
 
   return (
     <>
@@ -31,16 +40,21 @@ function ListingDetails() {
             </p>
 
             <div className="listing-details-meta">
-              <p><strong>Media:</strong> {listing.mediaType}</p>
-              <p><strong>Condition:</strong> {listing.condition}</p>
-              <p><strong>Genre:</strong> {listing.genre}</p>
-              <p><strong>Release Date:</strong> {listing.releaseDate}</p>
-              <p><strong>Stock:</strong> {listing.stock}</p>
-              <p><strong>Seller:</strong> {listing.sellerName}</p>
+              <div className="listing-details">
+                <p><strong>Media:</strong> {listing.mediaType}</p>
+                <p><strong>Condition:</strong> {listing.condition}</p>
+                <p><strong>Genre:</strong> {listing.genre}</p>
+                <p><strong>Release Date:</strong> {listing.releaseDate}</p>
+                <p><strong>Stock:</strong> {listing.stock}</p>
+                <p><strong>Seller:</strong> {listing.sellerName}</p>
+              </div>
             </div>
           </div>
+          <div className="button-container">
+            <button type="button" className="back-button" onClick={() => handleClick()}>Back to Listings</button>
+            <button type="button" className="add-cart-button" onClick={() => handleAdd()}>Add To Cart</button>
+          </div>
         </div>
-        <button type="submit" className="addCart-button">Add To Cart</button>
       </div>
     </>
   )

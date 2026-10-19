@@ -19,6 +19,10 @@
   white-space: nowrap;
 }
 
+.navbar-brand:hover {
+  opacity: 0.9;
+}
+
 .navbar-links {
   margin-left: auto;
 
