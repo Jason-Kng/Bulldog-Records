@@ -1,8 +1,9 @@
-import Card from '../../components/listingCard.jsx';
+import Card from '../../components/ListingCard.jsx';
 // import placeholder from '../../assets/placeholder.png';
 import './BuyerDashboard.css';
 import { useState, useEffect } from 'react';
-import { getListings } from '../../api/dashboard.js';
+import { getListings } from '../../api/listingApi.js';
+
 function Buyer() {
   const [listings, setlistings] = useState([]);
 
@@ -11,8 +12,6 @@ function Buyer() {
       .then(data => { setlistings(data); })
       .catch(error => console.error('Error fetching listings: ', error));
   }, []);
-
-
 
   return (
     <>

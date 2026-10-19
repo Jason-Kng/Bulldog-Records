@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './listingCard.css';
+import './ListingCard.css';
 
 function Card({ listingID, seller, image, title, artist, price }) {
   const navigate = useNavigate();

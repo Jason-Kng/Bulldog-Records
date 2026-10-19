@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
@@ -36,7 +36,7 @@ function Login() {
           const decoded = jwtDecode(data.accessToken);
 
           if (decoded.userType === "buyer") {
-            navigate("/buyer");
+            navigate("/browse");
           } else {
             navigate("/seller");
           }
@@ -44,6 +44,34 @@ function Login() {
       })
       .catch((err) => console.error(err));
   };
+
+
+  useEffect(() => {
+
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+      return;
+    }
+
+    try {
+      const decode = jwtDecode(token);
+
+      if (decode.userType === "buyer") {
+        navigate("/browse", { replace: true });
+      } else if (decode.userType === "seller") {
+        navigate("/seller", { replace: true });
+      } else if (decode.userType === "admin") {
+        console.log("admin");
+      } else {
+        return;
+      }
+    } catch (e) {
+      console.log("Error: ", e);
+    }
+
+
+  }, [navigate])
 
   return (
     <div>
