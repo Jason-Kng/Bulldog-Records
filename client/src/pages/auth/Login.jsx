@@ -9,6 +9,10 @@ function Login() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
+  const handleCreateAccount = () => {
+    navigate("/register");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -45,9 +49,7 @@ function Login() {
       .catch((err) => console.error(err));
   };
 
-
   useEffect(() => {
-
     const token = localStorage.getItem("accessToken");
 
     if (!token) {
@@ -69,9 +71,7 @@ function Login() {
     } catch (e) {
       console.log("Error: ", e);
     }
-
-
-  }, [navigate])
+  }, [navigate]);
 
   return (
     <div>
@@ -98,6 +98,9 @@ function Login() {
           />
         </div>
         <button type="submit">Log In</button>
+        <button type="buttion" onClick={handleCreateAccount}>
+          Create Account
+        </button>
       </form>
       <p>{message}</p>
     </div>

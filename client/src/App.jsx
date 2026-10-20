@@ -4,9 +4,10 @@ import SellerAccountPage from "./pages/seller/SellerAccountPage";
 import AddListingPage from "./pages/seller/AddListingPage.jsx";
 // import EditListingPage from "./pages/seller/EditListingPage";
 import Login from "./pages/auth/Login.jsx";
-import { Route, Routes } from 'react-router-dom';
-import Buyer from './pages/buyer/BuyerDashboard.jsx';
-import ListingDetails from './pages/buyer/ListingDetails.jsx';
+import Register from "./pages/auth/Register.jsx";
+import { Route, Routes } from "react-router-dom";
+import Buyer from "./pages/buyer/BuyerDashboard.jsx";
+import ListingDetails from "./pages/buyer/ListingDetails.jsx";
 import NavBar from "./components/NavBar.jsx";
 import Search from "./pages/buyer/SearchPage.jsx";
 
@@ -21,19 +22,18 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<Navigate to="/seller" />} /> */}
         <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/browse" element={<Buyer />} />
         <Route path="/search" element={<Search />} />
-        <Route path='/listingDetails/:id' element={<ListingDetails />} />
+        <Route path="/listingDetails/:id" element={<ListingDetails />} />
         <Route path="/seller" element={<SellerAccountPage />} />
         {/* <Route path="/seller/listings" element={<SellerListingsPage />} /> */}
         <Route path="/seller/listings/add" element={<AddListingPage />} />
         {/* <Route path="/seller/listings/:id" element={<ListingDetailPage />} /> */}
         {/* <Route path="/seller/listings/:id/edit" element={<EditListingPage />} /> */}
       </Routes>
-
-
     </>
-  )
+  );
 }
 
 export default App;
