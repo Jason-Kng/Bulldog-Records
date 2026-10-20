@@ -29,7 +29,6 @@ function Login() {
         if (data === null) {
           return;
         }
-        console.log(data);
         if (data.accessToken) {
           localStorage.setItem("accessToken", data.accessToken);
 

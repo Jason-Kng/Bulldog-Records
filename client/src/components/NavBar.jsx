@@ -13,6 +13,11 @@ function getHomeRoute() {
 
   const decoded = jwtDecode(token);
 
+  if (decoded.exp > Date.now()) {
+    localStorage.removeItem("accessToken");
+    return "/"
+  }
+
   if (decoded.userType === "buyer") {
     return "/browse";
   }

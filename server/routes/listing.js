@@ -29,4 +29,21 @@ router.get('/details/:id', (req, res) => {
   }
 });
 
+router.get('/search', (req, res) => {
+  const query = req.query.query
+
+  const stmt = db.prepare("SELECT * FROM Listing WHERE title LIKE ?");
+
+  try {
+    const results = stmt.all(`%${query}%`);
+    console.log(results);
+    res.send(results);
+  } catch (e) {
+    console.log("Error: ", e);
+    res.json("error: ", e);
+  }
+
+});
+
+
 export default router;
