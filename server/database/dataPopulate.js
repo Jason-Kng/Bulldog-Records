@@ -24,7 +24,12 @@ const populateData = db.transaction(() => {
   const listingQuery = db.prepare(`INSERT INTO Listing (sellerID, title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
   listingQuery.run(seller1.lastInsertRowid, "Gold: Greatest Hits", "ABBA", "1992-09-21", "vinyl", "pop", "731451700712", "new", 3, 5000, "/images/placeholder.png")
   listingQuery.run(seller1.lastInsertRowid, "Midnights: Moonstone Blue Edition", "Taylor Swift", "2022-10-21", "cd", "pop", "602445790098", "used", 2, 2700, "/images/placeholder.png")
+  listingQuery.run(seller1.lastInsertRowid, "The Secret of Us", "Gracie Abrams", "2024-06-21", "vinyl", "pop", null, "new", 4, 3500, "/images/placeholder.png");
+
   listingQuery.run(seller2.lastInsertRowid, "I Barely Know Her", "Sombr", "2025-08-22", "cd", "pop", "093624827702", "new", 5, 1700, "/images/placeholder.png")
+  listingQuery.run(seller2.lastInsertRowid, "GUTS", "Olivia Rodrigo", "2023-09-08", "cd", "pop", null, "used", 3, 1500, "/images/placeholder.png");
+  listingQuery.run(seller2.lastInsertRowid, "30", "Adele", "2021-11-19", "vinyl", "pop", null, "open", 2, 3000, "/images/placeholder.png");
+  
 
   console.log("Data population complete.")
 })
@@ -39,3 +44,5 @@ try {
 
 // admin, 3-5 sellers, 3-5 buyers, 10 products per seller
 // package for images: multer
+
+// listing: add primary type (Album, Single)

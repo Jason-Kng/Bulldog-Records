@@ -16,9 +16,9 @@ function SellerAccountPage() {
       .catch((err) => alert(err.message));
   }, []);
 
-  // if (!seller) {
-  //   return TODO: add something here;
-  // }
+  if (!seller) {
+    return <h3>Retrieving Account Data...</h3>;
+  }
 
   return (
     <div>
