@@ -18,7 +18,8 @@ router.get("/", authenticateToken, (req, res) => {
   }
   const items = db
     .prepare(
-      `SELECT CartItem.cartItemID, CartItem.itemQuantity, Listing.listingID, Listing.title, Listing.price, Listing.photo, listing.sellerID 
+      `SELECT CartItem.cartItemID, CartItem.itemQuantity, Listing.listingID, Listing.title, 
+      Listing.price, Listing.photo, Listing.sellerID, Listing.artist, Listing.stock 
     FROM CartItem JOIN Listing ON CartItem.listingID = Listing.listingID
     WHERE CartItem.cartID = ?`,
     )
@@ -94,6 +95,31 @@ router.post("/items", authenticateToken, (req, res) => {
     ).run(cartID, listingID, quantity);
   }
   res.status(201).json({ message: "Added to Cart" });
+});
+
+router.delete("/items/:listingID", authenticateToken, (req, res) => {
+  const listingID = req.params.listingID;
+  const email = req.user.email;
+
+  const cart = db
+    .prepare(
+      `SELECT Cart.cartID FROM Cart 
+    JOIN Buyer ON Cart.buyerID = Buyer.buyerID JOIN User ON Buyer.userID = User.userID WHERE user.email = ?`,
+    )
+    .get(email);
+  if (!cart) {
+    return res.status(404).json({ message: "No Cart" });
+  }
+  const result = db
+    .prepare(
+      `DELETE FROM CartItem WHERE CartItem.cartID=? AND CartItem.listingID=?`,
+    )
+    .run(cart.cartID, listingID);
+  if (result.changes === 0) {
+    return res.status(404).json({ message: "Cart is Empty" });
+  }
+
+  return res.status(200).json({ message: "Item Removed" });
 });
 
 export default router;

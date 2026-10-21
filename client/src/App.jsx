@@ -10,6 +10,7 @@ import Buyer from "./pages/buyer/BuyerDashboard.jsx";
 import ListingDetails from "./pages/buyer/ListingDetails.jsx";
 import NavBar from "./components/NavBar.jsx";
 import Search from "./pages/buyer/SearchPage.jsx";
+import CartPage from "./pages/buyer/CartPage.jsx";
 
 function App() {
   // const location = useLocation();
@@ -25,6 +26,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/browse" element={<Buyer />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="/listingDetails/:id" element={<ListingDetails />} />
         <Route path="/seller" element={<SellerAccountPage />} />
         {/* <Route path="/seller/listings" element={<SellerListingsPage />} /> */}

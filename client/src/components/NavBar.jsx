@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import './NavBar.css';
+import "./NavBar.css";
 
 function getHomeRoute() {
   const token = localStorage.getItem("accessToken");
@@ -35,11 +35,9 @@ function NavBar() {
     event.preventDefault();
 
     if (search.trim() !== "") {
-      navigate(`/search?query=${encodeURIComponent(search)}`)
+      navigate(`/search?query=${encodeURIComponent(search)}`);
     }
-
   };
-
 
   return (
     <>
@@ -50,11 +48,17 @@ function NavBar() {
         {!isLoginPage && (
           <>
             <form className="navbar-search" onSubmit={handleSearch}>
-              <input type="text" placeholder="Search albums..." className="search-bar" value={search} onChange={(event) => setSearch(event.target.value)} />
+              <input
+                type="text"
+                placeholder="Search albums..."
+                className="search-bar"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+              />
             </form>
 
             <div className="navbar-links">
-              <Link to="/" className="nav-link">
+              <Link to="/cart" className="nav-link">
                 Cart
               </Link>
               <Link to="/" className="nav-link">
@@ -68,7 +72,7 @@ function NavBar() {
         )}
       </nav>
     </>
-  )
-};
+  );
+}
 
 export default NavBar;
