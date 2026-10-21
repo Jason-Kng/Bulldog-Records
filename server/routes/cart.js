@@ -1,0 +1,99 @@
+import express from "express";
+import db from "../database/database.js";
+import authenticateToken from "../middleware/auth.js";
+
+const router = express.Router();
+
+router.get("/", authenticateToken, (req, res) => {
+  console.log("req.user", req.user);
+  const email = req.user.email;
+  const cart = db
+    .prepare(
+      `SELECT Cart.cartID FROM Cart 
+    JOIN Buyer ON Cart.buyerID = Buyer.buyerID JOIN User ON Buyer.userID = User.userID WHERE user.email = ?`,
+    )
+    .get(email);
+  if (!cart) {
+    return res.json([]);
+  }
+  const items = db
+    .prepare(
+      `SELECT CartItem.cartItemID, CartItem.itemQuantity, Listing.listingID, Listing.title, Listing.price, Listing.photo, listing.sellerID 
+    FROM CartItem JOIN Listing ON CartItem.listingID = Listing.listingID
+    WHERE CartItem.cartID = ?`,
+    )
+    .all(cart.cartID);
+  res.json(items);
+});
+
+router.post("/items", authenticateToken, (req, res) => {
+  const listingID = req.body.listingID;
+  const quantity = Number(req.body.quantity);
+
+  if (!listingID) {
+    return res.status(400).json({ message: "listingID is required" });
+  }
+  if (!quantity || quantity < 1) {
+    return res
+      .status(400)
+      .json({ message: "Quantity must be greater than zero" });
+  }
+
+  const email = req.user.email;
+  const buyer = db
+    .prepare(
+      `SELECT Buyer.buyerID FROM Buyer JOIN User ON Buyer.userID = User.userID
+    WHERE User.email=?`,
+    )
+    .get(email);
+  if (!buyer) {
+    return res.status(403).json({ message: "Only buyers can add to cart" });
+  }
+  let cartID;
+
+  const cart = db
+    .prepare(`SELECT cartID FROM Cart WHERE buyerID = ?`)
+    .get(buyer.buyerID);
+  if (cart) {
+    cartID = cart.cartID;
+  } else {
+    const newCart = db
+      .prepare(`INSERT INTO Cart (buyerID) VALUES (?)`)
+      .run(buyer.buyerID);
+    cartID = newCart.lastInsertRowid;
+  }
+
+  const listing = db
+    .prepare(`SELECT stock FROM Listing WHERE listingID = ?`)
+    .get(listingID);
+  if (!listing) {
+    return res.status(404).json({ message: "Listing not found" });
+  }
+  if (listing.stock === 0) {
+    return res.status(400).json({ message: "Listing is out of stock" });
+  }
+
+  const cartExisting = db
+    .prepare(
+      `SELECT cartItemID, itemQuantity FROM CartItem WHERE cartID = ? AND listingID=?`,
+    )
+    .get(cartID, listingID);
+
+  const alreadyInCart = cartExisting ? cartExisting.itemQuantity : 0;
+  if (alreadyInCart + quantity > listing.stock) {
+    return res.status(400).json({ message: "Not enough stock" });
+  }
+  if (cartExisting) {
+    db.prepare("UPDATE CartItem SET itemQuantity = ? WHERE cartItemID=?").run(
+      alreadyInCart + quantity,
+      cartExisting.cartItemID,
+    );
+  } else {
+    db.prepare(
+      "INSERT INTO CartItem (cartID, listingID, itemQuantity) VALUES (?,?,?)",
+    ).run(cartID, listingID, quantity);
+  }
+  res.status(201).json({ message: "Added to Cart" });
+});
+
+export default router;
