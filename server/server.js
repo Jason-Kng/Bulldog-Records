@@ -7,6 +7,7 @@ import cartRouter from "./routes/cart.js";
 import currentSeller from "./middleware/tempSeller.js";
 
 const port = 3000;
+
 const app = express();
 
 app.use(express.json());

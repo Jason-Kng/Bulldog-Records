@@ -13,6 +13,11 @@ function getHomeRoute() {
 
   const decoded = jwtDecode(token);
 
+  if (decoded.exp > Date.now()) {
+    localStorage.removeItem("accessToken");
+    return "/";
+  }
+
   if (decoded.userType === "buyer") {
     return "/browse";
   }
@@ -37,6 +42,11 @@ function NavBar() {
     if (search.trim() !== "") {
       navigate(`/search?query=${encodeURIComponent(search)}`);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/", { replace: true });
   };
 
   return (
@@ -64,9 +74,16 @@ function NavBar() {
               <Link to="/" className="nav-link">
                 Orders
               </Link>
-              <Link to="/" className="nav-link">
-                Account
-              </Link>
+              {/* <Link to="/" className="nav-link"> */}
+              {/* Account */}
+              {/* </Link> */}
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="logout-button"
+              >
+                Logout
+              </button>
             </div>
           </>
         )}

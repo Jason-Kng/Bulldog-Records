@@ -12,6 +12,7 @@ const populateData = db.transaction(() => {
   loginQuery.run(user2.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
   loginQuery.run(user3.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
 
+
   // Address
   const addressQuery = db.prepare(`INSERT INTO Address (street, city, state, zip) VALUES (?, ?, ?, ?)`);
   const address = addressQuery.run("665 George Perry St", "Mississippi State", "MS", "39759");
@@ -29,6 +30,8 @@ const populateData = db.transaction(() => {
   const listingQuery = db.prepare(`INSERT INTO Listing (sellerID, title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
   listingQuery.run(seller1.lastInsertRowid, "Gold: Greatest Hits", "ABBA", "1992-09-21", "vinyl", "pop", "731451700712", "new", 3, 5000, "/images/placeholder.png")
   listingQuery.run(seller1.lastInsertRowid, "Midnights: Moonstone Blue Edition", "Taylor Swift", "2022-10-21", "cd", "pop", "602445790098", "used", 2, 2700, "/images/placeholder.png")
+  listingQuery.run(seller2.lastInsertRowid, "The Secret of Us", "Gracie Abrams", "2024-06-21", "vinyl", "pop", null, "new", 4, 3500, "/images/placeholder.png");
+
   listingQuery.run(seller2.lastInsertRowid, "I Barely Know Her", "Sombr", "2025-08-22", "cd", "pop", "093624827702", "new", 5, 1700, "/images/placeholder.png")
   listingQuery.run(seller1.lastInsertRowid, "Rumours", "Fleetwood Mac", "1977-02-04", "vinyl", "rock,pop", "081227970949", "used", 4, 3200, "/images/placeholder.png");
   listingQuery.run(seller1.lastInsertRowid, "Abbey Road", "The Beatles", "1969-09-26", "vinyl", "rock", "602508007448", "new", 2, 4500, "/images/placeholder.png");
@@ -43,6 +46,9 @@ const populateData = db.transaction(() => {
   listingQuery.run(seller1.lastInsertRowid, "Currents", "Tame Impala", "2015-07-17", "vinyl", "Electronic", "0602547306777", "new", 2, 3500, "/images/currents.jpg");
   listingQuery.run(seller2.lastInsertRowid, "Long Way From Home", "JD Clayton", "2023-01-27", "vinyl", "Country", "0197342060745", "new", 2, 2500, "/images/lwfh.jpg");
   listingQuery.run(seller1.lastInsertRowid, "The Royal Scam", "Steely Dan", "1976-05-31", "vinyl", "Rock", "0602445332489", "used", 2, 3000, "/images/TRS.jpg");
+  listingQuery.run(seller2.lastInsertRowid, "GUTS", "Olivia Rodrigo", "2023-09-08", "cd", "pop", null, "used", 3, 1500, "/images/placeholder.png");
+  listingQuery.run(seller2.lastInsertRowid, "30", "Adele", "2021-11-19", "vinyl", "pop", null, "open", 2, 3000, "/images/placeholder.png");
+  
 
   console.log("Data population complete.")
 })
@@ -50,10 +56,12 @@ const populateData = db.transaction(() => {
 try {
   populateData()
 
-} catch (e) {
+} catch(e) {
   console.log("Data population failed.");
 }
 
 
 // admin, 3-5 sellers, 3-5 buyers, 10 products per seller
 // package for images: multer
+
+// listing: add primary type (Album, Single)

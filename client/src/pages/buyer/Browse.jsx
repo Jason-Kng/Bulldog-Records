@@ -1,10 +1,10 @@
 import Card from '../../components/ListingCard.jsx';
 // import placeholder from '../../assets/placeholder.png';
-import './BuyerDashboard.css';
+import './Browse.css';
 import { useState, useEffect } from 'react';
 import { getListings } from '../../api/listingApi.js';
 
-function Buyer() {
+function Browse() {
   const [listings, setlistings] = useState([]);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ function Buyer() {
     </>
   );
 }
-export default Buyer;
+export default Browse;

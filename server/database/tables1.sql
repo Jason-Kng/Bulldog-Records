@@ -62,9 +62,22 @@ CREATE TABLE IF NOT EXISTS "Listing" (
     "listingStatus"     TEXT NOT NULL DEFAULT 'active' CHECK (listingStatus IN ('active', 'deactivated', 'removed', 'soldOut')),
     --photo set to text to hold path or URL
     "photo" TEXT NOT NULL,
-    "removedDate" TEXT,
     "isVerified" INTEGER NOT NULL DEFAULT 0,
+    "removedDate" TEXT,
     PRIMARY KEY("listingID")
+);
+CREATE TABLE IF NOT EXISTS "Cart" (
+    "cartID"    INTEGER,
+    "buyerID" INTEGER NOT NULL UNIQUE REFERENCES Buyer(buyerID) on DELETE CASCADE,
+    PRIMARY KEY("cartID")
+);
+CREATE TABLE IF NOT EXISTS "CartItem" (
+    "cartItemID"    INTEGER,
+    "listingID" INTEGER NOT NULL REFERENCES Listing(listingID),
+    "cartID" INTEGER NOT NULL REFERENCES Cart(cartID) on DELETE CASCADE,
+    "itemQuantity" INTEGER NOT NULL CHECK (itemQuantity>0), 
+    PRIMARY KEY("cartItemID"),
+    UNIQUE ("cartID", "listingID")
 );
 CREATE TABLE IF NOT EXISTS "Cart" (
     "cartID"    INTEGER,
