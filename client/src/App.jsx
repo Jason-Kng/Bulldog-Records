@@ -9,7 +9,7 @@ import Browse from './pages/buyer/Browse.jsx';
 import ListingDetails from './pages/buyer/ListingDetails.jsx';
 import NavBar from "./components/NavBar.jsx";
 import Search from "./pages/buyer/SearchPage.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
+// import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 
@@ -64,7 +64,7 @@ function App() {
         <Route path="/seller" element={<SellerAccountPage />} />
         {/* <Route path="/seller/listings" element={<SellerListingsPage />} /> */}
         <Route path="/seller/listings/add" element={<AddListingPage />} />
-        {/* <Route path="/seller/listings/:id" element={<ListingDetailPage />} /> */}
+        {/* <Route path="/seller/listings/:id" element={<ListingPage />} /> */}
         {/* <Route path="/seller/listings/:id/edit" element={<EditListingPage />} /> */}
       </Routes>
     </>

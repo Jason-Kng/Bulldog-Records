@@ -7,13 +7,12 @@ import tempSeller from './middleware/tempSeller.js';
 import express from 'express';
 
 const port = 3000;
-const app = express();
 
 const app = express();
 
-// app.use(express.json())
-// app.use('/api/auth', authRouter);
-// app.use('/api/user', userRouter);
+app.use(express.json())
+app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 app.use('/api/listing', listingRouter);
 
 app.use("/api/seller", tempSeller, sellerRoutes);

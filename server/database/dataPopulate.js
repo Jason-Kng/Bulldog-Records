@@ -11,8 +11,7 @@ const populateData = db.transaction(() => {
   loginQuery.run(user.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
   loginQuery.run(user2.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
   loginQuery.run(user3.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
-  const user2 = userQuery.run("Seller 2", "seller2@bulldogrecords.com", "seller");
-  const user3 = userQuery.run("Buyer 1", "buyer1@bulldogrecords.com", "buyer");
+
 
   // Address
   const addressQuery = db.prepare(`INSERT INTO Address (street, city, state, zip) VALUES (?, ?, ?, ?)`);
