@@ -47,7 +47,7 @@ function NavBar() {
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
-    navigate("/");
+    navigate("/", { replace: true });
   }
 
 
