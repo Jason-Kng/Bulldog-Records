@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS "Buyer" (
     "shippingAddressID"    INTEGER NOT NULL REFERENCES Address(addressID) on DELETE RESTRICT,     
     "accountStatus"    TEXT NOT NULL DEFAULT 'active' CHECK (accountStatus IN ('active', 'deactivated', 'banned')),
     "removedDate" TEXT,
-    "removedDate" TEXT,
     PRIMARY KEY("buyerID")
 );
 --Seller Table
@@ -43,7 +42,6 @@ CREATE TABLE IF NOT EXISTS "Seller" (
     --setting seller approval status automatically to pending  
     "approvalStatus"    TEXT NOT NULL DEFAULT 'pending' CHECK (approvalStatus IN ('approved', 'rejected','pending')),
     "accountStatus"    TEXT NOT NULL DEFAULT 'active' CHECK (accountStatus IN ('active', 'deactivated', 'banned')),
-    "removedDate" TEXT,
     "removedDate" TEXT,
     PRIMARY KEY("sellerID")
 );
@@ -64,7 +62,6 @@ CREATE TABLE IF NOT EXISTS "Listing" (
     "listingStatus"     TEXT NOT NULL DEFAULT 'active' CHECK (listingStatus IN ('active', 'deactivated', 'removed', 'soldOut')),
     --photo set to text to hold path or URL
     "photo" TEXT NOT NULL,
-    "removedDate" TEXT,
     "isVerified" INTEGER NOT NULL DEFAULT 0,
     "removedDate" TEXT,
     PRIMARY KEY("listingID")

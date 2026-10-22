@@ -4,7 +4,6 @@ import userRouter from './routes/user.js';
 import listingRouter from './routes/listing.js'
 import sellerRoutes from './routes/seller.js';
 import tempSeller from './middleware/tempSeller.js';
-import express from 'express';
 
 const port = 3000;
 
