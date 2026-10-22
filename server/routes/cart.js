@@ -10,7 +10,7 @@ router.get("/", authenticateToken, (req, res) => {
   const cart = db
     .prepare(
       `SELECT Cart.cartID FROM Cart 
-    JOIN Buyer ON Cart.buyerID = Buyer.buyerID JOIN User ON Buyer.userID = User.userID WHERE user.email = ?`,
+      JOIN Buyer ON Cart.buyerID = Buyer.buyerID JOIN User ON Buyer.userID = User.userID WHERE user.email = ?`,
     )
     .get(email);
   if (!cart) {
@@ -20,8 +20,8 @@ router.get("/", authenticateToken, (req, res) => {
     .prepare(
       `SELECT CartItem.cartItemID, CartItem.itemQuantity, Listing.listingID, Listing.title, 
       Listing.price, Listing.photo, Listing.sellerID, Listing.artist, Listing.stock 
-    FROM CartItem JOIN Listing ON CartItem.listingID = Listing.listingID
-    WHERE CartItem.cartID = ?`,
+      FROM CartItem JOIN Listing ON CartItem.listingID = Listing.listingID
+      WHERE CartItem.cartID = ?`,
     )
     .all(cart.cartID);
   res.json(items);
@@ -44,7 +44,7 @@ router.post("/items", authenticateToken, (req, res) => {
   const buyer = db
     .prepare(
       `SELECT Buyer.buyerID FROM Buyer JOIN User ON Buyer.userID = User.userID
-    WHERE User.email=?`,
+      WHERE User.email=?`,
     )
     .get(email);
   if (!buyer) {
@@ -104,7 +104,7 @@ router.delete("/items/:listingID", authenticateToken, (req, res) => {
   const cart = db
     .prepare(
       `SELECT Cart.cartID FROM Cart 
-    JOIN Buyer ON Cart.buyerID = Buyer.buyerID JOIN User ON Buyer.userID = User.userID WHERE user.email = ?`,
+      JOIN Buyer ON Cart.buyerID = Buyer.buyerID JOIN User ON Buyer.userID = User.userID WHERE user.email = ?`,
     )
     .get(email);
   if (!cart) {
