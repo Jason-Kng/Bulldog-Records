@@ -4,15 +4,17 @@ import ListingPage from "./pages/seller/ListingPage";
 import AddListingPage from "./pages/seller/AddListingPage.jsx";
 import EditListingPage from "./pages/seller/EditListingPage";
 import Login from "./pages/auth/Login.jsx";
-import { Route, Routes } from 'react-router-dom';
-import Browse from './pages/buyer/Browse.jsx';
-import ListingDetails from './pages/buyer/ListingDetails.jsx';
+import Register from "./pages/auth/Register.jsx";
+import { Route, Routes } from "react-router-dom";
+import Browse from "./pages/buyer/Browse.jsx";
+import ListingDetails from "./pages/buyer/ListingDetails.jsx";
 import NavBar from "./components/NavBar.jsx";
 import Search from "./pages/buyer/SearchPage.jsx";
+import CartPage from "./pages/buyer/CartPage.jsx";
+import CheckoutPage from "./pages/buyer/CheckoutPage.jsx";
 // import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
-
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -49,18 +51,22 @@ function App() {
     return null;
   }
 
-
   return (
     <>
       <NavBar />
 
       <Routes>
         {/* <Route path="/" element={<Navigate to="/seller" />} /> */}
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/browse" element={<Buyer />} />
         <Route path="/" element={<Login setAuth={setAuth} />} />
         {/* <Route path="/browse" element={<ProtectedRoute isAuth={auth} Component={Buyer} />} /> */}
         <Route path="/browse" element={<Browse />} />
         <Route path="/search" element={<Search />} />
-        <Route path='/listingDetails/:id' element={<ListingDetails />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/listingDetails/:id" element={<ListingDetails />} />
         <Route path="/seller" element={<SellerAccountPage />} />
         <Route path="/seller/listings" element={<SellerListingsPage />} />
         <Route path="/seller/listings/add" element={<AddListingPage />} />
@@ -68,7 +74,7 @@ function App() {
         <Route path="/seller/listings/:id/edit" element={<EditListingPage />} />
       </Routes>
     </>
-  )
+  );
 }
 
 export default App;

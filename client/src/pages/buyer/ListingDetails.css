@@ -94,9 +94,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-
 }
-
 
 .back-button,
 .add-cart-button {
@@ -114,7 +112,7 @@
   font-weight: bold;
   cursor: pointer;
   display: block;
-  justify-self: center
+  justify-self: center;
 }
 
 .back-button {
@@ -124,4 +122,55 @@
 .back-button:hover,
 .add-cart-button:hover {
   opacity: 0.9;
+}
+
+.add-cart-button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.cart-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.quantity-controls span {
+  min-width: 24px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-h);
+}
+
+.quantity-button {
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid var(--border);
+  border-radius: 6px;
+
+  background-color: transparent;
+  color: var(--text-h);
+
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.quantity-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cart-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin: 0;
 }
