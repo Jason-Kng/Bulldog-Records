@@ -1,0 +1,19 @@
+Meeting
+
+Butler Hall
+October 22, 2026
+
+Members present: Jason King, Camila Da Silva, Timothy Pepper, Elian Ixcajoc-sales
+
+Actions:
+- Merged Jason and Camila branch into Sprint3.3
+- Fixed several issues from merge
+- Worked on making login and auth function for seller
+- Added authHeaders to sellerAPI 
+- Timothy finished admin
+
+TODO:
+- Alex and Timothy have to merge into 3.3
+- Jason will do image upload from seller and serving
+- Alex will finish checkout page and fix add to cart
+- Camila has to finish dataPopulate
