@@ -7,7 +7,7 @@ export function getListings() {
 }
 
 export function getListing(id) {
-  return fetch("/api/seller/listings" + id).then((res) => res.json());
+  return fetch(`/api/seller/listings/${id}`).then((res) => res.json());
 }
 
 export function addListing(listing) {
@@ -16,11 +16,19 @@ export function addListing(listing) {
     headers: { "Content-Type": "application/json" },
     // convert listing into json, need for post and put
     body: JSON.stringify(listing),
-  }).then((res) => res.json());
+  }).then(async (res) => {
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Failed to create listing");
+    }
+
+    return data;
+  });
 }
 
 export function updateListing(id, listing) {
-  return fetch("/api/seller/listings" + id, {
+  return fetch(`/api/seller/listings/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(listing),
@@ -28,7 +36,7 @@ export function updateListing(id, listing) {
 }
 
 export function removeListing(id) {
-  return fetch("/api/seller/listings" + id, {
+  return fetch(`/api/seller/listings/${id}`, {
     method: "DELETE",
   }).then((res) => res.json());
 }

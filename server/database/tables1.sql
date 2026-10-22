@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS "Buyer" (
     "shippingAddressID"    INTEGER NOT NULL REFERENCES Address(addressID) on DELETE RESTRICT,     
     "accountStatus"    TEXT NOT NULL DEFAULT 'active' CHECK (accountStatus IN ('active', 'deactivated', 'banned')),
     "removedDate" TEXT,
+    "removedDate" TEXT,
     PRIMARY KEY("buyerID")
 );
 --Seller Table
@@ -42,6 +43,7 @@ CREATE TABLE IF NOT EXISTS "Seller" (
     --setting seller approval status automatically to pending  
     "approvalStatus"    TEXT NOT NULL DEFAULT 'pending' CHECK (approvalStatus IN ('approved', 'rejected','pending')),
     "accountStatus"    TEXT NOT NULL DEFAULT 'active' CHECK (accountStatus IN ('active', 'deactivated', 'banned')),
+    "removedDate" TEXT,
     "removedDate" TEXT,
     PRIMARY KEY("sellerID")
 );
@@ -64,7 +66,21 @@ CREATE TABLE IF NOT EXISTS "Listing" (
     "photo" TEXT NOT NULL,
     "removedDate" TEXT,
     "isVerified" INTEGER NOT NULL DEFAULT 0,
+    "removedDate" TEXT,
     PRIMARY KEY("listingID")
+);
+CREATE TABLE IF NOT EXISTS "Cart" (
+    "cartID"    INTEGER,
+    "buyerID" INTEGER NOT NULL UNIQUE REFERENCES Buyer(buyerID) on DELETE CASCADE,
+    PRIMARY KEY("cartID")
+);
+CREATE TABLE IF NOT EXISTS "CartItem" (
+    "cartItemID"    INTEGER,
+    "listingID" INTEGER NOT NULL REFERENCES Listing(listingID),
+    "cartID" INTEGER NOT NULL REFERENCES Cart(cartID) on DELETE CASCADE,
+    "itemQuantity" INTEGER NOT NULL CHECK (itemQuantity>0), 
+    PRIMARY KEY("cartItemID"),
+    UNIQUE ("cartID", "listingID")
 );
 CREATE TABLE IF NOT EXISTS "Cart" (
     "cartID"    INTEGER,
