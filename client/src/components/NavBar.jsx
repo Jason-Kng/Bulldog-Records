@@ -45,6 +45,11 @@ function NavBar() {
 
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/");
+  }
+
 
   return (
     <>
@@ -65,9 +70,10 @@ function NavBar() {
               <Link to="/" className="nav-link">
                 Orders
               </Link>
-              <Link to="/" className="nav-link">
-                Account
-              </Link>
+              {/* <Link to="/" className="nav-link"> */}
+              {/* Account */}
+              {/* </Link> */}
+              <button type="button" onClick={handleLogout} className="logout-button">Logout</button>
             </div>
           </>
         )}

@@ -66,3 +66,15 @@
   outline: none;
   border-color: var(--accent);
 }
+
+.logout-button {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  color: var(--accent);
+}

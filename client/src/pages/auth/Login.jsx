@@ -37,9 +37,12 @@ function Login({ setAuth }) {
 
           if (decoded.userType === "buyer") {
             navigate("/browse");
-          } else {
+          } else if (decoded.userType === "seller") {
             navigate("/seller");
+          } else if (decoded.userType === "admin") {
+            navigate("/admin");
           }
+
         }
       })
       .catch((err) => console.error(err));
