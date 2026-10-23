@@ -23,6 +23,7 @@ export async function addListing(listing) {
   formData.append("releaseDate", listing.releaseDate);
   formData.append("mediaType", listing.mediaType);
   formData.append("genre", listing.genre);
+  formData.append("EAN", listing.EAN);
   formData.append("condition", listing.condition);
   formData.append("stock", listing.stock);
   formData.append("price", listing.price);
@@ -47,10 +48,26 @@ export async function addListing(listing) {
   });
 }
 export function updateListing(id, listing) {
+  const formData = new FormData();
+
+  formData.append("title", listing.title);
+  formData.append("artist", listing.artist);
+  formData.append("releaseDate", listing.releaseDate);
+  formData.append("mediaType", listing.mediaType);
+  formData.append("genre", listing.genre);
+  formData.append("EAN", listing.EAN);
+  formData.append("condition", listing.condition);
+  formData.append("stock", listing.stock);
+  formData.append("price", listing.price);
+
+  if (listing.photo) {
+    formData.append("photo", listing.photo);
+  }
+
   return fetch(`/api/seller/listings/${id}`, {
     method: "PUT",
-    headers: { ...authHeaders(), "Content-Type": "application/json" },
-    body: JSON.stringify(listing),
+    headers: { ...authHeaders() },
+    body: formData,
   }).then((res) => res.json());
 }
 

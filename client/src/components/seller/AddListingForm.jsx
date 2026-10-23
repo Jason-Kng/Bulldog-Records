@@ -37,7 +37,6 @@ function AddListingForm({ onEnter, onCancel }) {
     // firstName: e.target.value
     if (e.target.type === "file") {
 
-      console.log(e.target.files[0]);
       setForm({ ...form, photo: e.target.files[0] });
     } else {
       setForm({ ...form, [e.target.name]: e.target.value });
@@ -57,7 +56,7 @@ function AddListingForm({ onEnter, onCancel }) {
       </p>
       <p>
         <label>Release Date </label>
-        <input name="releaseDate" value={form.releaseDate} placeholder="year/month/day" onChange={handleChange} />
+        <input name="releaseDate" value={form.releaseDate} placeholder="year-month-day" onChange={handleChange} />
       </p>
       <p>
         <label>Media Type </label>
@@ -73,10 +72,10 @@ function AddListingForm({ onEnter, onCancel }) {
         <label>Genre </label>
         <input name="genre" value={form.genre} onChange={handleChange} />
       </p>
-      {/* <p>
+      <p>
         <label>EAN: </label>
         <input name="EAN" value={form.EAN} onChange={handleChange} />
-      </p> */}
+      </p>
       <p>
         <label>Condition </label>
         <select name="condition" value={form.condition} onChange={handleChange}>

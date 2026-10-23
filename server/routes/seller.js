@@ -27,15 +27,14 @@ router.get("/", (req, res) => {
 router.post("/listings", upload.single("photo"), (req, res) => {
 
   // db fields
-  const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo } = req.body;
+  const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price } = req.body;
 
   // check required fields are there
-  if (!title || !artist || !mediaType || !genre || !condition || !price) {
+  if (!title || !artist || !mediaType || !genre || !condition || !price || !req.file) {
     return res.status(400).json({ error: "New listing fields are missing" });
   }
 
   const priceInCents = Math.round(price * 100);
-  console.log(req.file.filename)
   const photoPath = `/uploads/${req.file.filename}` || "/images/placeholder.png";
 
   // create entry in db
@@ -69,18 +68,23 @@ router.get("/listings", (req, res) => {
 
 // edit the fields of a listing
 // testing on HTTPIE: worked
-router.put("/listings/:id", (req, res) => {
+router.put("/listings/:id", upload.single("photo"), (req, res) => {
   // db fields
-  const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo } = req.body;
+  let photoPath = req.body.photo;
+  const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price } = req.body;
 
   // check required fields are there
-  if (!title || !artist || !mediaType || !genre || !condition || !price || !photo) {
+  if (!title || !artist || !mediaType || !genre || !condition || !price) {
     return res.status(400).json({ error: "New listing fields are missing" });
+  }
+
+  if (req.file) {
+    photoPath = `/uploads/${req.file.filename}` || "/images/placeholder.png";
   }
 
   try {
     const query = db.prepare(`UPDATE Listing SET title = ?, artist = ?, releaseDate = ?, mediaType = ?, genre = ?, EAN = ?, condition = ?, stock = ?, price = ?, photo = ? WHERE listingID = ? AND sellerID = ? AND listingStatus != 'removed'`);
-    const values = query.run(title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, price, photo, req.params.id, req.sellerID)
+    const values = query.run(title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, price, photoPath, req.params.id, req.sellerID)
 
     // would send like updated: 10, confirming update to the listing
     res.status(200).json({ updated: req.params.id });
