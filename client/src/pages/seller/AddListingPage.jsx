@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import AddListingForm from "../../components/seller/AddListingForm.jsx";
 import { addListing } from "../../api/sellerApi";
+import './seller.css';
 
 function AddListingPage() {
   const navigate = useNavigate();
@@ -12,12 +13,14 @@ function AddListingPage() {
   }
 
   return (
-    <div>
-      <h1>Add Listing</h1>
-      <AddListingForm
-        onEnter={handleSubmit}
-        onCancel={() => navigate("/seller/listings")}
-      />
+    <div className="add-listing-form-container">
+      <h2>Add Listing</h2>
+      <div className="add-listing-form">
+        <AddListingForm
+          onEnter={handleSubmit}
+          onCancel={() => navigate("/seller/listings")}
+        />
+      </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../Button";
 
+
 function AddListingForm({ onEnter, onCancel }) {
   const [form, setForm] = useState({
     title: "",
@@ -45,7 +46,8 @@ function AddListingForm({ onEnter, onCancel }) {
 
 
   return (
-    <form onSubmit={handleSubmit}>
+
+      <form onSubmit={handleSubmit}>
       <p>
         <label>Title </label>
         <input name="title" value={form.title} onChange={handleChange} />
@@ -99,10 +101,14 @@ function AddListingForm({ onEnter, onCancel }) {
       </p>
 
       <div class="add-listing-buttons-container">
+        
+
         <Button text="Add Listing" type="submit" />
         <Button text="Cancel" onClick={onCancel} />
       </div>
     </form>
+
+    
   );
 }
 

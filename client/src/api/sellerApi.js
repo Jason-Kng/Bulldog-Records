@@ -3,7 +3,11 @@ function authHeaders() {
   return { Authorization: "Bearer " + localStorage.getItem("accessToken") };
 }
 
-export function getSeller() {
+// export function getSeller() {
+//   return fetch("/api/seller", { headers: authHeaders() }).then((res) => res.json());
+// }
+
+export function getSellerAccountInfo() {
   return fetch("/api/seller", { headers: authHeaders() }).then((res) => res.json());
 }
 

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Button from "../../components/Button";
+
 import { getListing, removeListing } from "../../api/sellerApi";
+import './seller.css';
 
 function ListingPage() {
   const [listing, setListing] = useState(null);
@@ -31,33 +32,73 @@ function ListingPage() {
   }
 
   return (
-    <div class="listing-container">
-      <h1>{listing.title}</h1>
-      <p>Artist: {listing.artist}</p>
-      <p>Release Date: {listing.releaseDate}</p>
-      <p>Media Type: {listing.mediaType}</p>
-      <p>Genre: {listing.genre}</p>
-      <p>Barcode: {listing.EAN}</p>
-      <p>Condition: {listing.condition}</p>
-      <p>Stock: {listing.stock}</p>
-      <p>Price: ${listing.price.toFixed(2)}</p>
-      <p>Status: {listing.listingStatus}</p>
+    <>
+      <div className="listing-details-page">
+        <div className="listing-details-container">
+          <div className="listing-details-image">
+            {listing.photo && (
+              <img src={listing.photo} alt={listing.title} />
+            )}
+          </div>
 
-      <div class="listing-buttons-container">
+          <div className="listing-details-info">
+            <h1>{listing.title}</h1>
+            <h2>{listing.artist}</h2>
 
-        <Button text="Edit Listing" onClick={() => navigate(`/seller/listings/${id}/edit`)} />
-        <Button text="Remove Listing" onClick={confirmRemove} />
-        <Button text="My Listings" onClick={() => navigate(`/seller/listings`)} />
+            <p className="listing-details-price">
+              ${(listing.price).toFixed(2)}
+            </p>
+
+            <div className="listing-details-meta">
+              <div className="listing-details">
+                <p>
+                  <strong>Media:</strong> {listing.mediaType}
+                </p>
+                <p>
+                  <strong>Condition:</strong> {listing.condition}
+                </p>
+                <p>
+                  <strong>Genre:</strong> {listing.genre}
+                </p>
+                <p>
+                  <strong>Release Date:</strong> {listing.releaseDate}
+                </p>
+                <p>
+                  <strong>Stock:</strong> {listing.stock}
+                </p>
+                <p>
+                  <strong>Barcode:</strong> {listing.barcode}
+                </p>
+                <p>
+                  <strong>Status:</strong> {listing.listingStatus}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="button-container">
+            <button
+              type="button"
+              className="back-button"
+              onClick={() => navigate(`/seller/listings/${id}/edit`)}
+            >
+              Edit Listing
+            </button>
+
+            <button
+              type="button"
+              className="back-button"
+              onClick={confirmRemove}
+            >
+              Remove Listing
+            </button>
+
+
+            {/* <Button text="My Listings" onClick={() => navigate(`/seller/listings`)} /> */}
+          </div>
+        </div>
       </div>
-    </div>
-
-
-
+    </>
   )
-
-
-
-
 }
 
 export default ListingPage;
