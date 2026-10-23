@@ -37,7 +37,6 @@ function Login({ setAuth, setToken }) {
           localStorage.setItem("accessToken", data.accessToken);
           setToken(data.accessToken);
           setAuth(true);
-          setAuth(true);
 
           const decoded = jwtDecode(data.accessToken);
 
@@ -69,7 +68,7 @@ function Login({ setAuth, setToken }) {
       } else if (decode.userType === "seller") {
         navigate("/seller", { replace: true });
       } else if (decode.userType === "admin") {
-        console.log("admin");
+        navigate("/admin", { replace: true });
       } else {
         return;
       }
