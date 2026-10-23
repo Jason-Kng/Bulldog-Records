@@ -101,7 +101,7 @@ router.put("/listings/:id", (req, res) => {
 // remove listing, soft delete (set status to removed)
 // testing on HTTPIE: worked
 router.delete("/listings/:id", (req, res) => {
-  const query = db.prepare("UPDATE Listing SET listingStatus = 'removed' WHERE listingID = ? AND sellerID = ? AND listingStatus != 'removed'");
+  const query = db.prepare("UPDATE Listing SET listingStatus = 'removed', removedDate = CURRENT_DATE WHERE listingID = ? AND sellerID = ? AND listingStatus != 'removed'");
   const remove = query.run(req.params.id, req.sellerID);
 
   // same as update, but for remove
