@@ -12,11 +12,12 @@ import NavBar from "./components/NavBar.jsx";
 import Search from "./pages/buyer/SearchPage.jsx";
 import CartPage from "./pages/buyer/CartPage.jsx";
 import CheckoutPage from "./pages/buyer/CheckoutPage.jsx";
-// import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import AdminSellerApprovals from './pages/admin/AdminSellerApproval';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -65,21 +66,8 @@ function App() {
       <NavBar />
 
       <Routes>
-        {/* <Route path="/" element={<Navigate to="/seller" />} /> */}
-        {/* <Route path="/" element={ auth ? ( <Navigate to={(() => { */}
-        {/* try { */}
-        {/* const decoded = jwtDecode(token); */}
-
-        {/* if (decoded.userType === 'admin') return '/admin'; */}
-        {/* if (decoded.userType === 'seller') return '/seller'; */}
-
-        {/* return '/browse'; */}
-        {/* } catch { */}
-        {/* return '/browse'; */}
-        {/* } */}
-        {/* })()} */}
-        {/* replace */}
-        {/* /> ) : ( <Login setAuth={setAuth} setToken={setToken} /> )} /> */}
+        <Route path="*" element={<NotFound />} />
+        <Route path="/404" element={<NotFound />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Login setAuth={setAuth} setToken={setToken} />} />
         {/* <Route path="/browse" element={<ProtectedRoute isAuth={auth} Component={Buyer} />} /> */}
@@ -88,8 +76,8 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/listingDetails/:id" element={<ListingDetails />} />
-        <Route path="/seller" element={<SellerAccountPage />} />
-        <Route path="/seller/listings" element={<SellerListingsPage />} />
+        <Route path="/seller" element={<ProtectedRoute isAuth={auth} Component={SellerAccountPage} allowedUsers={["seller"]} />} />
+        <Route path="/seller/listings" element={<ProtectedRoute isAuth={auth} Component={SellerListingsPage} allowedUsers={["seller"]} />} />
         <Route path="/seller/listings/add" element={<AddListingPage />} />
         <Route path="/seller/listings/:id" element={<ListingPage />} />
         <Route path="/seller/listings/:id/edit" element={<EditListingPage />} />

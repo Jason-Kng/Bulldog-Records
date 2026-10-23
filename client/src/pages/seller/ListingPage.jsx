@@ -6,7 +6,7 @@ import { getListing, removeListing } from "../../api/sellerApi";
 function ListingPage() {
   const [listing, setListing] = useState(null);
   const navigate = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     getListing(id)
@@ -44,14 +44,14 @@ function ListingPage() {
       <p>Status: {listing.listingStatus}</p>
 
       <div class="listing-buttons-container">
-       
+
         <Button text="Edit Listing" onClick={() => navigate(`/seller/listings/${id}/edit`)} />
         <Button text="Remove Listing" onClick={confirmRemove} />
         <Button text="My Listings" onClick={() => navigate(`/seller/listings`)} />
       </div>
     </div>
 
-      
+
 
   )
 

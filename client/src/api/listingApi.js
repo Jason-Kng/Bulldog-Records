@@ -1,3 +1,22 @@
+async function handleResp(response) {
+  let data;
+
+  try {
+    data = await response.json();
+  } catch {
+    data = null;
+  }
+
+  if (!response.ok) {
+    const error = new Error(data?.error || `Request failed with status ${response.status}`);
+
+    error.status = response.status;
+    throw error;
+  }
+
+  return data;
+}
+
 export async function getListings() {
   const response = await fetch('api/listing/');
 
@@ -6,28 +25,18 @@ export async function getListings() {
     throw new Error("Failed to get listings");
   }
 
-  return response.json();
+  return handleResp(response);
 }
 
 export async function getListing(id) {
-  console.log("ID: ", id);
   const response = await fetch(`/api/listing/details/${id}`);
-  console.log(response);
 
-  if (!response.ok) {
-    throw new Error("Failed to get listing details");
-  }
-
-  return response.json();
+  return handleResp(response);
 
 }
 
 export async function searchListings(query) {
   const response = await fetch(`/api/listing/search?query=${encodeURIComponent(query)}`);
-
-  if (!response.ok) {
-    throw new Error("Failed to search for: ", query);
-  }
 
   return response.json();
 }

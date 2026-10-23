@@ -8,11 +8,10 @@ router.get('/', (req, res) => {
   const stmt = db.prepare("SELECT title, artist, listingID, price, photo, sellerID, (SELECT User.name from User WHERE userID=sellerID) AS name FROM Listing LIMIT 15");
   try {
     const results = stmt.all();
-    console.log("Sending data:", results);
-    res.send(results);
+
+    return res.status(200).json(results);
   } catch (e) {
-    console.log(e);
-    res.json("error: ", e);
+    res.status(500).json("error: ", "Server Error");
   }
 });
 
@@ -22,10 +21,14 @@ router.get('/details/:id', (req, res) => {
 
   try {
     const results = stmt.get(id.id);
-    res.send(results);
+    if (!results) {
+      return res.status(404).json({ error: "Listing not found" });
+    }
+
+
+    return res.status(200).json(results);
   } catch (e) {
-    console.log("Error: ", e);
-    res.json("error: ", e);
+    res.status(500).json("error: ", "Server Error");
   }
 });
 
@@ -36,11 +39,9 @@ router.get('/search', (req, res) => {
 
   try {
     const results = stmt.all(`%${query}%`);
-    console.log(results);
-    res.send(results);
+    return res.status(200).json(results);
   } catch (e) {
-    console.log("Error: ", e);
-    res.json("error: ", e);
+    return res.status(500).json({ error: "Server Error" });
   }
 
 });
