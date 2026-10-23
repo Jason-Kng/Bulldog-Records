@@ -42,20 +42,21 @@ function AddListingForm({ onEnter, onCancel }) {
   return (
     <form onSubmit={handleSubmit}>
       <p>
-        <label>Title: </label>
+        <label>Title </label>
         <input name="title" value={form.title} onChange={handleChange} />
       </p>
       <p>
-        <label>Artist: </label>
+        <label>Artist </label>
         <input name="artist" value={form.artist} onChange={handleChange} />
       </p>
       <p>
-        <label>Release Date: </label>
+        <label>Release Date </label>
         <input name="releaseDate" value={form.releaseDate} onChange={handleChange} />
       </p>
       <p>
-        <label>Media Type: </label>
+        <label>Media Type </label>
         <select name="mediaType" value={form.mediaType} onChange={handleChange}>
+          <option value="select">Select</option>
           <option value="cd">CD</option>
           <option value="vinyl">Vinyl</option>
           <option value="cassette">Cassette</option>
@@ -63,36 +64,39 @@ function AddListingForm({ onEnter, onCancel }) {
         </select>
       </p>
       <p>
-        <label>Genre: </label>
+        <label>Genre </label>
         <input name="genre" value={form.genre} onChange={handleChange} />
       </p>
-      <p>
+      {/* <p>
         <label>EAN: </label>
         <input name="EAN" value={form.EAN} onChange={handleChange} />
-      </p>
+      </p> */}
       <p>
-        <label>Condition: </label>
+        <label>Condition </label>
         <select name="condition" value={form.condition} onChange={handleChange}>
+          <option value="select">Select</option>
           <option value="new">New</option>
           <option value="used">Used</option>
           <option value="damaged">Damaged</option>
         </select>
       </p>
       <p>
-        <label>Stock: </label>
+        <label>Stock </label>
         <input name="stock" value={form.stock} onChange={handleChange} />
       </p>
       <p>
-        <label>Price: </label>
+        <label>Price </label>
         <input name="price" value={form.price} onChange={handleChange} />
       </p>
-      <p>
+      {/* <p>
         <label>Photo path: </label>
         <input name="photo" value={form.photo} onChange={handleChange} />
-      </p>
-
-      <Button text="Add Listing" type="submit" />
-      <Button text="Cancel" onClick={onCancel} />
+      </p> */}
+      
+      <div class="add-listing-buttons-container">
+        <Button text="Add Listing" type="submit" />
+        <Button text="Cancel" onClick={onCancel} />
+      </div>
     </form>
   );
 }

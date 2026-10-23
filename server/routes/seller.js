@@ -26,14 +26,17 @@ router.post("/listings", (req, res) => {
   const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo } = req.body;
 
   // check required fields are there
-  if (!title || !artist || !mediaType || !genre || !condition || !price || !photo) {
+  if (!title || !artist || !mediaType || !genre || !condition || !price) {
     return res.status(400).json({ error: "New listing fields are missing" });
   }
+
+  const priceInCents = Math.round(price * 100);
+  const photoPath = photo || "/images/placeholder.png";
 
   // create entry in db
   try {
     const query = db.prepare(`INSERT INTO Listing (sellerID, title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
-    const values = query.run(req.sellerID, title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, price, photo)
+    const values = query.run(req.sellerID, title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, priceInCents, photoPath)
 
     res.status(201).json({ listingID: values.lastInsertRowid });
   }
@@ -51,6 +54,10 @@ router.post("/listings", (req, res) => {
 router.get("/listings", (req, res) => {
   const query = db.prepare("SELECT * FROM Listing WHERE sellerID = ? AND listingStatus != 'removed'");
   const listings = query.all(req.sellerID);
+
+  listings.forEach((listing) => {
+    listing.price = listing.price / 100;
+  });
 
   res.json(listings);
 });
@@ -101,6 +108,8 @@ router.get("/listings/:id", (req, res) => {
   if (!listing) {
     return res.status(404).json({ error: "Listing not found" });
   }
+
+  listing.price = listing.price / 100;
 
   res.json(listing);
 });
