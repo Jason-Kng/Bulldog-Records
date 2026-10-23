@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import './Login.css';
 
 function Login({ setAuth, setToken }) {
   //changed username to email
@@ -78,7 +79,7 @@ function Login({ setAuth, setToken }) {
   }, [navigate]);
 
   return (
-    <div>
+    <div className="login-page-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -101,10 +102,17 @@ function Login({ setAuth, setToken }) {
             required
           />
         </div>
-        <button type="submit">Log In</button>
-        <button type="buttion" onClick={handleCreateAccount}>
-          Create Account
-        </button>
+         <div class="login-buttons-container">
+        
+          <button type="submit">Log In</button>
+          <button type="buttion" onClick={handleCreateAccount}>
+            Create Account
+          </button>
+        
+        </div>
+
+
+        
       </form>
       <p>{message}</p>
     </div>
