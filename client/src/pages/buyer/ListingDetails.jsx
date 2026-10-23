@@ -35,7 +35,11 @@ function ListingDetails() {
         if (res.ok) {
           return setMessage("Added to cart!"); //navigate("/cart");
         } else if (res.status === 400) {
-          setMessage("Out of Stock");
+          if (listing.stock === 0) {
+            setMessage("Out of Stock");
+          } else {
+            setMessage("Max amount available in cart");
+          }
         } else if (res.status === 403) {
           setMessage("Not a buyer");
         } else if (res.status === 404) {
