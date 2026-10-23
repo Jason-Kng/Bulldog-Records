@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../Button";
 
+
 function AddListingForm({ onEnter, onCancel }) {
   const [form, setForm] = useState({
     title: "",
@@ -35,12 +36,18 @@ function AddListingForm({ onEnter, onCancel }) {
   // pdates the field
   function handleChange(e) {
     // firstName: e.target.value
-    setForm({ ...form, [e.target.name]: e.target.value });
+    if (e.target.type === "file") {
+
+      setForm({ ...form, photo: e.target.files[0] });
+    } else {
+      setForm({ ...form, [e.target.name]: e.target.value });
+    }
   }
 
 
   return (
-    <form onSubmit={handleSubmit}>
+
+      <form onSubmit={handleSubmit}>
       <p>
         <label>Title </label>
         <input name="title" value={form.title} onChange={handleChange} />
@@ -51,7 +58,7 @@ function AddListingForm({ onEnter, onCancel }) {
       </p>
       <p>
         <label>Release Date </label>
-        <input name="releaseDate" value={form.releaseDate} onChange={handleChange} />
+        <input name="releaseDate" value={form.releaseDate} placeholder="year-month-day" onChange={handleChange} />
       </p>
       <p>
         <label>Media Type </label>
@@ -65,12 +72,41 @@ function AddListingForm({ onEnter, onCancel }) {
       </p>
       <p>
         <label>Genre </label>
-        <input name="genre" value={form.genre} onChange={handleChange} />
+        <select name="genre" value={form.genre} onChange={handleChange}>
+          <option value="select">Select</option>
+          <option value="pop">Pop</option>
+          <option value="rock">Rock</option>
+          <option value="r&b">R&B</option>
+          <option value="disco">Disco</option>
+          <option value="classic">Classic</option>
+          <option value="soul">Soul</option>
+          <option value="jazz">Jazz</option>
+          <option value="blues">Blues</option>
+          <option value="country">Country</option>
+          <option value="folk">Folk</option>
+          <option value="indie">Indie</option>
+          <option value="alternative">Alternative</option>
+          <option value="metal">Metal</option>
+          <option value="punk">Punk</option>
+          <option value="funk">Funk</option>
+          <option value="reggae">Reggae</option>
+          <option value="latin">Latin</option>
+          <option value="reggaeton">Reggaeton</option>
+          <option value="electronic">Electronic</option>
+          <option value="techno">Techno</option>
+          <option value="house">House</option>
+          <option value="soundtrack">Soundtrack</option>
+          <option value="gospel">Gospel</option>
+          <option value="world">World Music</option>
+          <option value="new-age">New Age</option>
+          <option value="rap">Rap</option>
+          <option value="other">Other</option>
+        </select>
       </p>
-      {/* <p>
+      <p>
         <label>EAN: </label>
         <input name="EAN" value={form.EAN} onChange={handleChange} />
-      </p> */}
+      </p>
       <p>
         <label>Condition </label>
         <select name="condition" value={form.condition} onChange={handleChange}>
@@ -88,16 +124,20 @@ function AddListingForm({ onEnter, onCancel }) {
         <label>Price </label>
         <input name="price" value={form.price} onChange={handleChange} />
       </p>
-      {/* <p>
-        <label>Photo path: </label>
-        <input name="photo" value={form.photo} onChange={handleChange} />
-      </p> */}
-      
+      <p>
+        <label>Photo </label>
+        <input className="photo-upload" name="photo" type="file" accept="image/*" onChange={handleChange} />
+      </p>
+
       <div class="add-listing-buttons-container">
+        
+
         <Button text="Add Listing" type="submit" />
         <Button text="Cancel" onClick={onCancel} />
       </div>
     </form>
+
+    
   );
 }
 

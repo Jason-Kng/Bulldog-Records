@@ -16,7 +16,13 @@ function EditListingForm({ listing, onEnter, onCancel }) {
   // pdates the field
   function handleChange(e) {
     // firstName: e.target.value
-    setForm({ ...form, [e.target.name]: e.target.value });
+
+    if (e.target.type === "file") {
+
+      setForm({ ...form, photo: e.target.files[0] });
+    } else {
+      setForm({ ...form, [e.target.name]: e.target.value });
+    }
   }
 
   return (
@@ -45,7 +51,36 @@ function EditListingForm({ listing, onEnter, onCancel }) {
       </p>
       <p>
         <label>Genre </label>
-        <input name="genre" value={form.genre} onChange={handleChange} />
+        <select name="genre" value={form.genre} onChange={handleChange}>
+          <option value="select">Select</option>
+          <option value="pop">Pop</option>
+          <option value="rock">Rock</option>
+          <option value="r&b">R&B</option>
+          <option value="disco">Disco</option>
+          <option value="classic">Classic</option>
+          <option value="soul">Soul</option>
+          <option value="jazz">Jazz</option>
+          <option value="blues">Blues</option>
+          <option value="country">Country</option>
+          <option value="folk">Folk</option>
+          <option value="indie">Indie</option>
+          <option value="alternative">Alternative</option>
+          <option value="metal">Metal</option>
+          <option value="punk">Punk</option>
+          <option value="funk">Funk</option>
+          <option value="reggae">Reggae</option>
+          <option value="latin">Latin</option>
+          <option value="reggaeton">Reggaeton</option>
+          <option value="electronic">Electronic</option>
+          <option value="techno">Techno</option>
+          <option value="house">House</option>
+          <option value="soundtrack">Soundtrack</option>
+          <option value="gospel">Gospel</option>
+          <option value="world">World Music</option>
+          <option value="new-age">New Age</option>
+          <option value="rap">Rap</option>
+          <option value="other">Other</option>
+        </select>
       </p>
       <p>
         <label>EAN </label>
@@ -69,8 +104,8 @@ function EditListingForm({ listing, onEnter, onCancel }) {
         <input name="price" value={form.price} onChange={handleChange} />
       </p>
       <p>
-        <label>Photo path </label>
-        <input name="photo" value={form.photo} onChange={handleChange} />
+        <label>Photo</label>
+        <input className="photo-upload" name="photo" type="file" accept="image/*" onChange={handleChange} />
       </p>
 
       <div class="edit-listing-buttons-container">

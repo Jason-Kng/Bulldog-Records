@@ -15,6 +15,7 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
+app.use("/uploads", express.static("uploads"))
 
 app.use(express.json());
 app.use('/api/auth', authRouter);
@@ -22,9 +23,6 @@ app.use('/api/user', userRouter);
 app.use('/api/admin', sellerApprovalRouter);
 app.use('/api/admin', adminRouter);
 
-app.use(express.json());
-app.use("/api/auth", authRouter);
-app.use("/api/user", userRouter);
 app.use("/api/listing", listingRouter);
 app.use("/api/seller", currentSeller, sellerRoutes);
 app.use("/api/cart", cartRouter);

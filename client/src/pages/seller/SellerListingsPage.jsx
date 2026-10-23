@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../../components/Button";
+// import Button from "../../components/Button";
 import { getListings } from "../../api/sellerApi";
+import './seller.css';
 
 function SellerListingsPage() {
   const [listings, setListings] = useState([]);
@@ -15,11 +16,26 @@ function SellerListingsPage() {
 
   return (
     <div class="listings-container">
-      <h1>My Listings</h1>
+      <h2>My Listings</h2>
 
       <div class="listings-buttons-container">
-        <Button text="My Account" onClick={() => navigate("/seller")}/>
-        <Button text="Add Listing" onClick={() => navigate("/seller/listings/add")}/>
+        {/* <button
+            type="button"
+            className="seller-view-listings-button"
+            onClick={() => navigate("/seller/")}
+          >
+            My Account
+        </button> */}
+
+        <button
+          type="button"
+          className="seller-view-listings-button"
+          onClick={() => navigate("/seller/listings/add")}
+        >
+          Add Listing
+        </button>
+        {/* <Button text="My Account" onClick={() => navigate("/seller")}/>
+        <Button text="Add Listing" onClick={() => navigate("/seller/listings/add")}/> */}
         
       </div>
       
