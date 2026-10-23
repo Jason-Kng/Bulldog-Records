@@ -65,21 +65,6 @@ function App() {
       <NavBar />
 
       <Routes>
-        {/* <Route path="/" element={<Navigate to="/seller" />} /> */}
-        {/* <Route path="/" element={ auth ? ( <Navigate to={(() => { */}
-        {/* try { */}
-        {/* const decoded = jwtDecode(token); */}
-
-        {/* if (decoded.userType === 'admin') return '/admin'; */}
-        {/* if (decoded.userType === 'seller') return '/seller'; */}
-
-        {/* return '/browse'; */}
-        {/* } catch { */}
-        {/* return '/browse'; */}
-        {/* } */}
-        {/* })()} */}
-        {/* replace */}
-        {/* /> ) : ( <Login setAuth={setAuth} setToken={setToken} /> )} /> */}
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Login setAuth={setAuth} setToken={setToken} />} />
         {/* <Route path="/browse" element={<ProtectedRoute isAuth={auth} Component={Buyer} />} /> */}

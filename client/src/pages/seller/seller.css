@@ -1,3 +1,4 @@
+/*
 :root {
   --text: #2D2526;
   --text-h: #1A0508;
@@ -31,6 +32,7 @@
 }
 
 
+
 html,
 body,
 #root {
@@ -60,7 +62,7 @@ h2 {
   font-size: 25px;
   margin-bottom: 20px;
 } 
-
+*/
 button {
   border: 1px solid var(--maroon);
   background-color: var(--light_maroon);
