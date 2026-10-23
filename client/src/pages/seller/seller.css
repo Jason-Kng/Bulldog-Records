@@ -1,0 +1,285 @@
+:root {
+  --text: #2D2526;
+  --text-h: #1A0508;
+  --bg: #FCF9F9;
+  --border: #E8DCDD;
+  --code-bg: #F0E6E7;
+
+  --accent: #5D1725;
+  --accent-bg: #5D1725;
+  --accent-border: #420F19;
+
+  --social-bg: #F3EAEB;
+
+  --shadow:
+    rgba(93, 23, 37, 0.12) 0 10px 15px -3px,
+    rgba(93, 23, 37, 0.06) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--bg);
+
+  --main_font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --maroon: #5D1725;
+  --light_maroon: #faf4f5;
+  --green: rgb(89, 151, 89);
+  --light-gray: rgb(244, 244, 244);
+}
+
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--main_font);
+  padding: 30px;
+}
+
+h2 {
+  color: var(--maroon);
+  font-size: 25px;
+  margin-bottom: 20px;
+} 
+
+button {
+  border: 1px solid var(--maroon);
+  background-color: var(--light_maroon);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 18px;
+  color: var(--maroon);
+  font-weight: 500;
+  width: 130px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+/* Listings Page */
+.listings-container {
+  padding: 20px;
+}
+.listings-container ul {
+  list-style: none;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  
+}
+
+.listings-container li {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 30px;
+  background-color: var(--light-gray);
+}
+
+.listings-container a {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+
+.listing-page-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.listing-page-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.listing-page-status {
+  text-transform: capitalize;
+}
+
+.status-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.status-circle {
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  background-color: var(--green);
+}
+
+.listing-page-status.active {
+  color: var(--green);
+  font-weight: bold;
+}
+
+
+.listings-buttons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+/* Listing Page */
+
+.listing-buttons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+/* Add Listing */
+
+.add-listing-buttons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin: 20px 0px;
+}
+
+/* Edit Listing */
+.edit-listing-buttons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin: 20px 0px;
+}
+
+/* Form */
+.add-listing-form-container {
+  padding: 20px;
+}
+.add-listing-form form p {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.add-listing-form form input {
+  border: 1px solid black;
+  background-color: var(--light-gray);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+  color: black;
+  font-weight: 500;
+  width: 420px;
+  height: 42px;
+}
+
+.add-listing-form form select {
+  border: 1px solid black;
+  background-color: var(--light-gray);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+  color: black;
+  font-weight: 500;
+  width: 420px;
+  height: 42px;
+}
+
+/* Seller Account Page */
+.seller-account-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.seller-account-container p {
+  margin-bottom: 20px;
+}
+
+.seller-view-listings-button {
+  position: relative;
+  width: 20%;
+  padding: 12px 24px;
+
+  border: none;
+  border-radius: 6px;
+
+  background-color: var(--accent);
+  color: white;
+
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+  justify-self: center;
+}
+
+.seller-view-listings-button {
+  background-color: var(--accent-bg);
+}
+
+.seller-view-listings-button:hover {
+  opacity: 0.9;
+}
+
+button {
+  position: relative;
+  width: 20%;
+  padding: 12px 24px;
+
+  border: none;
+  border-radius: 6px;
+
+  background-color: var(--accent);
+  color: white;
+
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+  justify-self: center;
+}
+
+button {
+  background-color: var(--accent-bg);
+}
+
+button:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}

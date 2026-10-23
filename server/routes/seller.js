@@ -85,9 +85,12 @@ router.put("/listings/:id", (req, res) => {
     return res.status(400).json({ error: "New listing fields are missing" });
   }
 
+  
+
   try {
+    const priceInCents = Math.round(Number(price) * 100);
     const query = db.prepare(`UPDATE Listing SET title = ?, artist = ?, releaseDate = ?, mediaType = ?, genre = ?, EAN = ?, condition = ?, stock = ?, price = ?, photo = ? WHERE listingID = ? AND sellerID = ? AND listingStatus != 'removed'`);
-    const values = query.run(title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, price, photo, req.params.id, req.sellerID)
+    const values = query.run(title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, priceInCents, photo, req.params.id, req.sellerID)
 
     // would send like updated: 10, confirming update to the listing
     res.status(200).json({ updated: req.params.id });

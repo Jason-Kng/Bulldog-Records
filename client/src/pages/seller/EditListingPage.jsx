@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import EditListingForm from "../../components/seller/EditListingForm";
 import { getListing, updateListing } from "../../api/sellerApi";
+import './seller.css';
 
 function EditListingPage () {
   const [listing, setListing] = useState(null);
@@ -26,13 +27,15 @@ function EditListingPage () {
   }
 
   return (
-    <div>
-      <h1>Edit Listing {listing.id}</h1>
-      <EditListingForm 
-        listing={listing}
-        onEnter={handleSubmit}
-        onCancel={() => navigate(`/seller/listings/${id}`)}
-      />
+    <div className="add-listing-form-container">
+      <h2>Edit Listing {listing.id}</h2>
+      <div className="add-listing-form">
+        <EditListingForm 
+          listing={listing}
+          onEnter={handleSubmit}
+          onCancel={() => navigate(`/seller/listings/${id}`)}
+        />
+      </div>
     </div>
   );
 
