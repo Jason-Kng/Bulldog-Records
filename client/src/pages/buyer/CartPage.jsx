@@ -31,7 +31,8 @@ function CartPage() {
         } else {
           setItems(data);
         }
-      });
+      })
+      .catch(() => setMessage("Something went wrong. Try again."));
   }, []);
   const handleRemove = (listingID) => {
     fetch(`/api/cart/items/${listingID}`, {
@@ -75,7 +76,7 @@ function CartPage() {
         <div className="cart-item" key={item.cartItemID}>
           <p className="cart-item-title">{item.title}</p>
           <p>{item.artist}</p>
-          <p>{item.photo}</p>
+          <img src={item.photo} alt={item.title} />
           <p>${(item.price / 100).toFixed(2)}</p>
           <p>Quantity: {item.itemQuantity}</p>
           <button
