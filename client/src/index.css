@@ -98,7 +98,7 @@ code {
 
 body {
   font-family: var(--main_font);
-  margin: 30px;
+  /* margin: 3px; */
 }
 
 h1 {
@@ -244,4 +244,15 @@ form select {
   font-weight: 500;
   width: 333px;
   height: 42px;
+}
+
+.photo-upload {
+  width: 100%;
+  max-width: 345px;
+
+  height: auto;
+  padding: 8px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
 }

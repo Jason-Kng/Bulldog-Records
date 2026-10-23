@@ -1,5 +1,9 @@
 import express from 'express';
 import db from '../database/database.js';
+// import multer from 'multer';
+
+// const upload = multer({ dest: 'uploads/' })
+import upload from '../middleware/upload.js';
 
 const router = express.Router();
 
@@ -10,7 +14,7 @@ const router = express.Router();
 // testing on HTTPIE: worked
 router.get("/", (req, res) => {
   const query = db.prepare("SELECT * FROM Seller WHERE sellerID = ?");
-  const seller = query.get(req.user);
+  const seller = query.get(req.sellerID);
 
   if (!seller) {
     return res.status(404).json({ error: "Seller not found" });
@@ -20,7 +24,7 @@ router.get("/", (req, res) => {
 
 // create a listing
 // testing on HTTPIE: worked
-router.post("/listings", (req, res) => {
+router.post("/listings", upload.single("photo"), (req, res) => {
 
   // db fields
   const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo } = req.body;
@@ -31,7 +35,8 @@ router.post("/listings", (req, res) => {
   }
 
   const priceInCents = Math.round(price * 100);
-  const photoPath = photo || "/images/placeholder.png";
+  console.log(req.file.filename)
+  const photoPath = `/uploads/${req.file.filename}` || "/images/placeholder.png";
 
   // create entry in db
   try {

@@ -16,11 +16,26 @@ export function getListing(id) {
 }
 
 export async function addListing(listing) {
+  const formData = new FormData();
+
+  formData.append("title", listing.title);
+  formData.append("artist", listing.artist);
+  formData.append("releaseDate", listing.releaseDate);
+  formData.append("mediaType", listing.mediaType);
+  formData.append("genre", listing.genre);
+  formData.append("condition", listing.condition);
+  formData.append("stock", listing.stock);
+  formData.append("price", listing.price);
+
+  if (listing.photo) {
+    formData.append("photo", listing.photo);
+  }
+
   return fetch("/api/seller/listings", {
     method: "POST",
-    headers: { ...authHeaders(), "Content-Type": "application/json" },
+    headers: { ...authHeaders() },
     // convert listing into json, need for post and put
-    body: JSON.stringify(listing),
+    body: formData,
   }).then(async (res) => {
     const data = await res.json();
 
@@ -44,5 +59,5 @@ export function removeListing(id) {
   return fetch(`/api/seller/listings/${id}`, {
     method: "DELETE",
     headers: authHeaders(),
-   }).then((res) => res.json());
+  }).then((res) => res.json());
 }
