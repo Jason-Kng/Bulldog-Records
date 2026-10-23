@@ -7,7 +7,7 @@ import './seller.css';
 function ListingPage() {
   const [listing, setListing] = useState(null);
   const navigate = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     getListing(id)
@@ -37,7 +37,7 @@ function ListingPage() {
         <div className="listing-details-container">
           <div className="listing-details-image">
             {listing.photo && (
-              <img src={`..${listing.photo}`} alt={listing.title} />
+              <img src={listing.photo} alt={listing.title} />
             )}
           </div>
 
@@ -91,8 +91,8 @@ function ListingPage() {
             >
               Remove Listing
             </button>
-              
-              
+
+
             {/* <Button text="My Listings" onClick={() => navigate(`/seller/listings`)} /> */}
           </div>
         </div>
