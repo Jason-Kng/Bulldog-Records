@@ -1,5 +1,15 @@
 # Bulldog-Records
 
+## Instructions
+Run these commands in the root directory:
+
+- In order to populate the data in the database run `npm run populate`
+- In order to create a .env file with a secret key run `npm run env`
+- In order to drop the database run `npm run dropDB`
+
+To start the server run `npm run dev` this will run both the client and server.
+
+
 ## About
 Bulldog Records is a web application that will allow users to both sell and purchase physical music media, including CDs, vinyl records, and cassettes.
 

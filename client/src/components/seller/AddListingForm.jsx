@@ -36,7 +36,12 @@ function AddListingForm({ onEnter, onCancel }) {
   // pdates the field
   function handleChange(e) {
     // firstName: e.target.value
-    setForm({ ...form, [e.target.name]: e.target.value });
+    if (e.target.type === "file") {
+
+      setForm({ ...form, photo: e.target.files[0] });
+    } else {
+      setForm({ ...form, [e.target.name]: e.target.value });
+    }
   }
 
 
@@ -53,7 +58,7 @@ function AddListingForm({ onEnter, onCancel }) {
       </p>
       <p>
         <label>Release Date </label>
-        <input name="releaseDate" value={form.releaseDate} onChange={handleChange} />
+        <input name="releaseDate" value={form.releaseDate} placeholder="year-month-day" onChange={handleChange} />
       </p>
       <p>
         <label>Media Type </label>
@@ -69,10 +74,10 @@ function AddListingForm({ onEnter, onCancel }) {
         <label>Genre </label>
         <input name="genre" value={form.genre} onChange={handleChange} />
       </p>
-      {/* <p>
+      <p>
         <label>EAN: </label>
         <input name="EAN" value={form.EAN} onChange={handleChange} />
-      </p> */}
+      </p>
       <p>
         <label>Condition </label>
         <select name="condition" value={form.condition} onChange={handleChange}>
@@ -90,11 +95,11 @@ function AddListingForm({ onEnter, onCancel }) {
         <label>Price </label>
         <input name="price" value={form.price} onChange={handleChange} />
       </p>
-      {/* <p>
+      <p>
         <label>Photo path: </label>
-        <input name="photo" value={form.photo} onChange={handleChange} />
-      </p> */}
-      
+        <input className="photo-upload" name="photo" type="file" accept="image/*" onChange={handleChange} />
+      </p>
+
       <div class="add-listing-buttons-container">
         
 

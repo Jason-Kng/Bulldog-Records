@@ -58,7 +58,7 @@ function ListingDetails() {
         <div className="listing-details-container">
           <div className="listing-details-image">
             {listing.photo && (
-              <img src={`..${listing.photo}`} alt={listing.title} />
+              <img src={listing.photo} alt={listing.title} />
             )}
           </div>
 

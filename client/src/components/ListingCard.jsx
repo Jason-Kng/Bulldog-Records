@@ -12,7 +12,7 @@ function Card({ listingID, seller, image, title, artist, price }) {
 
   return (
     <div className="card-container" onClick={() => handleClick(listingID)}>
-      {image && < img src={`..${image}`} alt={title} className="card-image" />}
+      {image && < img src={image} alt={title} className="card-image" />}
       <div className="card-content" id={listingID}>
         {/* <div className='card-top-row'> */}
         {title && <h2 className="card-title">{title}</h2>}

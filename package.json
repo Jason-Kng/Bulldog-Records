@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm --prefix client run dev",
     "server": "npm --prefix server start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "populate": "node server/database/dataPopulate.js",
+    "env": "node -e \"console.log('ACCESS_TOKEN_SECRET=' +  require('crypto').randomBytes(64).toString('hex'))\" > server/.env",
+    "dropDB": "rm server/data/bulldog-records.db"
   },
   "repository": {
     "type": "git",
@@ -23,5 +26,8 @@
   "homepage": "https://github.com/Jason-Kng/Bulldog-Records#readme",
   "devDependencies": {
     "concurrently": "^10.0.6"
+  },
+  "dependencies": {
+    "multer": "^2.5.0"
   }
 }

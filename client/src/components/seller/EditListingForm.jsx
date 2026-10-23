@@ -16,7 +16,13 @@ function EditListingForm({ listing, onEnter, onCancel }) {
   // pdates the field
   function handleChange(e) {
     // firstName: e.target.value
-    setForm({ ...form, [e.target.name]: e.target.value });
+
+    if (e.target.type === "file") {
+
+      setForm({ ...form, photo: e.target.files[0] });
+    } else {
+      setForm({ ...form, [e.target.name]: e.target.value });
+    }
   }
 
   return (
@@ -70,7 +76,7 @@ function EditListingForm({ listing, onEnter, onCancel }) {
       </p>
       <p>
         <label>Photo path </label>
-        <input name="photo" value={form.photo} onChange={handleChange} />
+        <input className="photo-upload" name="photo" type="file" accept="image/*" onChange={handleChange} />
       </p>
 
       <div class="edit-listing-buttons-container">
