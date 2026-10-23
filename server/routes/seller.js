@@ -8,8 +8,19 @@ const router = express.Router();
 // get seller
 // will be from api/seller (the BASE = api/seller is in api in client)
 // testing on HTTPIE: worked
+// router.get("/", (req, res) => {
+//   const query = db.prepare("SELECT * FROM Seller WHERE sellerID = ?");
+//   const seller = query.get(req.sellerID);
+
+//   if (!seller) {
+//     return res.status(404).json({ error: "Seller not found" });
+//   }
+//   res.json(seller);
+// });
+
+// get seller account data for account page
 router.get("/", (req, res) => {
-  const query = db.prepare("SELECT * FROM Seller WHERE sellerID = ?");
+  const query = db.prepare("SELECT Seller.sellerID, Seller.userID, User.name, User.email, Seller.approvalStatus, Seller.accountStatus FROM Seller JOIN User ON User.userID = Seller.userID WHERE Seller.sellerID = ?");
   const seller = query.get(req.sellerID);
 
   if (!seller) {
@@ -17,6 +28,7 @@ router.get("/", (req, res) => {
   }
   res.json(seller);
 });
+
 
 // create a listing
 // testing on HTTPIE: worked
