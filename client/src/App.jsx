@@ -15,13 +15,14 @@ import CheckoutPage from "./pages/buyer/CheckoutPage.jsx";
 // import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
-import AdminSellerApprovals from './pages/admin/AdminSellerApproval';
-import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminSellerApprovals from "./pages/admin/AdminSellerApproval";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import OrderSummary from "./pages/buyer/OrderSummary.jsx";
 
 function App() {
   const [auth, setAuth] = useState(null);
   const [token, setToken] = useState(
-    () => localStorage.getItem("accessToken") || ""
+    () => localStorage.getItem("accessToken") || "",
   );
 
   useEffect(() => {
@@ -81,12 +82,16 @@ function App() {
         {/* replace */}
         {/* /> ) : ( <Login setAuth={setAuth} setToken={setToken} /> )} /> */}
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Login setAuth={setAuth} setToken={setToken} />} />
+        <Route
+          path="/"
+          element={<Login setAuth={setAuth} setToken={setToken} />}
+        />
         {/* <Route path="/browse" element={<ProtectedRoute isAuth={auth} Component={Buyer} />} /> */}
         <Route path="/browse" element={<Browse />} />
         <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/order-summary" element={<OrderSummary />} />
         <Route path="/listingDetails/:id" element={<ListingDetails />} />
         <Route path="/seller" element={<SellerAccountPage />} />
         <Route path="/seller/listings" element={<SellerListingsPage />} />
@@ -96,7 +101,10 @@ function App() {
 
         {/* Admin routes */}
         <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/sellers" element={<AdminSellerApprovals token={token} />} />
+        <Route
+          path="/admin/sellers"
+          element={<AdminSellerApprovals token={token} />}
+        />
       </Routes>
     </>
   );
