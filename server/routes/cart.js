@@ -5,14 +5,13 @@ import authenticateToken from "../middleware/auth.js";
 const router = express.Router();
 
 router.get("/", authenticateToken, (req, res) => {
-  console.log("req.user", req.user);
-  const email = req.user.email;
+  const userID = req.user;
   const cart = db
     .prepare(
       `SELECT Cart.cartID FROM Cart 
-      JOIN Buyer ON Cart.buyerID = Buyer.buyerID JOIN User ON Buyer.userID = User.userID WHERE user.email = ?`,
+      JOIN Buyer ON Cart.buyerID = Buyer.buyerID WHERE userID = ?`,
     )
-    .get(email);
+    .get(userID);
   if (!cart) {
     return res.json([]);
   }
@@ -40,13 +39,10 @@ router.post("/items", authenticateToken, (req, res) => {
       .json({ message: "Quantity must be greater than zero" });
   }
 
-  const email = req.user.email;
+  const userID = req.user;
   const buyer = db
-    .prepare(
-      `SELECT Buyer.buyerID FROM Buyer JOIN User ON Buyer.userID = User.userID
-      WHERE User.email=?`,
-    )
-    .get(email);
+    .prepare(`SELECT buyerID FROM Buyer WHERE userID = ?`)
+    .get(userID);
   if (!buyer) {
     return res.status(403).json({ message: "Only buyers can add to cart" });
   }
@@ -99,14 +95,14 @@ router.post("/items", authenticateToken, (req, res) => {
 
 router.delete("/items/:listingID", authenticateToken, (req, res) => {
   const listingID = req.params.listingID;
-  const email = req.user.email;
+  const userID = req.user;
 
   const cart = db
     .prepare(
       `SELECT Cart.cartID FROM Cart 
-      JOIN Buyer ON Cart.buyerID = Buyer.buyerID JOIN User ON Buyer.userID = User.userID WHERE user.email = ?`,
+      JOIN Buyer ON Cart.buyerID = Buyer.buyerID WHERE userID = ?`,
     )
-    .get(email);
+    .get(userID);
   if (!cart) {
     return res.status(404).json({ message: "No Cart" });
   }
