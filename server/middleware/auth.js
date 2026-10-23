@@ -7,11 +7,10 @@ function authenticateToken(req, res, next) {
 
   if (token == null) return res.sendStatus(401).json({ message: "Invalid Token" });
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err) => {
-    if (err) return res.sendStatus(403);
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, usr) => {
+    if (err) return res.sendStatus(403).json({ message: "Invalid or expired token" });
 
-    console.log(jwt.decode(token).userID);
-    req.user = jwt.decode(token).userID
+    req.user = usr
     next()
   });
 }
