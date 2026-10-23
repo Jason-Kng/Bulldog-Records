@@ -81,7 +81,7 @@ function App() {
         replace
       /> ) : ( <Login setAuth={setAuth} setToken={setToken} /> )} />
         <Route path="/register" element={<Register />} />
-        
+        <Route path="/" element={<Login setAuth={setAuth} />} />
         {/* <Route path="/browse" element={<ProtectedRoute isAuth={auth} Component={Buyer} />} /> */}
         <Route path="/browse" element={<Browse />} />
         <Route path="/search" element={<Search />} />
