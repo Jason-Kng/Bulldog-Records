@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 
 function authenticateToken(req, res, next) {
-  console.log('auth header:', req.headers['authorization']);
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
@@ -17,4 +16,3 @@ function authenticateToken(req, res, next) {
 }
 
 export default authenticateToken
-
