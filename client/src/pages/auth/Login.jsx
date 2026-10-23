@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
-function Login({ setAuth }) {
+function Login({ setAuth, setToken }) {
   //changed username to email
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,6 +35,7 @@ function Login({ setAuth }) {
         }
         if (data.accessToken) {
           localStorage.setItem("accessToken", data.accessToken);
+          setToken(data.accessToken);
           setAuth(true);
 
           const decoded = jwtDecode(data.accessToken);
@@ -67,7 +68,7 @@ function Login({ setAuth }) {
       } else if (decode.userType === "seller") {
         navigate("/seller", { replace: true });
       } else if (decode.userType === "admin") {
-        console.log("admin");
+        navigate("/admin", { replace: true });
       } else {
         return;
       }

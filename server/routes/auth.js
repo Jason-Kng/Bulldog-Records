@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
 
 
   // Make jwt token
-  const accessToken = jwt.sign({ email: user.email, name: user.name, userType: user.userType }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+  const accessToken = jwt.sign({ email: user.email, name: user.name, userType: user.userType, userID: user.userID }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
 
   res.json({
     accessToken: accessToken,

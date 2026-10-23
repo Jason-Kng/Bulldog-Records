@@ -5,10 +5,22 @@ import listingRouter from "./routes/listing.js";
 import sellerRoutes from "./routes/seller.js";
 import cartRouter from "./routes/cart.js";
 import currentSeller from "./middleware/tempSeller.js";
+import 'dotenv/config';
+import cors from 'cors';
 
-const port = 3000;
+import sellerApprovalRouter from './routes/sellerApproval.js';
+import adminRouter from './routes/admin.js';
 
 const app = express();
+const port = 3000;
+
+app.use(cors());
+
+app.use(express.json());
+app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
+app.use('/api/admin', sellerApprovalRouter);
+app.use('/api/admin', adminRouter);
 
 app.use(express.json());
 app.use("/api/auth", authRouter);
