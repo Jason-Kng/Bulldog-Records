@@ -5,7 +5,7 @@ import AddListingPage from "./pages/seller/AddListingPage.jsx";
 import EditListingPage from "./pages/seller/EditListingPage";
 import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Browse from "./pages/buyer/Browse.jsx";
 import ListingDetails from "./pages/buyer/ListingDetails.jsx";
 import NavBar from "./components/NavBar.jsx";
@@ -66,22 +66,22 @@ function App() {
 
       <Routes>
         {/* <Route path="/" element={<Navigate to="/seller" />} /> */}
-        <Route path="/" element={ auth ? ( <Navigate to={(() => {
-          try {
-            const decoded = jwtDecode(token);
+        {/* <Route path="/" element={ auth ? ( <Navigate to={(() => { */}
+        {/* try { */}
+        {/* const decoded = jwtDecode(token); */}
 
-            if (decoded.userType === 'admin') return '/admin';
-            if (decoded.userType === 'seller') return '/seller';
+        {/* if (decoded.userType === 'admin') return '/admin'; */}
+        {/* if (decoded.userType === 'seller') return '/seller'; */}
 
-            return '/browse';
-          } catch {
-            return '/browse';
-          }
-        })()}
-        replace
-      /> ) : ( <Login setAuth={setAuth} setToken={setToken} /> )} />
+        {/* return '/browse'; */}
+        {/* } catch { */}
+        {/* return '/browse'; */}
+        {/* } */}
+        {/* })()} */}
+        {/* replace */}
+        {/* /> ) : ( <Login setAuth={setAuth} setToken={setToken} /> )} /> */}
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Login setAuth={setAuth} />} />
+        <Route path="/" element={<Login setAuth={setAuth} setToken={setToken} />} />
         {/* <Route path="/browse" element={<ProtectedRoute isAuth={auth} Component={Buyer} />} /> */}
         <Route path="/browse" element={<Browse />} />
         <Route path="/search" element={<Search />} />
