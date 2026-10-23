@@ -12,12 +12,13 @@ import NavBar from "./components/NavBar.jsx";
 import Search from "./pages/buyer/SearchPage.jsx";
 import CartPage from "./pages/buyer/CartPage.jsx";
 import CheckoutPage from "./pages/buyer/CheckoutPage.jsx";
-// import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import AdminSellerApprovals from "./pages/admin/AdminSellerApproval";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import OrderSummary from "./pages/buyer/OrderSummary.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -66,6 +67,8 @@ function App() {
       <NavBar />
 
       <Routes>
+        <Route path="*" element={<NotFound />} />
+        <Route path="/404" element={<NotFound />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/"
@@ -78,8 +81,8 @@ function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/order-summary" element={<OrderSummary />} />
         <Route path="/listingDetails/:id" element={<ListingDetails />} />
-        <Route path="/seller" element={<SellerAccountPage />} />
-        <Route path="/seller/listings" element={<SellerListingsPage />} />
+        <Route path="/seller" element={<ProtectedRoute isAuth={auth} Component={SellerAccountPage} allowedUsers={["seller"]} />} />
+        <Route path="/seller/listings" element={<ProtectedRoute isAuth={auth} Component={SellerListingsPage} allowedUsers={["seller"]} />} />
         <Route path="/seller/listings/add" element={<AddListingPage />} />
         <Route path="/seller/listings/:id" element={<ListingPage />} />
         <Route path="/seller/listings/:id/edit" element={<EditListingPage />} />

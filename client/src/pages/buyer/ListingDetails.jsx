@@ -16,15 +16,21 @@ function ListingDetails() {
       .then((data) => {
         setListing(data);
       })
-      .catch((error) => console.error("Error fetching listing: ", error));
-  }, [params.id]);
+      .catch((error) => {
+        if (error.status === 404) {
+          navigate("/404", { replace: true })
+        } else {
+          console.error("Error fetching listing: ", error)
+        }
+      });
+  }, [params.id, navigate]);
 
   const handleAdd = () => {
     fetch("/api/cart/items/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({
         quantity,
