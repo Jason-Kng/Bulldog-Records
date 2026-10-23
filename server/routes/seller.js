@@ -10,7 +10,7 @@ const router = express.Router();
 // testing on HTTPIE: worked
 router.get("/", (req, res) => {
   const query = db.prepare("SELECT * FROM Seller WHERE sellerID = ?");
-  const seller = query.get(req.sellerID);
+  const seller = query.get(req.user);
 
   if (!seller) {
     return res.status(404).json({ error: "Seller not found" });

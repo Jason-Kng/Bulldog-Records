@@ -1,8 +1,10 @@
-export function getSeller() {
-  return fetch("/api/seller").then((res) => res.json());
+let token = localStorage.getItem("accessToken");
+
+export async function getSeller() {
+  return fetch("/api/seller", { headers: { "authorization": `Bearer ${token}` } }).then((res) => res.json());
 }
 
-export function getListings() {
+export async function getListings() {
   return fetch("/api/seller/listings").then((res) => res.json());
 }
 
@@ -10,7 +12,7 @@ export function getListing(id) {
   return fetch("/api/seller/listings" + id).then((res) => res.json());
 }
 
-export function addListing(listing) {
+export async function addListing(listing) {
   return fetch("/api/seller/listings", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

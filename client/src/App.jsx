@@ -1,8 +1,8 @@
 import SellerAccountPage from "./pages/seller/SellerAccountPage";
-// import SellerListingsPage from "./pages/seller/SellerListingsPage";
-// import ListingDetailPage from "./pages/seller/ListingDetailPage";
+import SellerListingsPage from "./pages/seller/SellerListingsPage";
+import ListingPage from "./pages/seller/ListingPage.jsx";
 import AddListingPage from "./pages/seller/AddListingPage.jsx";
-// import EditListingPage from "./pages/seller/EditListingPage";
+import EditListingPage from "./pages/seller/EditListingPage";
 import Login from "./pages/auth/Login.jsx";
 import { Route, Routes } from 'react-router-dom';
 import Browse from './pages/buyer/Browse.jsx';
@@ -62,10 +62,10 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path='/listingDetails/:id' element={<ListingDetails />} />
         <Route path="/seller" element={<SellerAccountPage />} />
-        {/* <Route path="/seller/listings" element={<SellerListingsPage />} /> */}
+        <Route path="/seller/listings" element={<SellerListingsPage />} />
         <Route path="/seller/listings/add" element={<AddListingPage />} />
-        {/* <Route path="/seller/listings/:id" element={<ListingDetailPage />} /> */}
-        {/* <Route path="/seller/listings/:id/edit" element={<EditListingPage />} /> */}
+        <Route path="/seller/listings/:id" element={<ListingPage />} />
+        <Route path="/seller/listings/:id/edit" element={<EditListingPage />} />
       </Routes>
     </>
   )
