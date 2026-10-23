@@ -166,8 +166,13 @@ function CheckoutPage() {
                 required
               />
             </label>
+            <br />
           </div>
         )}
+        <br />
+        <label>Payment Method</label>
+        <br />
+        <br />
         <button type="submit">Place Order</button>
       </form>
       <p>{message}</p>
