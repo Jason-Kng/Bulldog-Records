@@ -33,10 +33,10 @@ const populateData = db.transaction(() => {
   listingQuery.run(seller2.lastInsertRowid, "The Secret of Us", "Gracie Abrams", "2024-06-21", "vinyl", "pop", null, "new", 4, 3500, "/uploads/placeholder.png");
 
   listingQuery.run(seller2.lastInsertRowid, "I Barely Know Her", "Sombr", "2025-08-22", "cd", "pop", "093624827702", "new", 5, 1700, "/uploads/placeholder.png")
-  listingQuery.run(seller1.lastInsertRowid, "Rumours", "Fleetwood Mac", "1977-02-04", "vinyl", "rock,pop", "081227970949", "used", 4, 3200, "/uploads/placeholder.png");
+  listingQuery.run(seller1.lastInsertRowid, "Rumours", "Fleetwood Mac", "1977-02-04", "vinyl", "rock,pop", "081227970949", "used", 4, 3200, "/uploads/1792777496613.PNG");
   listingQuery.run(seller1.lastInsertRowid, "Abbey Road", "The Beatles", "1969-09-26", "vinyl", "rock", "602508007448", "new", 2, 4500, "/uploads/placeholder.png");
   listingQuery.run(seller1.lastInsertRowid, "Nevermind", "Nirvana", "1991-09-24", "cd", "rock,grunge,alternative", "720642442524", "used", 3, 1400, "/uploads/placeholder.png");
-  listingQuery.run(seller1.lastInsertRowid, "Random Access Memories", "Daft Punk", "2013-05-17", "vinyl", "electronic,disco", "888837168618", "new", 5, 3800, "/uploads/placeholder.png");
+  listingQuery.run(seller1.lastInsertRowid, "Random Access Memories", "Daft Punk", "2013-05-17", "vinyl", "electronic,disco", "888837168618", "new", 5, 3800, "/uploads/1792777510572.png");
   listingQuery.run(seller2.lastInsertRowid, "Thriller", "Michael Jackson", "1982-11-30", "vinyl", "pop,r&b", "888751437317", "used", 2, 2900, "/uploads/placeholder.png");
   listingQuery.run(seller2.lastInsertRowid, "good kid, m.A.A.d city", "Kendrick Lamar", "2012-10-22", "cd", "hip-hop,rap", "602537192268", "new", 6, 1600, "/uploads/placeholder.png");
   listingQuery.run(seller2.lastInsertRowid, "The Dark Side of the Moon", "Pink Floyd", "1973-03-01", "vinyl", "rock,progressive rock", "888751842619", "new", 3, 4200, "/uploads/placeholder.png");
