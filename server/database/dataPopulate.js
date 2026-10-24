@@ -10,6 +10,7 @@ const populateData = db.transaction(() => {
   const user5 = userQuery.run("Buyer 3", "buyer3@bulldogrecords.com", "buyer");
   const user6 = userQuery.run("Seller 3", "seller3@bulldogrecords.com", "seller");
   const user7 = userQuery.run("Seller 4", "seller4@bulldogrecords.com", "seller");
+  const user8 = userQuery.run("Admin", "admin@bulldogrecords.com", "admin");
 
   const loginQuery = db.prepare(`INSERT INTO Login (userID, passwordHash) VALUES (?, ?)`);
   loginQuery.run(user.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
@@ -19,6 +20,7 @@ const populateData = db.transaction(() => {
   loginQuery.run(user5.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
   loginQuery.run(user6.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
   loginQuery.run(user7.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
+  loginQuery.run(user8.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
 
 
   // Address
@@ -30,7 +32,7 @@ const populateData = db.transaction(() => {
   const seller1 = sellerQuery.run(user.lastInsertRowid, address.lastInsertRowid, "approved")
   const seller2 = sellerQuery.run(user2.lastInsertRowid, address.lastInsertRowid, "approved")
   const seller3 = sellerQuery.run(user6.lastInsertRowid, address.lastInsertRowid, "approved")
-  const seller4 = sellerQuery.run(user7.lastInsertRowid, address.lastInsertRowid, "approved")
+  const seller4 = sellerQuery.run(user7.lastInsertRowid, address.lastInsertRowid, "pending")
 
   // Buyer
   const buyerQuery = db.prepare(`INSERT INTO Buyer (userID, shippingAddressID) VALUES (?, ?)`)
