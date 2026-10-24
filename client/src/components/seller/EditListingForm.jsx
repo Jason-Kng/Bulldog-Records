@@ -28,20 +28,20 @@ function EditListingForm({ listing, onEnter, onCancel }) {
   return (
     <form onSubmit={handleSubmit}>
       <p>
-        <label>Title </label>
-        <input name="title" value={form.title} onChange={handleChange} />
+        <label>Title *</label>
+        <input name="title" value={form.title} onChange={handleChange} required/>
       </p>
       <p>
-        <label>Artist </label>
-        <input name="artist" value={form.artist} onChange={handleChange} />
+        <label>Artist *</label>
+        <input name="artist" value={form.artist} onChange={handleChange} required/>
       </p>
       <p>
-        <label>Release Date </label>
-        <input name="releaseDate" value={form.releaseDate} onChange={handleChange} />
+        <label>Release Date</label>
+        <input name="releaseDate" value={form.releaseDate} placeholder="YYYY-MM-DD" onChange={handleChange}/>
       </p>
       <p>
-        <label>Media Type </label>
-        <select name="mediaType" value={form.mediaType} onChange={handleChange}>
+        <label>Media Type *</label>
+        <select name="mediaType" value={form.mediaType} onChange={handleChange} required>
           <option value="select">Select</option>
           <option value="cd">CD</option>
           <option value="vinyl">Vinyl</option>
@@ -50,8 +50,8 @@ function EditListingForm({ listing, onEnter, onCancel }) {
         </select>
       </p>
       <p>
-        <label>Genre </label>
-        <select name="genre" value={form.genre} onChange={handleChange}>
+        <label>Genre *</label>
+        <select name="genre" value={form.genre} onChange={handleChange} required>
           <option value="select">Select</option>
           <option value="pop">Pop</option>
           <option value="rock">Rock</option>
@@ -83,12 +83,12 @@ function EditListingForm({ listing, onEnter, onCancel }) {
         </select>
       </p>
       <p>
-        <label>EAN </label>
-        <input name="EAN" value={form.EAN} onChange={handleChange} />
+        <label>EAN (13 digits)</label>
+        <input name="EAN" type="text" pattern="\d{13}" value={form.EAN} onChange={handleChange} />
       </p>
       <p>
-        <label>Condition </label>
-        <select name="condition" value={form.condition} onChange={handleChange}>
+        <label>Condition *</label>
+        <select name="condition" value={form.condition} onChange={handleChange} required>
           <option value="select">Select</option>
           <option value="new">New</option>
           <option value="used">Used</option>
@@ -96,15 +96,15 @@ function EditListingForm({ listing, onEnter, onCancel }) {
         </select>
       </p>
       <p>
-        <label>Stock </label>
-        <input name="stock" value={form.stock} onChange={handleChange} />
+        <label>Stock *</label>
+        <input name="stock" type="number" min={1} max={100} value={form.stock} onChange={handleChange} required/>
       </p>
       <p>
-        <label>Price </label>
-        <input name="price" value={form.price} onChange={handleChange} />
+        <label>Price *</label>
+        <input name="price" type="number" value={form.price} onChange={handleChange} required/>
       </p>
       <p>
-        <label>Photo</label>
+        <label>Photo </label>
         <input className="photo-upload" name="photo" type="file" accept="image/*" onChange={handleChange} />
       </p>
 

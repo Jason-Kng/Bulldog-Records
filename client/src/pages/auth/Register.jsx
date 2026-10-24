@@ -51,7 +51,7 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className="add-listing-form-container">
       <h2>Create Account</h2>
       <form onSubmit={handleSubmit}>
         <label>

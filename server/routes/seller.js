@@ -43,8 +43,34 @@ router.post("/listings", upload.single("photo"), (req, res) => {
 
   // check required fields are there
   if (!title || !artist || !mediaType || !genre || !condition || !price || !req.file) {
-    return res.status(400).json({ error: "New listing fields are missing" });
+    return res.status(400).json({ error: "Required fields are missing" });
   }
+
+  // validate fields: date, ean, stock, price
+  if (isNaN(price) || Number(price) <= 0) {
+    return res.status(400).json({ error: "Price must be greater than 0" });
+  }
+
+   if (isNaN(stock) || Number(stock) < 0 || stock == "") {
+    return res.status(400).json({ error: "Stock must be at least 0" });
+  }
+
+  if (releaseDate) {
+    let dateInput = releaseDate;
+    let dateObj = new Date(dateInput);
+
+    const validFormat = /^\d{4}-\d{2}-\d{2}$/.test(releaseDate);
+    if (isNaN(dateObj) || !validFormat) {
+      return res.status(400).json({ error: "Invalid date, must be (YYYY-MM-DD)" });
+    }
+    // Source: https://www.freecodecamp.org/news/how-to-validate-a-date-in-javascript/
+  }
+
+  // regex
+  if (EAN && !/^\d{13}$/.test(EAN)) {
+    return res.status(400).json({ error: "EAN must be 13 digits" });
+  }
+
 
   const priceInCents = Math.round(price * 100);
   const photoPath = `/uploads/${req.file.filename}` || "/images/placeholder.png";
@@ -87,7 +113,7 @@ router.put("/listings/:id", upload.single("photo"), (req, res) => {
 
   // check required fields are there
   if (!title || !artist || !mediaType || !genre || !condition || !price) {
-    return res.status(400).json({ error: "New listing fields are missing" });
+    return res.status(400).json({ error: "Required fields are missing" });
   }
 
   if (req.file) {

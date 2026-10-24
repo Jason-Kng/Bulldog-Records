@@ -51,6 +51,7 @@ body {
 #root {
   min-height: 100vh;
 }
+*/
 
 body {
   font-family: var(--main_font);
@@ -62,7 +63,7 @@ h2 {
   font-size: 25px;
   margin-bottom: 20px;
 } 
-*/
+
 button {
   border: 1px solid var(--maroon);
   background-color: var(--light_maroon);
@@ -87,7 +88,7 @@ a {
 
 /* Listings Page */
 .listings-container {
-  padding: 20px;
+  padding: 30px;
 }
 .listings-container ul {
   list-style: none;
@@ -185,7 +186,7 @@ a {
 
 /* Form */
 .add-listing-form-container {
-  padding: 20px;
+  padding: 30px;
 }
 .add-listing-form form p {
   display: flex;
@@ -223,7 +224,7 @@ a {
 
 /* Seller Account Page */
 .seller-account-container {
-  padding: 20px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
 

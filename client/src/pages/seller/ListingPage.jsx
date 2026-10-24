@@ -67,7 +67,7 @@ function ListingPage() {
                   <strong>Stock:</strong> {listing.stock}
                 </p>
                 <p>
-                  <strong>Barcode:</strong> {listing.barcode}
+                  <strong>Barcode:</strong> {listing.EAN}
                 </p>
                 <p>
                   <strong>Status:</strong> {listing.listingStatus}
