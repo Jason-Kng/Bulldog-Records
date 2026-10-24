@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS "Listing" (
     "stock"     INTEGER NOT NULL DEFAULT 0 CHECK (stock>=0),
     --price is in cents so 2.49 is 249
     "price"     INTEGER NOT NULL CHECK (price>0),
-    "listingStatus"     TEXT NOT NULL DEFAULT 'active' CHECK (listingStatus IN ('active', 'deactivated', 'removed', 'soldOut')),
+    "listingStatus"     TEXT NOT NULL DEFAULT 'active' CHECK (listingStatus IN ('active', 'deactivated', 'removed', 'pending')),
     --photo set to text to hold path or URL
     "photo" TEXT NOT NULL,
     "isVerified" INTEGER NOT NULL DEFAULT 0,
