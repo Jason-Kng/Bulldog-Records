@@ -19,6 +19,7 @@ import AdminSellerApprovals from "./pages/admin/AdminSellerApproval";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import OrderSummary from "./pages/buyer/OrderSummary.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import ApproveListings from "./pages/admin/listingApproval";
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -92,6 +93,10 @@ function App() {
         <Route
           path="/admin/sellers"
           element={<AdminSellerApprovals token={token} />}
+        />
+        <Route
+          path="/admin/listings"
+          element={<ApproveListings token={token} />}
         />
       </Routes>
     </>

@@ -15,6 +15,12 @@ const dashboardItems = [
         icon: '@',
     },
     {
+        title: 'Listing Approvals',
+        description: 'Review and approve pending product listings.',
+        path: '/admin/listings',
+        icon: '%',
+    },
+    {
         title: 'Manage Reports',
         description: 'Review reports submitted by users.',
         path: '/admin/reports',
