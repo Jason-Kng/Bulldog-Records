@@ -130,7 +130,7 @@ export default function ApproveListings({ token }) {
                     <p>Condition: {listing.condition}</p>
                     <p>Stock: {listing.stock}</p>
                     <p>Price: ${listing.price}</p>
-                    <p>Status: {listing.isVerified === 1 ? 'Approved' : 'Pending'}</p>
+                    <p>Status: {listing.listingStatus === 1 ? 'Approved' : 'Pending'}</p>
 
                     {listing.photo && (
                         <img

@@ -24,7 +24,7 @@ router.get('/listings/pending', requireAdmin, (req, res) => {
             FROM Listing
             JOIN Seller ON Listing.sellerID = Seller.sellerID
             JOIN User ON Seller.userID = User.userID
-            WHERE Listing.isVerified = 0
+            WHERE Listing.listingStatus = 'pending'
             ORDER BY Listing.listingID
         `).all();
 
@@ -41,9 +41,8 @@ router.patch('/listings/:listingID/status', requireAdmin, (req, res) => {
     try {
         const result = db.prepare(`
             UPDATE Listing
-            SET isVerified = 1
-            WHERE listingID = ?
-                AND isVerified = 0
+            SET listingStatus ='active'
+            WHERE listingID = ? AND listingStatus = 'pending'
         `).run(listingID);
 
         if (result.changes === 0) {
