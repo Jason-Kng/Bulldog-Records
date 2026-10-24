@@ -4,6 +4,7 @@ import db from '../database/database.js';
 
 // const upload = multer({ dest: 'uploads/' })
 import upload from '../middleware/upload.js';
+import requireApproved from '../middleware/approvedSeller.js';
 
 const router = express.Router();
 
@@ -36,7 +37,7 @@ router.get("/", (req, res) => {
 
 // create a listing
 // testing on HTTPIE: worked
-router.post("/listings", upload.single("photo"), (req, res) => {
+router.post("/listings", requireApproved, upload.single("photo"), (req, res) => {
 
   // db fields
   const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price } = req.body;
@@ -106,7 +107,7 @@ router.get("/listings", (req, res) => {
 
 // edit the fields of a listing
 // testing on HTTPIE: worked
-router.put("/listings/:id", upload.single("photo"), (req, res) => {
+router.put("/listings/:id", requireApproved, upload.single("photo"), (req, res) => {
   // db fields
   let photoPath = req.body.photo;
   const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price } = req.body;
@@ -136,7 +137,7 @@ router.put("/listings/:id", upload.single("photo"), (req, res) => {
 
 // remove listing, soft delete (set status to removed)
 // testing on HTTPIE: worked
-router.delete("/listings/:id", (req, res) => {
+router.delete("/listings/:id", requireApproved, (req, res) => {
   const query = db.prepare("UPDATE Listing SET listingStatus = 'removed', removedDate = CURRENT_DATE WHERE listingID = ? AND sellerID = ? AND listingStatus != 'removed'");
   const remove = query.run(req.params.id, req.sellerID);
 

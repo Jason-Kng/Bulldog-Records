@@ -25,7 +25,7 @@ function currentSeller(req, res, next) {
 
     // find the seller that belongs to this email
     const query = db.prepare(`
-      SELECT Seller.sellerID
+      SELECT Seller.sellerID, Seller.approvalStatus
       FROM Seller
       JOIN User ON Seller.userID = User.userID
       WHERE User.email = ?
@@ -37,6 +37,7 @@ function currentSeller(req, res, next) {
     }
 
     req.sellerID = seller.sellerID;
+    req.approvalStatus = seller.approvalStatus;
     next();
   } catch (err) {
     res.status(401).json({ error: "Invalid or expired token" });

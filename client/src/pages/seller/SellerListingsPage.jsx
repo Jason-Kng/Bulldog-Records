@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import Button from "../../components/Button";
 import { getListings } from "../../api/sellerApi";
+
 import './seller.css';
 
 function SellerListingsPage() {
   const [listings, setListings] = useState([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,7 +28,6 @@ function SellerListingsPage() {
           >
             My Account
         </button> */}
-
         <button
           type="button"
           className="seller-view-listings-button"

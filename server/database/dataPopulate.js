@@ -11,6 +11,7 @@ const populateData = db.transaction(() => {
   const user6 = userQuery.run("Seller 3", "seller3@bulldogrecords.com", "seller");
   const user7 = userQuery.run("Seller 4", "seller4@bulldogrecords.com", "seller");
   const user8 = userQuery.run("Admin", "admin@bulldogrecords.com", "admin");
+  const user9 = userQuery.run("Seller 5", "seller5@bulldogrecords.com", "seller");
 
   const loginQuery = db.prepare(`INSERT INTO Login (userID, passwordHash) VALUES (?, ?)`);
   loginQuery.run(user.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
@@ -21,6 +22,7 @@ const populateData = db.transaction(() => {
   loginQuery.run(user6.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
   loginQuery.run(user7.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
   loginQuery.run(user8.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
+  loginQuery.run(user9.lastInsertRowid, "$2b$10$NpBl0ggsyxlOa9jXjjYe5eJBR8DYFnMMIT7zaKLOik9Slg/u/hgNe");
 
 
   // Address
@@ -33,6 +35,7 @@ const populateData = db.transaction(() => {
   const seller2 = sellerQuery.run(user2.lastInsertRowid, address.lastInsertRowid, "approved")
   const seller3 = sellerQuery.run(user6.lastInsertRowid, address.lastInsertRowid, "approved")
   const seller4 = sellerQuery.run(user7.lastInsertRowid, address.lastInsertRowid, "pending")
+  const seller5 = sellerQuery.run(user9.lastInsertRowid, address.lastInsertRowid, "pending")
 
   // Buyer
   const buyerQuery = db.prepare(`INSERT INTO Buyer (userID, shippingAddressID) VALUES (?, ?)`)
@@ -69,11 +72,11 @@ const populateData = db.transaction(() => {
   listingQuery.run(seller3.lastInsertRowid, "Golden Hour", "Kacey Musgraves", "2018-03-30", "cd", "country", "602567133298", "used", 2, 1400, "/uploads/placeholder.png");
   listingQuery.run(seller3.lastInsertRowid, "Discovery", "Daft Punk", "2001-03-12", "vinyl", "electronic", "724384960019", "new", 3, 3400, "/uploads/placeholder.png");
 
-  listingQuery.run(seller4.lastInsertRowid, "SOUR", "Olivia Rodrigo", "2021-05-21", "cd", "pop", null, "new", 5, 1600, "/uploads/placeholder.png");
-  listingQuery.run(seller4.lastInsertRowid, "Led Zeppelin IV", "Led Zeppelin", "1971-11-08", "vinyl", "rock", "081227969857", "used", 2, 3000, "/uploads/placeholder.png");
-  listingQuery.run(seller4.lastInsertRowid, "The Miseducation of Lauryn Hill", "Lauryn Hill", "1998-08-25", "cd", "R&B", "074646902225", "new", 3, 1800, "/uploads/placeholder.png");
-  listingQuery.run(seller4.lastInsertRowid, "Kind of Blue", "Miles Davis", "1959-08-17", "vinyl", "jazz", "888751119517", "used", 2, 2600, "/uploads/placeholder.png");
-  listingQuery.run(seller4.lastInsertRowid, "Un Verano Sin Ti", "Bad Bunny", "2022-05-06", "vinyl", "latin", null, "new", 4, 3500, "/uploads/placeholder.png");
+  listingQuery.run(seller3.lastInsertRowid, "SOUR", "Olivia Rodrigo", "2021-05-21", "cd", "pop", null, "new", 5, 1600, "/uploads/placeholder.png");
+  listingQuery.run(seller3.lastInsertRowid, "Led Zeppelin IV", "Led Zeppelin", "1971-11-08", "vinyl", "rock", "081227969857", "used", 2, 3000, "/uploads/placeholder.png");
+  listingQuery.run(seller3.lastInsertRowid, "The Miseducation of Lauryn Hill", "Lauryn Hill", "1998-08-25", "cd", "R&B", "074646902225", "new", 3, 1800, "/uploads/placeholder.png");
+  listingQuery.run(seller3.lastInsertRowid, "Kind of Blue", "Miles Davis", "1959-08-17", "vinyl", "jazz", "888751119517", "used", 2, 2600, "/uploads/placeholder.png");
+  listingQuery.run(seller3.lastInsertRowid, "Un Verano Sin Ti", "Bad Bunny", "2022-05-06", "vinyl", "latin", null, "new", 4, 3500, "/uploads/placeholder.png");
 
   console.log("Data population complete.")
 })
