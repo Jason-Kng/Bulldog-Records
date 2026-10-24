@@ -5,9 +5,6 @@ function requireApproved(req, res, next) {
   else if (req.approvalStatus == "rejected") {
     return res.status(403).json({ error: "Seller account was rejected." });
   }
-  else {
-    return res.status(403).json({ error: "Cannot use seller account." });
-  }
   next();
 }
 

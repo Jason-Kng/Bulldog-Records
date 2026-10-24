@@ -92,7 +92,7 @@ function EditListingForm({ listing, onEnter, onCancel }) {
           <option value="select">Select</option>
           <option value="new">New</option>
           <option value="used">Used</option>
-          <option value="damaged">Damaged</option>
+          <option value="open">Open</option>
         </select>
       </p>
       <p>
