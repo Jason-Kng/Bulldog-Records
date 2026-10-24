@@ -18,9 +18,9 @@ function ListingDetails() {
       })
       .catch((error) => {
         if (error.status === 404) {
-          navigate("/404", { replace: true })
+          navigate("/404", { replace: true });
         } else {
-          console.error("Error fetching listing: ", error)
+          console.error("Error fetching listing: ", error);
         }
       });
   }, [params.id, navigate]);
@@ -30,7 +30,7 @@ function ListingDetails() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({
         quantity,
@@ -50,6 +50,8 @@ function ListingDetails() {
           setMessage("Not a buyer");
         } else if (res.status === 404) {
           setMessage("Listing not Found");
+        } else {
+          setMessage("Something went wrong");
         }
       })
       .catch((err) => {
@@ -67,9 +69,7 @@ function ListingDetails() {
       <div className="listing-details-page">
         <div className="listing-details-container">
           <div className="listing-details-image">
-            {listing.photo && (
-              <img src={listing.photo} alt={listing.title} />
-            )}
+            {listing.photo && <img src={listing.photo} alt={listing.title} />}
           </div>
 
           <div className="listing-details-info">

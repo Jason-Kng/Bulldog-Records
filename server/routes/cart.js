@@ -5,7 +5,7 @@ import authenticateToken from "../middleware/auth.js";
 const router = express.Router();
 
 router.get("/", authenticateToken, (req, res) => {
-  const userID = req.user;
+  const userID = req.user.userID;
   const cart = db
     .prepare(
       `SELECT Cart.cartID FROM Cart 
@@ -39,7 +39,7 @@ router.post("/items", authenticateToken, (req, res) => {
       .json({ message: "Quantity must be greater than zero" });
   }
 
-  const userID = req.user;
+  const userID = req.user.userID;
   const buyer = db
     .prepare(`SELECT buyerID FROM Buyer WHERE userID = ?`)
     .get(userID);
@@ -95,7 +95,7 @@ router.post("/items", authenticateToken, (req, res) => {
 
 router.delete("/items/:listingID", authenticateToken, (req, res) => {
   const listingID = req.params.listingID;
-  const userID = req.user;
+  const userID = req.user.userID;
 
   const cart = db
     .prepare(
