@@ -298,3 +298,9 @@ button:hover {
   opacity: 0.9;
   cursor: pointer;
 }
+
+.seller-account-page-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

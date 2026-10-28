@@ -29,6 +29,7 @@ function SellerAccountPage() {
       <p>Approval Status: {seller.approvalStatus}</p>
       <p>Account Status: {seller.accountStatus}</p>
 
+      <div className="seller-account-page-buttons-container">
       <button
         type="button"
         className="seller-view-listings-button"
@@ -36,6 +37,21 @@ function SellerAccountPage() {
       >
         View Listings
       </button>
+      <button
+        type="button"
+        className="seller-view-listings-button"
+        onClick={() => navigate("/seller")}
+      >
+        View Sales
+      </button>
+      <button
+        type="button"
+        className="seller-view-listings-button"
+        onClick={() => navigate("/seller")}
+      >
+        View Returns
+      </button>
+      </div>
 
       
     </div>
