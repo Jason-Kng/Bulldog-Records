@@ -100,14 +100,34 @@ a {
   
 }
 
-.listings-container li {
+/* .listings-container li {
   border: 1px solid black;
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 50px;
   padding-right: 50px;
   border-radius: 30px;
-  background-color: var(--light-gray);
+  background-color: var(--light-green);
+} */
+
+.listings-container-li.active {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: var(--light-green);
+}
+
+.listings-container-li.pending {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: var(--light-orange);
 }
 
 .listings-container a {
