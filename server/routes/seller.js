@@ -75,11 +75,12 @@ router.post("/listings", requireApproved, upload.single("photo"), (req, res) => 
 
   const priceInCents = Math.round(price * 100);
   const photoPath = `/uploads/${req.file.filename}` || "/images/placeholder.png";
+  const listingStatus = 'pending';
 
   // create entry in db
   try {
-    const query = db.prepare(`INSERT INTO Listing (sellerID, title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
-    const values = query.run(req.sellerID, title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, priceInCents, photoPath)
+    const query = db.prepare(`INSERT INTO Listing (sellerID, title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, listingStatus, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+    const values = query.run(req.sellerID, title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, priceInCents, listingStatus, photoPath)
 
     res.status(201).json({ listingID: values.lastInsertRowid });
   }
