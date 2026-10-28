@@ -71,7 +71,7 @@ function CartPage() {
   }
   return (
     <div className="cart-page">
-      <h1>Your Cart</h1>
+      <h2>Your Cart</h2>
       {items.map((item) => (
         <div className="cart-item" key={item.cartItemID}>
           <p className="cart-item-title">{item.title}</p>
