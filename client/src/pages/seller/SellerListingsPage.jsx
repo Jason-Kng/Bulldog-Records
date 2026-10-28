@@ -49,12 +49,16 @@ function SellerListingsPage() {
                 <div class="listing-page-header-container">
                   <p class="listing-page-title">{listing.title}</p>
                   <div class="status-container">
-                    <div class="status-circle"></div>
+                    <div className={`status-circle ${
+                        listing.listingStatus?.toLowerCase() === "active"
+                          ? "active"
+                          : "pending"
+                      }`}></div>
                     <p
                       className={`listing-page-status ${
                         listing.listingStatus?.toLowerCase() === "active"
                           ? "active"
-                          : ""
+                          : "pending"
                       }`}
                     >
                       {listing.listingStatus}

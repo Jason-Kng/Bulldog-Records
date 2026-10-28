@@ -140,15 +140,27 @@ a {
   align-items: center;
 }
 
-.status-circle {
+.status-circle.active {
   border-radius: 50%;
   width: 7px;
   height: 7px;
   background-color: var(--green);
 }
 
+.status-circle.pending {
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  background-color: var(--orange);
+}
+
 .listing-page-status.active {
   color: var(--green);
+  font-weight: bold;
+}
+
+.listing-page-status.pending {
+  color: var(--orange);
   font-weight: bold;
 }
 

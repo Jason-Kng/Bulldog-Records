@@ -96,7 +96,7 @@ router.post("/listings", requireApproved, upload.single("photo"), (req, res) => 
 // get seller's listings
 // testing on HTTPIE: worked
 router.get("/listings", (req, res) => {
-  const query = db.prepare("SELECT * FROM Listing WHERE sellerID = ? AND listingStatus = 'active'");
+  const query = db.prepare("SELECT * FROM Listing WHERE sellerID = ? AND listingStatus != 'removed'");
   const listings = query.all(req.sellerID);
 
   listings.forEach((listing) => {
