@@ -21,14 +21,35 @@ params = {
   "fmt": "json"
 }
 
-export function validateBarcode(headers, title, artist, primary_type, date, barcode) {
-  query = BASE + "?query=release:" + title + " AND " + "artist:" + artist + " AND " + "date:" + date + " AND " + ""
-  fetch(query)
-  result = {"barcode": 1}
-
-  if (result["barcode"] == barcode) {
-    return true
+export async function validateBarcode(headers, title, artist, barcode) {
+  const params = {
+  "query": "",
+  "fmt": "json"
   }
+
+  const query = BASE + "?query=barcode:" + barcode
+
+  try {
+    const response = await fetch(query);
+
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (result["title"] == title && result["artist-credit"]["name"] == artist) {
+    return true
+    }
+    
+  } catch (error) {
+
+    console.error(error.message);
+      
+  }
+
+
+  
 
   return false
 }

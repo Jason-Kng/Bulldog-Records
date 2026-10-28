@@ -304,3 +304,19 @@ button:hover {
   flex-direction: column;
   gap: 10px;
 }
+
+/* Seller Listings Page */
+.seller-listings-divider {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+
+}
+
+.seller-listings-divider ul {
+  width: 100%;
+  overflow-y: auto;
+  max-height: 620px;
+
+}

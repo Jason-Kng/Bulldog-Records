@@ -39,11 +39,13 @@ function SellerListingsPage() {
         <Button text="Add Listing" onClick={() => navigate("/seller/listings/add")}/> */}
         
       </div>
-      
 
+      <div className="seller-listings-divider">
 
       <ul>
-        {listings.map((listing) => (
+        {listings
+        .filter((listing) => listing.listingStatus == "pending")
+        .map((listing) => (
           <li key={listing.listingID}>
             <Link to={`/seller/listings/${listing.listingID}`}>
                 <div class="listing-page-header-container">
@@ -77,6 +79,50 @@ function SellerListingsPage() {
           </li>
         ))}
       </ul>
+
+
+      <ul>
+        {listings
+        .filter((listing) => listing.listingStatus == "active")
+        .map((listing) => (
+          <li key={listing.listingID}>
+            <Link to={`/seller/listings/${listing.listingID}`}>
+                <div class="listing-page-header-container">
+                  <p class="listing-page-title">{listing.title}</p>
+                  <div class="status-container">
+                    <div className={`status-circle ${
+                        listing.listingStatus?.toLowerCase() === "active"
+                          ? "active"
+                          : "pending"
+                      }`}></div>
+                    <p
+                      className={`listing-page-status ${
+                        listing.listingStatus?.toLowerCase() === "active"
+                          ? "active"
+                          : "pending"
+                      }`}
+                    >
+                      {listing.listingStatus}
+                  </p>
+                  
+                  </div>
+                 
+                </div>
+                
+                <p class="listing-page-stock">Stock: {listing.stock}</p>
+                <p class="listing-page-price">Price: ${listing.price}</p>
+
+            </Link>
+            
+
+          </li>
+        ))}
+      </ul>
+
+
+      </div>
+
+
     </div>
   )
 

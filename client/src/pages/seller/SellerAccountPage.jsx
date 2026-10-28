@@ -40,16 +40,23 @@ function SellerAccountPage() {
       <button
         type="button"
         className="seller-view-listings-button"
-        onClick={() => navigate("/seller")}
+        onClick={() => navigate("/seller/orders")}
       >
-        View Sales
+        View Orders
       </button>
       <button
         type="button"
         className="seller-view-listings-button"
-        onClick={() => navigate("/seller")}
+        onClick={() => navigate("/seller/returns")}
       >
         View Returns
+      </button>
+       <button
+        type="button"
+        className="seller-view-listings-button"
+        onClick={() => navigate("/seller/financial")}
+      >
+        Financial History
       </button>
       </div>
 

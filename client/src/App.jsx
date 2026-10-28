@@ -1,5 +1,8 @@
 import SellerAccountPage from "./pages/seller/SellerAccountPage";
 import SellerListingsPage from "./pages/seller/SellerListingsPage";
+import SellerOrdersPage from "./pages/seller/SellerOrdersPage";
+import SellerFinancialPage from "./pages/seller/SellerFinancialPage.jsx";
+import SellerReturnsPage from "./pages/seller/SellerReturnsPage.jsx";
 import ListingPage from "./pages/seller/ListingPage";
 import AddListingPage from "./pages/seller/AddListingPage.jsx";
 import EditListingPage from "./pages/seller/EditListingPage";
@@ -84,6 +87,9 @@ function App() {
         <Route path="/listingDetails/:id" element={<ListingDetails />} />
         <Route path="/seller" element={<ProtectedRoute isAuth={auth} Component={SellerAccountPage} allowedUsers={["seller"]} />} />
         <Route path="/seller/listings" element={<ProtectedRoute isAuth={auth} Component={SellerListingsPage} allowedUsers={["seller"]} />} />
+        <Route path="/seller/orders" element={<ProtectedRoute isAuth={auth} Component={SellerOrdersPage} allowedUsers={["seller"]} />} />
+        <Route path="/seller/financial" element={<ProtectedRoute isAuth={auth} Component={SellerFinancialPage} allowedUsers={["seller"]} />} />
+        <Route path="/seller/returns" element={<ProtectedRoute isAuth={auth} Component={SellerReturnsPage} allowedUsers={["seller"]} />} />
         <Route path="/seller/listings/add" element={<AddListingPage />} />
         <Route path="/seller/listings/:id" element={<ListingPage />} />
         <Route path="/seller/listings/:id/edit" element={<EditListingPage />} />
