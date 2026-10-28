@@ -1,0 +1,9 @@
+.same-address-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.same-address-input {
+  width: 10px !important;
+}
