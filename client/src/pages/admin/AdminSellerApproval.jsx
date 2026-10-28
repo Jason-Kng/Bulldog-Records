@@ -103,14 +103,16 @@ export default function AdminSellerApprovals({ token }) {
 
     return (
         <main className="admin-approvals">
-            <h1>Seller Approvals</h1>
+            <h2>Seller Approvals</h2>
 
             {error && <p role="alert">{error}</p>}
             {message && <p role="status">{message}</p>}
-
+            
+            <div className='refresh-pending-sellers-button-container'>
             <button onClick={loadPendingSellers}>
                 Refresh list
             </button>
+            </div>
 
             {!error && sellers.length ===0 && (
                 <p>There are no sellers waiting for approval.</p>
@@ -121,11 +123,12 @@ export default function AdminSellerApprovals({ token }) {
                     key={seller.sellerID}
                     className="seller-card"
                 >
-                    <h2>{seller.name}</h2>
+                    <h4>{seller.name}</h4>
                     <p>Email: {seller.email}</p>
                     <p>Seller ID: {seller.sellerID}</p>
                     <p>Status: {seller.approvalStatus}</p>
 
+                    <div className='seller-approval-buttons-container'>
                     <button
                         disabled={updatingID !== null}
                         onClick={() =>
@@ -145,6 +148,7 @@ export default function AdminSellerApprovals({ token }) {
                     >
                         Reject
                     </button>
+                    </div>
                 </section>
             ))}
         </main>

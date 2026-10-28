@@ -72,3 +72,24 @@ admin-card h3 {
         grid-template-columns: 1fr;
     }
 }
+
+.admin-approvals {
+    padding: 30px;
+}
+
+.seller-approval-buttons-container {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px;
+    gap: 5px;
+}
+
+.refresh-pending-sellers-button-container {
+    display: flex;
+}
+
+.listing-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

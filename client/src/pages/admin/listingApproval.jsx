@@ -102,14 +102,16 @@ export default function ApproveListings({ token }) {
 
     return (
         <main className="admin-approvals">
-            <h1>Listing Approvals</h1>
+            <h2>Listing Approvals</h2>
 
             {error && <p role="alert">{error}</p>}
             {message && <p role="status">{message}</p>}
 
+            <div className='refresh-pending-sellers-button-container'>
             <button onClick={loadPendingListings}>
                 Refresh list
             </button>
+            </div>
 
             {!error && listings.length ===0 && (
                 <p>There are no listings waiting for approval.</p>
@@ -120,7 +122,9 @@ export default function ApproveListings({ token }) {
                     key={listing.listingID}
                     className="listing-card"
                 >
-                    <h2>{listing.title}</h2>
+                    <h4>{listing.title}</h4>
+                    <div className='listing-card-info'>
+                    <div>
                     <p>Artist: {listing.artist}</p>
                     <p>Listing ID: {listing.listingID}</p>
                     <p>Seller: {listing.sellerName}</p>
@@ -131,6 +135,7 @@ export default function ApproveListings({ token }) {
                     <p>Stock: {listing.stock}</p>
                     <p>Price: ${listing.price}</p>
                     <p>Status: {listing.listingStatus === 1 ? 'Approved' : 'Pending'}</p>
+                    </div>
 
                     {listing.photo && (
                         <img
@@ -140,7 +145,7 @@ export default function ApproveListings({ token }) {
                         />
                     )}
 
-                    <div>
+                    <div className='seller-approval-buttons-container'>
                         <button
                             disabled={updatingID !== null}
                             onClick={() =>
@@ -153,6 +158,7 @@ export default function ApproveListings({ token }) {
                                 ? 'Updating...'
                                 : 'Approve'}
                         </button>
+                    </div>
                     </div>
                 </section>
             ))}
