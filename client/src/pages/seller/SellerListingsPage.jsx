@@ -31,6 +31,13 @@ function SellerListingsPage() {
         <button
           type="button"
           className="seller-view-listings-button"
+          onClick={() => navigate("/seller")}
+        >
+          My Account
+        </button>
+        <button
+          type="button"
+          className="seller-view-listings-button"
           onClick={() => navigate("/seller/listings/add")}
         >
           Add Listing
