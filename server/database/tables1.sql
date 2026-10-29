@@ -79,17 +79,35 @@ CREATE TABLE IF NOT EXISTS "CartItem" (
     PRIMARY KEY("cartItemID"),
     UNIQUE ("cartID", "listingID")
 );
-CREATE TABLE IF NOT EXISTS "Cart" (
-    "cartID"    INTEGER,
-    "buyerID" INTEGER NOT NULL UNIQUE REFERENCES Buyer(buyerID) on DELETE CASCADE,
-    PRIMARY KEY("cartID")
+CREATE TABLE IF NOT EXISTS "Orders" (
+    "orderID"    INTEGER,
+    "dateCreated" TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "dateShipped" TEXT NULL,
+    "buyerID"   INTEGER NOT NULL REFERENCES Buyer(buyerID),
+    "orderTotalCost" INTEGER,
+    "shippingAddress"  INTEGER NOT NULL REFERENCES Address(addressID),
+    "billingAddress"  INTEGER NOT NULL REFERENCES Address(addressID),
+    "orderStatus"     TEXT NOT NULL DEFAULT 'pending' CHECK ("orderStatus" IN ('pending', 'shipped', 'delivered')),
+    PRIMARY KEY("orderID")
 );
-CREATE TABLE IF NOT EXISTS "CartItem" (
-    "cartItemID"    INTEGER,
+CREATE TABLE IF NOT EXISTS "OrderItem" (
+    "orderItemID"    INTEGER,
     "listingID" INTEGER NOT NULL REFERENCES Listing(listingID),
-    "cartID" INTEGER NOT NULL REFERENCES Cart(cartID) on DELETE CASCADE,
-    "itemQuantity" INTEGER NOT NULL CHECK (itemQuantity>0), 
-    PRIMARY KEY("cartItemID"),
-    UNIQUE ("cartID", "listingID")
+    "orderID" INTEGER NOT NULL REFERENCES Orders(orderID) on DELETE CASCADE,
+    "price"     INTEGER NOT NULL CHECK (price>0),
+    "itemQuantity" INTEGER NOT NULL CHECK (itemQuantity>0),
+    "orderItemStatus"     TEXT NOT NULL DEFAULT 'pending' CHECK ("orderItemStatus" IN ('pending', 'shipped', 'delivered', 'returned')),
+    PRIMARY KEY("orderItemID"),
+    UNIQUE ("orderID", "listingID")
 );
-
+CREATE TABLE IF NOT EXISTS "Returns" (
+    "returnID"    INTEGER,
+    "orderID" INTEGER NOT NULL REFERENCES Orders(orderID) on DELETE CASCADE,
+    "orderItemID" INTEGER NOT NULL REFERENCES OrderItem(orderItemID) on DELETE CASCADE,
+    "buyerID" INTEGER NOT NULL  REFERENCES Buyer(buyerID) on DELETE CASCADE,
+    "reason" TEXT NOT NULL, 
+    "returnQuantity" INTEGER NOT NULL CHECK (returnQuantity>0),
+    "returnStatus" TEXT NOT NULL DEFAULT 'pending' CHECK ("returnStatus" IN ('pending', 'refunded', 'rejected')),
+    "dateRequested"    TEXT DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY("returnID")
+);
