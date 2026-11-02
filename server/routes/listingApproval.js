@@ -52,7 +52,7 @@ router.patch('/listings/:listingID/status', requireAdmin, (req, res) => {
         res.json({
             message: `Listing approved successfully`,
             listingID: Number(listingID),
-            isVerified: 1
+            listingStatus: 'active'
         });
     } catch (error) {
         console.error('Error approve listing:', error);
