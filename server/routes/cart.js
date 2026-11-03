@@ -184,10 +184,14 @@ router.post("/checkout", authenticateToken, (req, res) => {
     });
   }
 
-  let total = 0;
+  const taxRate = 0.07;
+
+  let subTotal = 0;
   for (const item of items) {
-    total = total + item.price * item.itemQuantity;
+    subTotal = subTotal + item.price * item.itemQuantity;
   }
+  const tax = Math.round(subTotal * taxRate);
+  const total = subTotal + tax;
 
   const finishCheckout = db.transaction(() => {
     for (const item of items) {

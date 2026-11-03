@@ -15,6 +15,11 @@ function CheckoutPage() {
   const [billingZip, setBillingZip] = useState("");
   const [sameAddrCheck, setSameAddrCheck] = useState(true);
   const [items, setItems] = useState([]);
+  const [cardNumber, setCardNumber] = useState("");
+  const [expDate, setExpDate] = useState("");
+  const [cardHolderName, setCardHolderName] = useState("");
+  const [cvv, setCVV] = useState("");
+
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -45,10 +50,14 @@ function CheckoutPage() {
       .catch(() => setMessage("Something went wrong. Try again."));
   }, []);
 
-  let total = 0;
+  const taxRate = 0.07;
+
+  let subTotal = 0;
   for (const item of items) {
-    total = total + item.price * item.itemQuantity;
+    subTotal = subTotal + item.price * item.itemQuantity;
   }
+  const tax = Math.round(subTotal * taxRate);
+  const total = subTotal + tax;
 
   const handlePlaceOrder = (e) => {
     e.preventDefault();
@@ -208,7 +217,54 @@ function CheckoutPage() {
           )}
           <br />
           <h4>Payment Method</h4>
-          <br />
+          <div>
+            <p>
+              <label>Name on Card*</label>
+              <input
+                type="text"
+                value={cardHolderName}
+                onChange={(e) => setCardHolderName(e.target.value)}
+                required
+              />
+            </p>
+            <br />
+            <p>
+              <label>Card Number*</label>
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={19}
+                placeholder="1234 5678 9012 3456"
+                value={cardNumber}
+                onChange={(e) => setCardNumber(e.target.value)}
+                required
+              />
+            </p>
+            <br />
+            <p>
+              <label>Expiration (MM/YY)*</label>
+              <input
+                type="text"
+                maxLength={7}
+                placeholder="MM/YYYY"
+                value={expDate}
+                onChange={(e) => setExpDate(e.target.value)}
+                required
+              />
+            </p>
+            <br />
+            <p>
+              <label>CVV*</label>
+              <input
+                type="password"
+                inputMode="numeric"
+                maxLength={4}
+                value={cvv}
+                onChange={(e) => setCVV(e.target.value)}
+                required
+              />
+            </p>
+          </div>
           <br />
           <button type="submit">Place Order</button>
         </form>
@@ -224,7 +280,11 @@ function CheckoutPage() {
           <p>Quantity: {item.itemQuantity}</p>
         </div>
       ))}
-      <p>Total: ${(total / 100).toFixed(2)}</p>
+      <br />
+      <br />
+      <h3>Subtotal: ${(subTotal / 100).toFixed(2)}</h3>
+      <h3>Tax: ${(tax / 100).toFixed(2)}</h3>
+      <h3>Total: ${(total / 100).toFixed(2)}</h3>
     </div>
   );
 }
