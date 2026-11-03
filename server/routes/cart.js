@@ -118,4 +118,95 @@ router.delete("/items/:listingID", authenticateToken, (req, res) => {
   return res.status(200).json({ message: "Item Removed" });
 });
 
+router.post("/checkout", authenticateToken, (req, res) => {
+  const userID = req.user.userID;
+  const shipping = req.body.shipping;
+  const billing = req.body.billing;
+
+  if (
+    !shipping ||
+    !shipping.street ||
+    !shipping.city ||
+    !shipping.state ||
+    !shipping.zip
+  ) {
+    return res
+      .status(400)
+      .json({ message: "Shipping street, city, state, and zip are required" });
+  }
+  if (
+    billing &&
+    (!billing.street || !billing.city || !billing.state || !billing.zip)
+  ) {
+    return res
+      .status(400)
+      .json({ message: "Billing street, city, state, and zip are required" });
+  }
+
+  const cart = db
+    .prepare(
+      `SELECT Cart.cartID FROM Cart
+      JOIN Buyer ON Cart.buyerID = Buyer.buyerID WHERE userID = ?`,
+    )
+    .get(userID);
+  if (!cart) {
+    return res.status(400).json({ message: "Your cart is empty" });
+  }
+
+  const items = db
+    .prepare(
+      `SELECT CartItem.itemQuantity, Listing.listingID, Listing.title,
+      Listing.price, Listing.stock, Listing.listingStatus
+      FROM CartItem JOIN Listing ON CartItem.listingID = Listing.listingID
+      WHERE CartItem.cartID = ?`,
+    )
+    .all(cart.cartID);
+  if (items.length === 0) {
+    return res.status(400).json({ message: "Your cart is empty" });
+  }
+
+  const unavailable = [];
+  for (const item of items) {
+    if (item.listingStatus !== "active" || item.itemQuantity > item.stock) {
+      unavailable.push({
+        listingID: item.listingID,
+        title: item.title,
+        requested: item.itemQuantity,
+        available: item.listingStatus === "active" ? item.stock : 0,
+      });
+    }
+  }
+  if (unavailable.length > 0) {
+    return res.status(400).json({
+      message:
+        "Some items in your cart are no longer available. Please update your cart.",
+      unavailable: unavailable,
+    });
+  }
+
+  let total = 0;
+  for (const item of items) {
+    total = total + item.price * item.itemQuantity;
+  }
+
+  const finishCheckout = db.transaction(() => {
+    for (const item of items) {
+      db.prepare(
+        `UPDATE Listing SET stock = stock - ? WHERE listingID = ?`,
+      ).run(item.itemQuantity, item.listingID);
+    }
+    db.prepare(`DELETE FROM CartItem WHERE cartID = ?`).run(cart.cartID);
+  });
+
+  try {
+    finishCheckout();
+    return res.status(200).json({ message: "Checkout complete", total: total });
+  } catch (err) {
+    console.error(err);
+    return res
+      .status(500)
+      .json({ message: "Could not complete checkout. Try again." });
+  }
+});
+
 export default router;
