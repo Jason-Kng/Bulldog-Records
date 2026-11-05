@@ -1,11 +1,16 @@
 .navbar {
-  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: calc(100% + 60px);
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
   gap: 20px;
 
-  padding: 18px 30px;
+
+  margin: -30px -30px 0;
+  padding: 18px;
 
   background-color: var(--bg);
   border-bottom: 1px solid var(--border);
@@ -25,10 +30,11 @@
 
 .navbar-links {
   margin-left: auto;
+  margin-right: 40px;
 
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 25px;
 
   white-space: nowrap;
 }
@@ -68,6 +74,7 @@
 }
 
 .logout-button {
+  padding: 0px;
   background: none;
   border: none;
   font: inherit;

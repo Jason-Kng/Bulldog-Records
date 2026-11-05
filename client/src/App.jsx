@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import AdminSellerApprovals from "./pages/admin/AdminSellerApproval";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import OrderSummary from "./pages/buyer/OrderSummary.jsx";
+import OrderHistory from "./pages/buyer/OrderHistory.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import ApproveListings from "./pages/admin/listingApproval";
 
@@ -81,6 +82,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/order-summary" element={<OrderSummary />} />
+        <Route path="/order-history" element={<OrderHistory />} />
         <Route path="/listingDetails/:id" element={<ListingDetails />} />
         <Route path="/seller" element={<ProtectedRoute isAuth={auth} Component={SellerAccountPage} allowedUsers={["seller"]} />} />
         <Route path="/seller/listings" element={<ProtectedRoute isAuth={auth} Component={SellerListingsPage} allowedUsers={["seller"]} />} />

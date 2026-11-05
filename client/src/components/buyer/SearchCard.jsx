@@ -18,7 +18,7 @@ function SearchCard({ listingID, seller, image, title, artist, price }) {
         {artist && <p className="search-card-artist">{artist}</p>}
         <div className='search-card-seller-info'>
           {seller && <p className="search-card-seller">Seller: {seller}</p>}
-          {price && <p className="search-card-price">${(price / 100).toFixed(2)}</p>}
+          {price && <p className="search-card-price">Price: ${(price / 100).toFixed(2)}</p>}
         </div>
       </div>
     </div>

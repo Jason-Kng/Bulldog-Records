@@ -35,7 +35,7 @@ router.get('/details/:id', (req, res) => {
 router.get('/search', (req, res) => {
   const query = req.query.query
 
-  const stmt = db.prepare("SELECT * FROM Listing WHERE title LIKE ?");
+  const stmt = db.prepare("SELECT Listing.*, User.name FROM Listing JOIN Seller ON Listing.sellerID = Seller.sellerID JOIN User ON Seller.userID = User.userID WHERE Listing.title LIKE ?");
 
   try {
     const results = stmt.all(`%${query}%`);
