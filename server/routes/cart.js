@@ -194,17 +194,60 @@ router.post("/checkout", authenticateToken, (req, res) => {
   const total = subTotal + tax;
 
   const finishCheckout = db.transaction(() => {
+    const buyer = db
+      .prepare(`SELECT buyerID FROM Buyer WHERE userID = ?`)
+      .get(userID);
+
+    const shippingResult = db
+      .prepare(
+        `INSERT INTO Address (street, city, state, zip) VALUES (?,?,?,?)`,
+      )
+      .run(shipping.street, shipping.city, shipping.state, shipping.zip);
+
+    const shippingAddressID = shippingResult.lastInsertRowid;
+
+    let billingAddressID = shippingAddressID;
+    if (billing) {
+      const billingResult = db
+        .prepare(
+          `INSERT INTO Address (street, city, state, zip) VALUES (?,?,?,?)`,
+        )
+        .run(billing.street, billing.city, billing.state, billing.zip);
+      billingAddressID = billingResult.lastInsertRowid;
+    }
+
+    const orderResult = db
+      .prepare(
+        `INSERT INTO Orders (buyerID, orderTotalCost, shippingAddress, billingAddress)
+        VALUES (?,?,?,?)`,
+      )
+      .run(buyer.buyerID, total, shippingAddressID, billingAddressID);
+    const orderID = orderResult.lastInsertRowid;
+
     for (const item of items) {
+      db.prepare(
+        `INSERT INTO OrderItem (orderID, listingID, price, itemQuantity) VALUES (?,?,?,?)`,
+      ).run(orderID, item.listingID, item.price, item.itemQuantity);
+
       db.prepare(
         `UPDATE Listing SET stock = stock - ? WHERE listingID = ?`,
       ).run(item.itemQuantity, item.listingID);
     }
+
     db.prepare(`DELETE FROM CartItem WHERE cartID = ?`).run(cart.cartID);
+
+    return orderID;
   });
 
   try {
-    finishCheckout();
-    return res.status(200).json({ message: "Checkout complete", total: total });
+    const orderID = finishCheckout();
+    return res.status(200).json({
+      message: "Checkout complete",
+      orderID: orderID,
+      subTotal: subTotal,
+      tax: tax,
+      total: total,
+    });
   } catch (err) {
     console.error(err);
     return res

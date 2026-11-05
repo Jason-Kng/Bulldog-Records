@@ -64,6 +64,18 @@ function CheckoutPage() {
     if (items.length === 0) {
       setMessage("Your cart is empty");
       return;
+      if (cardNumber.length !== 16) {
+        setMessage("Card number must be 16 digits");
+        return;
+      }
+      if (!/^(0[1-9]|1[0-2])\/\d{4}$/.test(expDate)) {
+        setMessage("Expiration must be MM/YYYY");
+        return;
+      }
+      if (cvv.length < 3) {
+        setMessage("CVV must be 3 or 4 digits");
+        return;
+      }
     }
 
     const shipping = { street: street, city: city, state: addrState, zip: zip };
@@ -98,7 +110,15 @@ function CheckoutPage() {
           setMessage(text);
           return;
         }
-        navigate("/order-summary");
+        navigate("/order-summary", {
+          state: {
+            orderID: data.orderID,
+            items: items,
+            subtotal: subTotal,
+            tax: tax,
+            total: total,
+          },
+        });
       })
       .catch(() => setMessage("Something went wrong. Try again."));
   };
@@ -219,7 +239,7 @@ function CheckoutPage() {
           <h4>Payment Method</h4>
           <div>
             <p>
-              <label>Name on Card*</label>
+              <label>Cardholder Name*</label>
               <input
                 type="text"
                 value={cardHolderName}
@@ -236,19 +256,23 @@ function CheckoutPage() {
                 maxLength={19}
                 placeholder="1234 5678 9012 3456"
                 value={cardNumber}
-                onChange={(e) => setCardNumber(e.target.value)}
+                onChange={(e) =>
+                  setCardNumber(e.target.value.replace(/\D/g, ""))
+                }
                 required
               />
             </p>
             <br />
             <p>
-              <label>Expiration (MM/YY)*</label>
+              <label>Expiration (MM/YYYY)*</label>
               <input
                 type="text"
                 maxLength={7}
                 placeholder="MM/YYYY"
                 value={expDate}
-                onChange={(e) => setExpDate(e.target.value)}
+                onChange={(e) =>
+                  setExpDate(e.target.value.replace(/[^\d/]/g, ""))
+                }
                 required
               />
             </p>
@@ -260,7 +284,7 @@ function CheckoutPage() {
                 inputMode="numeric"
                 maxLength={4}
                 value={cvv}
-                onChange={(e) => setCVV(e.target.value)}
+                onChange={(e) => setCVV(e.target.value.replace(/\D/g, ""))}
                 required
               />
             </p>
@@ -273,11 +297,12 @@ function CheckoutPage() {
       <h2>Your Order</h2>
       {items.map((item) => (
         <div key={item.cartItemID}>
-          <p>{item.title}</p>
+          <h4>{item.title}</h4>
           <p>{item.artist}</p>
           <img src={item.photo} alt={item.title} />
           <p>${(item.price / 100).toFixed(2)}</p>
           <p>Quantity: {item.itemQuantity}</p>
+          <br />
         </div>
       ))}
       <br />
