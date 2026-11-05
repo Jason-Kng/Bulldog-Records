@@ -1,0 +1,28 @@
+Meeting
+
+Butler Hall
+November 05, 2026
+
+Members present: Jason King, Camila Da Silva, Elian Ixcajoc-sales
+
+Things to discuss:
+- Status per order
+- What the seller changes for orders (shipped, canceled)
+- Who is finalizing admin functionalities?
+- Is Timothy doing everything for testing, even the matrix and testing document?
+- Define refund functionality
+- Cancelling order
+
+Actions:
+- Buyer only needs a return
+- Seller needs: finish order dashboard, refund dashboard, and financial history
+- Refunds are automatic, seller does not need to approve/reject refunds
+- Seller changes nothing for orders - we're assuming the "warehouse" handles everything (shipping, delivering, etc.)
+- Seller also can't cancel an order, only the buyer
+- Buyer can cancel individual order items
+- Add to seller order dashboard: filtering per status - maybe 3-4 viewing options
+- Seller financial history: display money per month in a table, so add monthly filtering option
+
+Desicions:
+- SRS next week
+- Jason will add displaying by genre on homepage
