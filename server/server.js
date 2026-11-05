@@ -11,6 +11,7 @@ import cors from 'cors';
 import sellerApprovalRouter from './routes/sellerApproval.js';
 import adminRouter from './routes/admin.js';
 import adminListingsRouter from './routes/listingApproval.js';
+import ordersRouter from './routes/orders.js';
 
 const app = express();
 const port = 3000;
@@ -28,6 +29,7 @@ app.use("/api/listing", listingRouter);
 app.use("/api/seller", currentSeller, sellerRoutes);
 app.use("/api/cart", cartRouter);
 app.use('/api/admin', adminListingsRouter);
+app.use('/api/orders', ordersRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

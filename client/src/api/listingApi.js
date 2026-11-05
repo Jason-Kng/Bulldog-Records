@@ -40,3 +40,48 @@ export async function searchListings(query) {
 
   return response.json();
 }
+
+export async function getOrders() {
+  const response = await fetch('api/orders/', {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to get orders");
+  }
+
+  console.log("HandleResponse");
+  const data = await handleResp(response);
+
+  const groupedOrders = Object.values(
+    data.reduce((acc, item) => {
+      if (!acc[item.orderID]) {
+        acc[item.orderID] = {
+          orderID: item.orderID,
+          dateCreated: item.dateCreated,
+          dateShipped: item.dateShipped,
+          orderTotalCost: item.orderTotalCost,
+          orderStatus: item.orderStatus,
+          items: []
+        };
+      }
+
+      acc[item.orderID].items.push({
+        listingID: item.listingID,
+        title: item.title,
+        artist: item.artist,
+        photo: item.photo,
+        sellerName: item.sellerName
+      });
+
+      return acc;
+    }, {})
+  );
+
+  console.log("Orders: ", groupedOrders);
+  return groupedOrders;
+
+}

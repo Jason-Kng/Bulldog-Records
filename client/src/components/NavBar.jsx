@@ -71,7 +71,7 @@ function NavBar() {
               <Link to="/cart" className="nav-link">
                 Cart
               </Link>
-              <Link to="/" className="nav-link">
+              <Link to="/order-history" className="nav-link">
                 Orders
               </Link>
               {/* <Link to="/" className="nav-link"> */}

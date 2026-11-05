@@ -1,5 +1,4 @@
-import Card from '../../components/ListingCard.jsx';
-// import placeholder from '../../assets/placeholder.png';
+import Card from '../../components/buyer/ListingCard.jsx';
 import './Browse.css';
 import { useState, useEffect } from 'react';
 import { getListings } from '../../api/listingApi.js';
