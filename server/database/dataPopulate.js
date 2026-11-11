@@ -48,7 +48,7 @@ const populateData = db.transaction(() => {
   listingQuery.run(seller1.lastInsertRowid, "Gold: Greatest Hits", "ABBA", "1992-09-21", "vinyl", "pop", "731451700712", "new", 3, 5000, "pending", "/uploads/placeholder.png");
   listingQuery.run(seller1.lastInsertRowid, "Midnights: Moonstone Blue Edition", "Taylor Swift", "2022-10-21", "cd", "pop", "602445790098", "used", 2, 2700, "pending", "/uploads/placeholder.png");
   listingQuery.run(seller1.lastInsertRowid, "Rumours", "Fleetwood Mac", "1977-02-04", "vinyl", "rock", "081227970949", "used", 4, 3200, "active", "/uploads/1792777496613.PNG");
-  listingQuery.run(seller1.lastInsertRowid, "Abbey Road", "The Beatles", "1969-09-26", "vinyl", "rock", "602508007448", "new", 2, 4500, "active", "/uploads/placeholder.png");
+  listingQuery.run(seller1.lastInsertRowid, "Abbey Road", "The Beatles", "1969-09-26", "vinyl", "rock", "602508007448", "new", 2, 4500, "deactivated", "/uploads/placeholder.png");
   listingQuery.run(seller1.lastInsertRowid, "Nevermind", "Nirvana", "1991-09-24", "cd", "alternative", "720642442524", "used", 3, 1400, "active", "/uploads/placeholder.png");
   listingQuery.run(seller1.lastInsertRowid, "Random Access Memories", "Daft Punk", "2013-05-17", "vinyl", "electronic", "888837168618", "new", 5, 3800, "active", "/uploads/1792777510572.png");
   listingQuery.run(seller1.lastInsertRowid, "1989", "Taylor Swift", "2014-10-27", "cd", "pop", "602547092681", "new", 5, 1800, "active", "/uploads/placeholder.png");
@@ -76,6 +76,61 @@ const populateData = db.transaction(() => {
   listingQuery.run(seller3.lastInsertRowid, "The Miseducation of Lauryn Hill", "Lauryn Hill", "1998-08-25", "cd", "R&B", "074646902225", "new", 3, 1800, "active", "/uploads/placeholder.png");
   listingQuery.run(seller3.lastInsertRowid, "Kind of Blue", "Miles Davis", "1959-08-17", "vinyl", "jazz", "888751119517", "used", 2, 2600, "active", "/uploads/placeholder.png");
   listingQuery.run(seller3.lastInsertRowid, "Un Verano Sin Ti", "Bad Bunny", "2022-05-06", "vinyl", "latin", null, "new", 4, 3500, "active", "/uploads/placeholder.png");
+
+  // Orders
+  const orderQuery = db.prepare(`INSERT INTO Orders (dateCreated, dateShipped, buyerID, orderTotalCost, shippingAddress, billingAddress, orderStatus) VALUES (?, ?, ?, ?, ?, ?, ?)`);
+  const orderItemQuery = db.prepare(`INSERT INTO OrderItem (listingID, orderID, price, itemQuantity, orderItemStatus) VALUES (?, ?, ?, ?, ?)`);
+
+  // Seller 1, order 1 (pending): Rumours x1 + Abbey Road x2 = 3200 + 9000
+  const order1 = orderQuery.run("2026-10-20 14:30:00", null, buyer1.lastInsertRowid, 12200, address.lastInsertRowid, address.lastInsertRowid, "pending");
+  orderItemQuery.run(3, order1.lastInsertRowid, 3200, 1, "pending");
+  orderItemQuery.run(4, order1.lastInsertRowid, 4500, 2, "pending");
+
+  // Seller 1, order 2 (shipped): Nevermind x1 + 1989 x1 = 1400 + 1800
+  const order2 = orderQuery.run("2026-10-15 09:10:00", "2026-10-17 11:00:00", buyer2.lastInsertRowid, 3200, address.lastInsertRowid, address.lastInsertRowid, "shipped");
+  orderItemQuery.run(5, order2.lastInsertRowid, 1400, 1, "shipped");
+  orderItemQuery.run(7, order2.lastInsertRowid, 1800, 1, "shipped");
+
+  // Seller 2, order 3 (delivered): Thriller x1 + good kid x2 = 2900 + 3200
+  const order3 = orderQuery.run("2026-10-05 16:45:00", "2026-10-07 10:20:00", buyer3.lastInsertRowid, 6100, address.lastInsertRowid, address.lastInsertRowid, "delivered");
+  orderItemQuery.run(1, order3.lastInsertRowid, 2900, 1, "delivered");
+  orderItemQuery.run(2, order3.lastInsertRowid, 1600, 2, "delivered");
+
+  // Seller 2, order 4 (pending): Dark Side of the Moon x1 = 4200
+  const order4 = orderQuery.run("2026-10-22 12:00:00", null, buyer1.lastInsertRowid, 4200, address.lastInsertRowid, address.lastInsertRowid, "canceled");
+  orderItemQuery.run(8, order4.lastInsertRowid, 4200, 1, "canceled");
+  orderItemQuery.run(9, order4.lastInsertRowid, 4200, 1, "canceled");
+
+  const order5 = orderQuery.run("2026-10-22 12:00:00", null, buyer1.lastInsertRowid, 4200, address.lastInsertRowid, address.lastInsertRowid, "pending");
+  orderItemQuery.run(6, order5.lastInsertRowid, 4200, 1, "pending");
+
+    // Delivered orders for returns
+  // Seller 1: Random Access Memories x1 + Currents x1 = 3800 + 3500
+  const order6 = orderQuery.run("2026-10-10 11:00:00", "2026-10-12 09:30:00", buyer2.lastInsertRowid, 7300, address.lastInsertRowid, address.lastInsertRowid, "delivered");
+  const order6Item1 = orderItemQuery.run(6, order6.lastInsertRowid, 3800, 1, "delivered");
+  const order6Item2 = orderItemQuery.run(8, order6.lastInsertRowid, 3500, 1, "delivered");
+
+  // Seller 2: Thriller x1 + Back to Black x2 = 2900 + 2600
+  const order7 = orderQuery.run("2026-10-08 15:20:00", "2026-10-10 13:45:00", buyer3.lastInsertRowid, 5500, address.lastInsertRowid, address.lastInsertRowid, "delivered");
+  const order7Item1 = orderItemQuery.run(12, order7.lastInsertRowid, 2900, 1, "delivered");
+  const order7Item2 = orderItemQuery.run(15, order7.lastInsertRowid, 1300, 2, "delivered");
+
+  // Seller 2: good kid, m.A.A.d city x1 + The Dark Side of the Moon x1 = 1600 + 4200
+  const order8 = orderQuery.run("2026-10-12 10:05:00", "2026-10-14 08:50:00", buyer1.lastInsertRowid, 5800, address.lastInsertRowid, address.lastInsertRowid, "delivered");
+  const order8Item1 = orderItemQuery.run(13, order8.lastInsertRowid, 1600, 1, "delivered");
+  const order8Item2 = orderItemQuery.run(14, order8.lastInsertRowid, 4200, 1, "delivered");
+
+  // Returns
+  const returnQuery = db.prepare(`INSERT INTO Returns (orderID, orderItemID, buyerID, reason, returnQuantity, returnStatus, dateRequested) VALUES (?, ?, ?, ?, ?, ?, ?)`);
+
+  // Seller 1 returns
+  returnQuery.run(order6.lastInsertRowid, order6Item1.lastInsertRowid, buyer2.lastInsertRowid, "The album cover was damaged when it arrived.", 1, "pending", "2026-10-28 10:15:00");
+  returnQuery.run(order6.lastInsertRowid, order6Item2.lastInsertRowid, buyer2.lastInsertRowid, "The item did not match the listing description.", 1, "refunded", "2026-10-20 14:40:00");
+
+  // Seller 2 returns
+  returnQuery.run(order7.lastInsertRowid, order7Item1.lastInsertRowid, buyer3.lastInsertRowid, "The record has scratches that were not mentioned in the listing.", 1, "pending", "2026-10-30 09:00:00");
+  returnQuery.run(order7.lastInsertRowid, order7Item2.lastInsertRowid, buyer3.lastInsertRowid, "I ordered two copies by mistake and only need one.", 1, "rejected", "2026-10-22 16:25:00");
+  returnQuery.run(order8.lastInsertRowid, order8Item2.lastInsertRowid, buyer1.lastInsertRowid, "The case was cracked when the package arrived.", 1, "refunded", "2026-10-25 12:10:00");
 
   console.log("Data population complete.")
 })

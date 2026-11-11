@@ -23,6 +23,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import OrderSummary from "./pages/buyer/OrderSummary.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import ApproveListings from "./pages/admin/listingApproval";
+import OrderPage from "./pages/seller/OrderPage.jsx";
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -92,7 +93,10 @@ function App() {
         <Route path="/seller/returns" element={<ProtectedRoute isAuth={auth} Component={SellerReturnsPage} allowedUsers={["seller"]} />} />
         <Route path="/seller/listings/add" element={<AddListingPage />} />
         <Route path="/seller/listings/:id" element={<ListingPage />} />
+        <Route path="/seller/orders/:id" element={ <OrderPage />} />
         <Route path="/seller/listings/:id/edit" element={<EditListingPage />} />
+        <Route path="/seller/returns" element={<SellerReturnsPage />} />
+        <Route path="/seller/financial" element={<SellerFinancialPage />} />
 
         {/* Admin routes */}
         <Route path="/admin" element={<AdminDashboard />} />

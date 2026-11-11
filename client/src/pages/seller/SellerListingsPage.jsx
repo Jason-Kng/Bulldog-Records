@@ -16,6 +16,10 @@ function SellerListingsPage() {
       .catch((err) => alert(err.message));
   }, []);
 
+  const deactivatedListings = listings.filter((l) => l.listingStatus == "deactivated");
+  const pendingListings = listings.filter((l) => l.listingStatus == "pending");
+  const activeListings = listings.filter((l) => l.listingStatus == "active");
+
   return (
     <div class="listings-container">
       <h2>My Listings</h2>
@@ -48,16 +52,48 @@ function SellerListingsPage() {
       </div>
 
       <div className="seller-listings-divider">
-      
+        {deactivatedListings.length > 0 && (
         <ul>
           {/* <h3>Pending</h3> */}
-          {listings
+          {deactivatedListings
+          .filter((listing) => listing.listingStatus == "deactivated")
+          .map((listing) => (
+            <li key={listing.listingID} className="listings-container-li canceled">
+              <Link to={`/seller/listings/${listing.listingID}`}>
+                  <div class="listing-page-header-container">
+                    <p class="listing-page-title">{listing.title}</p>
+                    <div class="status-container">
+                      <div className="status-circle canceled"></div>
+                      <p
+                        className="listing-page-status canceled"
+                      >
+                        {listing.listingStatus}
+                    </p>
+                    
+                    </div>
+                  
+                  </div>
+                  
+                  <p class="listing-page-stock">Stock: {listing.stock}</p>
+                  <p class="listing-page-price">Price: ${listing.price}</p>
+
+              </Link>
+              
+
+            </li>
+          ))}
+        </ul>
+        )}
+      {pendingListings.length > 0 && (
+        <ul>
+          {/* <h3>Pending</h3> */}
+          {pendingListings
           .filter((listing) => listing.listingStatus == "pending")
           .map((listing) => (
             <li key={listing.listingID} className={`listings-container-li ${
-                          listing.listingStatus?.toLowerCase() === "active"
-                            ? "active"
-                            : "pending"
+                          listing.listingStatus?.toLowerCase() === "pending"
+                            ? "pending"
+                            : "canceled"
                         }`}>
               <Link to={`/seller/listings/${listing.listingID}`}>
                   <div class="listing-page-header-container">
@@ -91,13 +127,14 @@ function SellerListingsPage() {
             </li>
           ))}
         </ul>
+      )}
 
 
 
-      
+      {activeListings.length > 0 && (
       <ul>
         {/* <h3>Active</h3> */}
-        {listings
+        {activeListings
         .filter((listing) => listing.listingStatus == "active")
         .map((listing) => (
           <li key={listing.listingID} className={`listings-container-li ${
@@ -137,6 +174,7 @@ function SellerListingsPage() {
           </li>
         ))}
       </ul>
+      )}
 
 
       </div>
