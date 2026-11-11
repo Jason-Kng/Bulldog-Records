@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ApproveListings({ token }) {
     const [listings, setListings] = useState([]);
@@ -6,6 +7,7 @@ export default function ApproveListings({ token }) {
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const [updatingID, setUpdatingID] = useState(null);
+    const navigate = useNavigate();
 
     const apiURL = 'http://localhost:3000/api/admin';
 
@@ -57,7 +59,7 @@ export default function ApproveListings({ token }) {
         }
     }, [token]);
 
-    async function updateListing(listingID) {
+    async function updateListing(listingID, listingStatus) {
         setUpdatingID(listingID);
         setError('');
         setMessage('');
@@ -70,7 +72,8 @@ export default function ApproveListings({ token }) {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`
-                    }
+                    },
+                    body: JSON.stringify({ listingStatus })
                 }
             );
 
@@ -78,7 +81,7 @@ export default function ApproveListings({ token }) {
 
             if (!response.ok) {
                 throw new Error(
-                    data.error || `Approval failed (${response.status}).`
+                    data.error || `Update failed (${response.status}).`
                 );
             }
 
@@ -87,10 +90,10 @@ export default function ApproveListings({ token }) {
             );
 
             setMessage(
-                `LIsting ${listingID} was approved successfully.`
+                `Seller ${listingID} was ${listingStatus} successfully.`
             );
         } catch (err) {
-            setError(err.message || 'Could not approve listing.');
+            setError(err.message || 'Could not update listing.');
         } finally {
             setUpdatingID(null);
         }
@@ -102,16 +105,32 @@ export default function ApproveListings({ token }) {
 
     return (
         <main className="admin-approvals">
-            <h2>Listing Approvals</h2>
+            <h2>New Listing Approvals</h2>
 
             {error && <p role="alert">{error}</p>}
             {message && <p role="status">{message}</p>}
 
-            <div className='refresh-pending-sellers-button-container'>
-            <button onClick={loadPendingListings}>
+            <div class="listings-buttons-container">
+                <button
+                type="button"
+                className="seller-view-listings-button"
+                onClick={() => navigate("/admin")}
+                >
+                My Dashboard
+                </button>
+                
+                <button
+                type="button"
+                className="seller-view-listings-button"
+                onClick={loadPendingListings}
+                >
                 Refresh list
-            </button>
+                </button>
+
+                
+
             </div>
+
 
             {!error && listings.length ===0 && (
                 <p>There are no listings waiting for approval.</p>
@@ -133,7 +152,7 @@ export default function ApproveListings({ token }) {
                     <p>Media Type: {listing.mediaType}</p>
                     <p>Condition: {listing.condition}</p>
                     <p>Stock: {listing.stock}</p>
-                    <p>Price: ${listing.price}</p>
+                    <p>Price: ${(listing.price/100).toFixed(2)}</p>
                     <p>Status: {listing.listingStatus === 1 ? 'Approved' : 'Pending'}</p>
                     </div>
 
@@ -150,14 +169,22 @@ export default function ApproveListings({ token }) {
                             disabled={updatingID !== null}
                             onClick={() =>
                                 updateListing(
-                                    listing.listingID
+                                    listing.listingID, "active"
                                 )
                             }
-                        >
-                            {updatingID === listing.listingID
-                                ? 'Updating...'
-                                : 'Approve'}
+                        >Approve
+                            
                         </button>
+
+                        <button 
+                        disabled={updatingID !== null}
+                        onClick={() =>
+                            updateListing(listing.listingID, 'deactivated')
+                        }
+                        >
+                            Reject
+                        </button>
+                        
                     </div>
                     </div>
                 </section>

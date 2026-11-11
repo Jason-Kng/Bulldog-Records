@@ -18,6 +18,7 @@ router.get('/listings/pending', requireAdmin, (req, res) => {
                 Listing.stock,
                 Listing.price,
                 Listing.photo,
+                Listing.mediaType,
                 Listing.isVerified,
                 User.name AS sellerName,
                 User.email AS sellerEmail
@@ -37,22 +38,22 @@ router.get('/listings/pending', requireAdmin, (req, res) => {
 
 router.patch('/listings/:listingID/status', requireAdmin, (req, res) => {
     const { listingID } = req.params;
+    const { listingStatus } = req.body;
 
     try {
         const result = db.prepare(`
             UPDATE Listing
-            SET listingStatus ='active'
+            SET listingStatus = ?
             WHERE listingID = ? AND listingStatus = 'pending'
-        `).run(listingID);
+        `).run(listingStatus, listingID);
 
         if (result.changes === 0) {
             return res.status(404).json({ error: 'Listing not found' });
         }
 
         res.json({
-            message: `Listing approved successfully`,
-            listingID: Number(listingID),
-            isVerified: 1
+            message: `Listing ${listingStatus} successfully`,
+            listingID: Number(listingID)
         });
     } catch (error) {
         console.error('Error approve listing:', error);

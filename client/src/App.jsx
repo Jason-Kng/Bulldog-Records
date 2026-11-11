@@ -24,6 +24,7 @@ import OrderSummary from "./pages/buyer/OrderSummary.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import ApproveListings from "./pages/admin/listingApproval";
 import OrderPage from "./pages/seller/OrderPage.jsx";
+import ManageUsersPage from "./pages/admin/manageUsers.jsx";
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -107,6 +108,10 @@ function App() {
         <Route
           path="/admin/listings"
           element={<ApproveListings token={token} />}
+        />
+         <Route
+          path="/admin/users"
+          element={<ManageUsersPage token={token} />}
         />
       </Routes>
     </>
