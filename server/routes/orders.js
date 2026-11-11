@@ -25,7 +25,7 @@ router.get('/', authenticateToken, (req, res) => {
 
 router.get('/:id', authenticateToken, (req, res) => {
   const id = req.params;
-  const stmt = db.prepare(`SELECT Orders.*, Listing.title, Listing.artist, Listing.photo, Listing.listingID, User.name AS sellerName FROM Orders
+  const stmt = db.prepare(`SELECT Orders.*, Listing.title, Listing.artist, Listing.photo, Listing.listingID, Listing.price, User.name AS sellerName FROM Orders
                           JOIN Buyer ON Orders.buyerID = Buyer.buyerID
                           JOIN OrderItem ON orderItem.orderID = Orders.orderID
                           JOIN Listing ON OrderItem.listingID = Listing.listingID 

@@ -105,7 +105,7 @@
   border: none;
   border-radius: 6px;
 
-  background-color: var(--accent);
+  /* background-color: var(--accent); */
   color: white;
 
   font-size: 16px;

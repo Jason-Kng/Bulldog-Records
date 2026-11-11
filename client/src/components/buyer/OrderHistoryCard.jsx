@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import "./OrderHistoryCard.css";
+
 // listingID, orderID, orderStatus, seller, image, title, artist, price, date 
 function OrderHistoryCard({ orderObj }) {
   const dateObj = new Date(orderObj.dateCreated.replace(" ", "T"));
@@ -8,8 +10,16 @@ function OrderHistoryCard({ orderObj }) {
     year: "numeric"
   });
 
+  const navigate = useNavigate();
+
+  const handleClick = (id) => {
+    console.log(id);
+    navigate(`/order-details/${id}`)
+
+  };
+
   return (
-    <div className="order-history-card-container" >
+    <div className="order-history-card-container" onClick={() => handleClick(orderObj.orderID)} >
       <div className="order-history-card-top">
         {orderObj.orderID && <h2 className="order-history-card-title">Order #{orderObj.orderID}</h2>}
         {dateFormat && <p className="order-history-card-date">Placed {dateFormat}</p>}

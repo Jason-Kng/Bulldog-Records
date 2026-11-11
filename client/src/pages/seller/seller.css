@@ -214,7 +214,7 @@ a {
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 10px;
-  color: black;
+  color: var(--text);
   font-weight: 500;
   width: 420px;
   height: 42px;
@@ -228,7 +228,7 @@ a {
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 10px;
-  color: black;
+  color: var(--text);
   font-weight: 500;
   width: 420px;
   height: 42px;

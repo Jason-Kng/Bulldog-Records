@@ -74,7 +74,8 @@ export async function getOrder(id) {
         title: item.title,
         artist: item.artist,
         photo: item.photo,
-        sellerName: item.sellerName
+        sellerName: item.sellerName,
+        price: item.price
       });
 
       return acc;

@@ -11,6 +11,10 @@
   margin: 8px;
 }
 
+.order-history-card-container:hover {
+  cursor: pointer;
+}
+
 h2{
   margin:0px;
 }
