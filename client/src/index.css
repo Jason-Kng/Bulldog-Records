@@ -36,7 +36,7 @@
   --red: #d34444;
   --light-red: rgb(251, 240, 240);
   --blue: #4b75cf;
-  --light-blue: rgb(241, 247, 252);
+  --light-blue: rgb(228, 237, 245);
 }
 
 @media (prefers-color-scheme: dark) {
