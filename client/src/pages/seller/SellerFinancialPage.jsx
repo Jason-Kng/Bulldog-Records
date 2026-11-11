@@ -112,6 +112,13 @@ function SellerFinancialPage() {
         </select>
       </div>
 
+      <div>
+        <div className="net-sales">
+          <div>Net Revenue for the Month</div>
+          <div>${((totalSales / 100).toFixed(2)-(totalLosses / 100).toFixed(2))}</div>
+        </div>
+      </div>
+
       <h3>Sales</h3>
       <table>
         <thead>
@@ -130,7 +137,7 @@ function SellerFinancialPage() {
               <td>{item.orderItemID}</td>
               <td>{item.listingTitle}</td>
               <td>{item.itemQuantity}</td>
-              <td>${(item.price / 100).toFixed(2)}</td>
+              <td>${((item.price * item.itemQuantity) / 100).toFixed(2)}</td>
             </tr>
           ))}
         </tbody>
@@ -174,8 +181,8 @@ function SellerFinancialPage() {
         </tfoot>
       </table>
 
-
       
+
     </div>
   );
 }

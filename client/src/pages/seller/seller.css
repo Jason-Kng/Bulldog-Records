@@ -485,7 +485,7 @@ button:hover {
   border-collapse: separate;
   border-spacing: 0;
   overflow: hidden;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 
@@ -548,4 +548,17 @@ button:hover {
 
 .listings-container tfoot .total-losses td:last-child {
   border-radius: 0 8px 8px 0;
+}
+
+.net-sales {
+  display: flex;
+  background-color: var(--light_maroon);
+  border-radius: 6px;
+  padding: 12px 24px;
+  width: 100%;
+  justify-content: space-between;
+  font-weight: bold;
+  color: var(--maroon);
+  /* border: 1px solid var(--maroon); */
+  margin-top: 20px;
 }

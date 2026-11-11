@@ -102,7 +102,7 @@ const populateData = db.transaction(() => {
   orderItemQuery.run(9, order4.lastInsertRowid, 4200, 1, "canceled");
 
   const order5 = orderQuery.run("2026-10-22 12:00:00", null, buyer1.lastInsertRowid, 4200, address.lastInsertRowid, address.lastInsertRowid, "pending");
-  orderItemQuery.run(6, order5.lastInsertRowid, 4200, 1, "pending");
+  orderItemQuery.run(6, order5.lastInsertRowid, 3800, 1, "pending");
 
     // Delivered orders for returns
   // Seller 1: Random Access Memories x1 + Currents x1 = 3800 + 3500
@@ -124,13 +124,25 @@ const populateData = db.transaction(() => {
   const returnQuery = db.prepare(`INSERT INTO Returns (orderID, orderItemID, buyerID, reason, returnQuantity, returnStatus, dateRequested) VALUES (?, ?, ?, ?, ?, ?, ?)`);
 
   // Seller 1 returns
-  returnQuery.run(order6.lastInsertRowid, order6Item1.lastInsertRowid, buyer2.lastInsertRowid, "The album cover was damaged when it arrived.", 1, "pending", "2026-10-28 10:15:00");
+  returnQuery.run(order6.lastInsertRowid, order6Item1.lastInsertRowid, buyer2.lastInsertRowid, "The album cover was damaged when it arrived.", 1, "refunded", "2026-10-28 10:15:00");
   returnQuery.run(order6.lastInsertRowid, order6Item2.lastInsertRowid, buyer2.lastInsertRowid, "The item did not match the listing description.", 1, "refunded", "2026-10-20 14:40:00");
 
   // Seller 2 returns
-  returnQuery.run(order7.lastInsertRowid, order7Item1.lastInsertRowid, buyer3.lastInsertRowid, "The record has scratches that were not mentioned in the listing.", 1, "pending", "2026-10-30 09:00:00");
-  returnQuery.run(order7.lastInsertRowid, order7Item2.lastInsertRowid, buyer3.lastInsertRowid, "I ordered two copies by mistake and only need one.", 1, "rejected", "2026-10-22 16:25:00");
+  returnQuery.run(order7.lastInsertRowid, order7Item1.lastInsertRowid, buyer3.lastInsertRowid, "The record has scratches that were not mentioned in the listing.", 1, "refunded", "2026-10-30 09:00:00");
+  returnQuery.run(order7.lastInsertRowid, order7Item2.lastInsertRowid, buyer3.lastInsertRowid, "I ordered two copies by mistake and only need one.", 1, "refunded", "2026-10-22 16:25:00");
   returnQuery.run(order8.lastInsertRowid, order8Item2.lastInsertRowid, buyer1.lastInsertRowid, "The case was cracked when the package arrived.", 1, "refunded", "2026-10-25 12:10:00");
+
+  const updateReturnedItems = db.prepare(`
+    UPDATE OrderItem
+    SET orderItemStatus = 'returned'
+    WHERE orderItemID = ?
+  `);
+
+  updateReturnedItems.run(order6Item1.lastInsertRowid);
+  updateReturnedItems.run(order6Item2.lastInsertRowid);
+  updateReturnedItems.run(order7Item1.lastInsertRowid);
+  updateReturnedItems.run(order7Item2.lastInsertRowid);
+  updateReturnedItems.run(order8Item2.lastInsertRowid);
 
   console.log("Data population complete.")
 })

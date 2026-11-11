@@ -101,11 +101,17 @@ function SellerOrdersPage() {
         <p>Loading orders...</p>
       ) : (
         <div className="seller-listings-divider">
-          {columns.map((status) => (
-            <ul key={status}>
-              {groupedOrders
-                .filter((order) => order.orderStatus === status)
-                .map((order) => (
+          {columns.map((status) => {
+            const statusOrders = groupedOrders.filter(
+              (order) => order.orderStatus === status
+            );
+
+            // if there are listings with that status, show them
+            if (statusOrders.length === 0) return null;
+
+            return (
+              <ul key={status}>
+                {statusOrders.map((order) => (
                   <li
                     key={order.orderID}
                     className={`listings-container-li ${status}`}
@@ -138,9 +144,10 @@ function SellerOrdersPage() {
                     </Link>
                   </li>
                 ))}
-            </ul>
-          ))}
-        </div>
+              </ul>
+            );
+          })}
+      </div>
       )}
     </div>
   );

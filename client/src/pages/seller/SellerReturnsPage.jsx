@@ -51,7 +51,7 @@ function SellerReturnsPage() {
         {returns.map((item) => (
           <li key={item.returnID} className="listings-container-li">
             <p className="listing-page-title">{item.listingTitle}</p>
-            <p className="listing-page-stock">Order #: {item.orderID}</p>
+            <p className="listing-page-stock">Order #{item.orderID}</p>
             <p className="listing-page-stock">Quantity: {item.returnQuantity}</p>
             <p className="listing-page-price">Price: ${(item.price / 100).toFixed(2)}</p>
             <p className="listing-page-stock">Buyer Name: {item.buyerName}</p>
