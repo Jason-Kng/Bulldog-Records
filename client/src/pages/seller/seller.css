@@ -160,6 +160,16 @@ a {
   background-color: var(--light-red);
 }
 
+.listings-container-li.deactivated {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: var(--light-red);
+}
+
 .listings-container-li.delivered {
   border: 1px solid black;
   padding-top: 30px;
@@ -237,6 +247,11 @@ a {
 
 
 .listing-page-status.canceled {
+  color: var(--red);
+  font-weight: bold;
+}
+
+.listing-page-status.deactivated {
   color: var(--red);
   font-weight: bold;
 }
@@ -561,4 +576,15 @@ button:hover {
   color: var(--maroon);
   /* border: 1px solid var(--maroon); */
   margin-top: 20px;
+}
+
+.error-message {
+  font-weight: bold;
+  color: var(--red);
+  margin-bottom: 0 !important;
+  margin-top: 10px;
+}
+
+.errors-containers {
+  margin-top: 15px;
 }

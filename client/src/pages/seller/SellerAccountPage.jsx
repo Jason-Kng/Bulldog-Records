@@ -60,6 +60,22 @@ function SellerAccountPage() {
       </button>
       </div>
 
+      <div className="errors-containers">
+      {seller && seller.accountStatus !== "active" && (
+        <p className="error-message">Your account is {seller.accountStatus}.</p>
+        
+      )}
+
+      {seller && seller.accountStatus !== "active" && (
+        <p className="error-message">You cannot create new listings. Active listings will not be shown to customers.</p>
+        
+      )}
+
+      {seller && seller.accountStatus == "deactivated" && (
+        <p className="error-message">Pending orders will still be processed.</p>
+      )}
+      </div>
+
       
     </div>
   );

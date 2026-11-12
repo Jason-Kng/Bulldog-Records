@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import Button from "../../components/Button";
-import { getListings } from "../../api/sellerApi";
+import { getListings, getSellerAccountInfo } from "../../api/sellerApi";
 
 import './seller.css';
 
 function SellerListingsPage() {
   const [listings, setListings] = useState([]);
+  const [seller, setSeller] = useState(null);
 
   const navigate = useNavigate();
 
@@ -14,6 +15,10 @@ function SellerListingsPage() {
     getListings()
       .then((data) => setListings(data))
       .catch((err) => alert(err.message));
+
+    getSellerAccountInfo()
+    .then((data) => setSeller(data))
+    .catch((err) => alert(err.message));
   }, []);
 
   const deactivatedListings = listings.filter((l) => l.listingStatus == "deactivated");
@@ -42,6 +47,7 @@ function SellerListingsPage() {
         <button
           type="button"
           className="seller-view-listings-button"
+          disabled={!seller || seller.accountStatus !== "active" || seller.approvalStatus == "pending"}
           onClick={() => navigate("/seller/listings/add")}
         >
           Add Listing
@@ -50,6 +56,16 @@ function SellerListingsPage() {
         <Button text="Add Listing" onClick={() => navigate("/seller/listings/add")}/> */}
         
       </div>
+
+
+      {seller && seller.accountStatus !== "active" && (
+        <p className="error-message">Your account is {seller.accountStatus}. You cannot create new listings. Active listings will not be shown to customers.</p>
+      )}
+
+      {seller && seller.approvalStatus == "pending" && (
+        <p className="error-message">Your account approval status is {seller.approvalStatus}. You cannot create new listings.</p>
+      )}
+
 
       <div className="seller-listings-divider">
         {deactivatedListings.length > 0 && (

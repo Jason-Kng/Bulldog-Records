@@ -55,6 +55,8 @@ function SellerOrdersPage() {
         </button>
       </div>
 
+      {groupedOrders.length === 0 && <p>No orders yet</p>}
+
       <div className="seller-orders-buttons-container">
         <button
           type="button"

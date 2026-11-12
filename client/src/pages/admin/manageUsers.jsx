@@ -1,30 +1,120 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import Button from "../../components/Button";
-
-import './AdminDashboard.css';
-
-// this file may be replaced after
-// placeholder to test seller backend, basic seller account page
+import { getActiveUsers, updateUserStatus } from "../../api/adminApi";
+import "./admin.css";
+import "../seller/seller.css";
 
 function ManageUsersPage() {
-  // const [seller, setSeller] = useState(null);
-  // const navigate = useNavigate();
+  const [sellers, setSellers] = useState(null);
+  const [buyers, setBuyers] = useState(null);
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   getSellerAccountInfo()
-  //     .then((data) => setSeller(data))
-  //     .catch((err) => alert(err.message));
-  // }, []);
+  function loadUsers() {
+    getActiveUsers()
+      .then((data) => {
+        setSellers(data.sellers);
+        setBuyers(data.buyers);
+      })
+      .catch((err) => alert(err.message));
+  }
 
-  // if (!seller) {
-  //   return <h3>Retrieving Account Data...</h3>;
-  // }
+  useEffect(() => {
+    loadUsers();
+  }, []);
+
+  function changeStatus(type, id, status) {
+    updateUserStatus(type, id, status)
+      .then(() => loadUsers())
+      .catch((err) => alert(err.message));
+  }
+
+  if (!sellers || !buyers) {
+    return <h3>Retrieving Users...</h3>;
+  }
 
   return (
-    <div className="seller-account-container">
+    <div className="listings-container">
       <h2>Manage Users</h2>
+
+      <div className="listings-buttons-container">
+        <button
+          type="button"
+          className="seller-view-listings-button"
+          onClick={() => navigate("/admin")}
+        >
+          My Dashboard
+        </button>
+      </div>
       
+      
+
+      <div className="seller-listings-divider">
+        <ul>
+          <h3>Sellers</h3>
+          {sellers.map((seller) => (
+            <li key={seller.id} className={`listings-container-li ${seller.accountStatus}`}>
+              <p className="listing-page-title">{seller.name}</p>
+              <p className="listing-page-stock">{seller.email}</p>
+              <p className={`listing-page-status ${seller.accountStatus}`}>{seller.accountStatus}</p>
+              <div className="users-buttons-container">
+     
+                {seller.accountStatus === "active" ? (
+                  <button
+                  type="button"
+                  className="manage-users-button" 
+                  onClick={() => changeStatus("seller", seller.id, "deactivated")}>
+                    Deactivate
+                  </button>
+                ) : (
+                  <button 
+                  type="button"
+                  className="manage-users-button"
+                  onClick={() => changeStatus("seller", seller.id, "active")}>
+                    Activate
+                  </button>
+                )}
+                
+                </div>
+            </li>
+          ))}
+        </ul>
+
+        <ul>
+          <h3>Buyers</h3>
+          {buyers.map((buyer) => (
+            <li key={buyer.id} className={`listings-container-li ${buyer.accountStatus}`}>
+              
+                <div>
+                <p className="listing-page-title">{buyer.name}</p>
+                <p className="listing-page-stock">{buyer.email}</p>
+                <p className={`listing-page-status ${buyer.accountStatus}`}>{buyer.accountStatus}</p>
+
+                <div className="users-buttons-container">
+     
+                  {buyer.accountStatus === "active" ? (
+                    <button
+                    type="button"
+                    className="manage-users-button" 
+                    onClick={() => changeStatus("seller", buyer.id, "deactivated")}>
+                      Deactivate
+                    </button>
+                  ) : (
+                    <button 
+                    type="button"
+                    className="manage-users-button"
+                    onClick={() => changeStatus("seller", buyer.id, "active")}>
+                      Activate
+                    </button>
+                  )}
+                
+                </div>
+
+
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

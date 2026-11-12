@@ -5,6 +5,7 @@ import db from '../database/database.js';
 // const upload = multer({ dest: 'uploads/' })
 import upload from '../middleware/upload.js';
 import requireApproved from '../middleware/approvedSeller.js';
+import requireActive from '../middleware/requireActive.js';
 
 const router = express.Router();
 
@@ -37,7 +38,7 @@ router.get("/", (req, res) => {
 
 // create a listing
 // testing on HTTPIE: worked
-router.post("/listings", requireApproved, upload.single("photo"), (req, res) => {
+router.post("/listings", requireApproved, requireActive, upload.single("photo"), (req, res) => {
 
   // db fields
   const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price } = req.body;
@@ -79,6 +80,9 @@ router.post("/listings", requireApproved, upload.single("photo"), (req, res) => 
 
   // create entry in db
   try {
+
+
+    
     const query = db.prepare(`INSERT INTO Listing (sellerID, title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, listingStatus, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
     const values = query.run(req.sellerID, title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, priceInCents, listingStatus, photoPath)
 
