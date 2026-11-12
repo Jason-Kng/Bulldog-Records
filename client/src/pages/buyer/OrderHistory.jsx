@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getOrders } from "../../api/listingApi.js";
+import { getOrders } from "../../api/buyerApi.js";
 import OrderHistoryCard from "../../components/buyer/OrderHistoryCard.jsx";
 
 
@@ -20,7 +20,6 @@ function OrderHistory() {
   }, []);
 
 
-  console.log("ORDERS: ", orders);
 
   return (
     <>

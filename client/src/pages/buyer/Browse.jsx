@@ -1,7 +1,7 @@
 import Card from '../../components/buyer/ListingCard.jsx';
 import './Browse.css';
 import { useState, useEffect } from 'react';
-import { getListings } from '../../api/listingApi.js';
+import { getListings } from '../../api/buyerApi.js';
 
 function Browse() {
   const [listings, setlistings] = useState([]);

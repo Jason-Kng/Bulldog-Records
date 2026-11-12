@@ -68,7 +68,7 @@
   padding: 16px 18px;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background-color: var(--surface);
+  /* background-color: var(--surface); */
 }
 
 .order-details .order-details-item-image {

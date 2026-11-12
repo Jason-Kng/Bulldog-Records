@@ -1,42 +1,45 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getOrder } from "../../api/listingApi";
+import { useNavigate, useParams } from "react-router-dom";
+import { getOrder } from "../../api/buyerApi";
 import "./OrderDetails.css";
 
 
 function OrderDetails() {
   let params = useParams();
   const [orders, setOrder] = useState([]);
+  const navigate = useNavigate();
 
-  console.log("Params", params);
-  console.log(params.id)
 
   useEffect(() => {
-    console.log("Fetching Orders");
     async function fetchOrder() {
       try {
         const data = await getOrder(params.id);
         setOrder(data);
       } catch (error) {
-        console.error(error);
+        if (error.status === 404) {
+          navigate("/404");
+        } else {
+          console.error(error);
+        }
       }
     }
 
     fetchOrder();
-  }, [params.id]);
+  }, [params.id, navigate]);
 
   const order = orders[0];
+  console.log("Orders: ", orders);
 
   if (!order) {
     return <p>Loading order...</p>
   }
 
   const returnItem = (id) => {
-    console.log(id);
+    console.log("returnItem order: ", order);
+    navigate(`/return/${id}`, { state: { order, item: id } });
   }
 
 
-  console.log("Order: ", orders);
   const dateObj = new Date(order.dateCreated.replace(" ", "T"));
   const dateFormat = dateObj.toLocaleDateString("en-US", {
     month: "long",
@@ -73,8 +76,14 @@ function OrderDetails() {
 
               <div className="item-info-left">
                 <p>Price: ${(item.price / 100).toFixed(2)}</p>
-                <button onClick={() => returnItem(item.listingID)}>Return</button>
-              </div>
+                {order.orderStatus === "delivered" ? (
+                  <button disabled={order.orderStatus !== "delivered"} onClick={() => returnItem(item.listingID)}>Return</button>
+
+                ) : order.orderStatus === "returned" ? (
+                  <p>Item has already been returned.</p>
+                ) : (
+                  <p>{order.orderStatus}</p>
+                )}              </div>
             </div>
           ))}
         </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { searchListings } from "../../api/listingApi";
+import { searchListings } from "../../api/buyerApi";
 import SearchCard from "../../components/buyer/SearchCard";
 import "./SearchPage.css"
 

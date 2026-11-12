@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
 
-  const stmt = db.prepare("SELECT title, artist, listingID, price, photo, sellerID, (SELECT User.name from User WHERE userID=sellerID) AS name FROM Listing LIMIT 15");
+  const stmt = db.prepare("SELECT Listing.title, Listing.artist, Listing.listingID, Listing.price, Listing.photo, Listing.sellerID, User.name, Seller.accountStatus, Seller.approvalStatus FROM Listing JOIN Seller ON Listing.sellerID = Seller.sellerID JOIN User ON Seller.userID = User.userID WHERE Listing.listingStatus NOT IN ('pending', 'deactivated', 'removed') AND Seller.accountStatus = 'active' AND Seller.approvalStatus = 'approved' ORDER BY RANDOM() LIMIT 15");
   try {
     const results = stmt.all();
 
@@ -35,10 +35,10 @@ router.get('/details/:id', (req, res) => {
 router.get('/search', (req, res) => {
   const query = req.query.query
 
-  const stmt = db.prepare("SELECT Listing.*, User.name FROM Listing JOIN Seller ON Listing.sellerID = Seller.sellerID JOIN User ON Seller.userID = User.userID WHERE Listing.title LIKE ?");
+  const stmt = db.prepare("SELECT Listing.*, User.name FROM Listing JOIN Seller ON Listing.sellerID = Seller.sellerID JOIN User ON Seller.userID = User.userID WHERE (Listing.title LIKE ? OR Listing.artist LIKE ?) AND listingStatus NOT IN ('pending', 'deactivated', 'removed') ");
 
   try {
-    const results = stmt.all(`%${query}%`);
+    const results = stmt.all(`%${query}%`, `%${query}`);
     return res.status(200).json(results);
   } catch (e) {
     return res.status(500).json({ error: "Server Error" });

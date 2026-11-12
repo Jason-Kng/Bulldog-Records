@@ -22,6 +22,8 @@ import OrderHistory from "./pages/buyer/OrderHistory.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import ApproveListings from "./pages/admin/listingApproval";
 import OrderDetails from "./pages/buyer/OrderDetails.jsx";
+// import ReturnOrder from "./pages/buyer/ReturnOrder.jsx";
+import RefundForm from "./pages/buyer/RefundForm.jsx";
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -85,6 +87,7 @@ function App() {
         <Route path="/order-summary" element={<OrderSummary />} />
         <Route path="/order-history" element={<OrderHistory />} />
         <Route path="/order-details/:id" element={<OrderDetails />} />
+        <Route path="/return/:id" element={<RefundForm />} />
         <Route path="/listingDetails/:id" element={<ListingDetails />} />
         <Route path="/seller" element={<ProtectedRoute isAuth={auth} Component={SellerAccountPage} allowedUsers={["seller"]} />} />
         <Route path="/seller/listings" element={<ProtectedRoute isAuth={auth} Component={SellerListingsPage} allowedUsers={["seller"]} />} />

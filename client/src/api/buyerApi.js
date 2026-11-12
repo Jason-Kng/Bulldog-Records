@@ -49,12 +49,8 @@ export async function getOrder(id) {
     }
   });
 
-  if (!response.ok) {
-    throw new Error(`Failed to get order ${id}`);
-  }
-
   const data = await handleResp(response);
-  console.log(data);
+  // console.log(data);
 
   const groupedOrders = Object.values(
     data.reduce((acc, item) => {
@@ -75,7 +71,9 @@ export async function getOrder(id) {
         artist: item.artist,
         photo: item.photo,
         sellerName: item.sellerName,
-        price: item.price
+        price: item.price,
+        quantity: item.itemQuantity,
+        orderItemID: item.orderItemID
       });
 
       return acc;
@@ -86,18 +84,19 @@ export async function getOrder(id) {
 }
 
 export async function getOrders() {
-  const response = await fetch('api/orders/', {
+  const response = await fetch('/api/orders/', {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     }
   });
 
+  /*
   if (!response.ok) {
     throw new Error("Failed to get orders");
-  }
+  }*/
 
-  console.log("HandleResponse");
+  // console.log("HandleResponse");
   const data = await handleResp(response);
 
   const groupedOrders = Object.values(
@@ -118,14 +117,33 @@ export async function getOrders() {
         title: item.title,
         artist: item.artist,
         photo: item.photo,
-        sellerName: item.sellerName
+        sellerName: item.sellerName,
+        orderItemID: item.orderItemID
       });
 
       return acc;
     }, {})
   );
 
-  console.log("Orders: ", groupedOrders);
+  // console.log("Orders: ", groupedOrders);
   return groupedOrders;
 
 }
+
+export async function postReturn(returnObj) {
+  const response = await fetch('/api/returns/', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+    body: JSON.stringify(returnObj),
+  });
+
+  const data = await handleResp(response);
+
+  return data;
+}
+
+
+

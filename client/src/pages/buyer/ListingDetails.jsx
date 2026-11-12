@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getListing } from "../../api/listingApi";
+import { getListing } from "../../api/buyerApi";
 import "./ListingDetails.css";
 
 function ListingDetails() {
