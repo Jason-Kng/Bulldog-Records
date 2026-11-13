@@ -5,6 +5,7 @@ import db from '../database/database.js';
 // const upload = multer({ dest: 'uploads/' })
 import upload from '../middleware/upload.js';
 import requireApproved from '../middleware/approvedSeller.js';
+import requireActive from '../middleware/requireActive.js';
 
 const router = express.Router();
 
@@ -37,7 +38,7 @@ router.get("/", (req, res) => {
 
 // create a listing
 // testing on HTTPIE: worked
-router.post("/listings", requireApproved, upload.single("photo"), (req, res) => {
+router.post("/listings", requireApproved, requireActive, upload.single("photo"), (req, res) => {
 
   // db fields
   const { title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price } = req.body;
@@ -79,6 +80,9 @@ router.post("/listings", requireApproved, upload.single("photo"), (req, res) => 
 
   // create entry in db
   try {
+
+
+    
     const query = db.prepare(`INSERT INTO Listing (sellerID, title, artist, releaseDate, mediaType, genre, EAN, condition, stock, price, listingStatus, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
     const values = query.run(req.sellerID, title, artist, releaseDate || null, mediaType, genre, EAN || null, condition, stock || 0, priceInCents, listingStatus, photoPath)
 
@@ -164,8 +168,164 @@ router.get("/listings/:id", (req, res) => {
   res.json(listing);
 });
 
+// get seller's orders
+router.get("/orders", (req, res) => {
+  const query = db.prepare(`SELECT
+    o.orderID,
+    o.dateCreated,
+    o.dateShipped,
+    o.orderStatus,
+    oi.orderItemID,
+    oi.listingID,
+    l.title,
+    oi.price,
+    oi.itemQuantity,
+    oi.orderItemStatus,
+    u.name AS buyerName,
+    u.email AS buyerEmail
+    FROM Orders o
+    JOIN Buyer b ON o.buyerID = b.buyerID
+    JOIN User u ON b.userID = u.userID
+    JOIN OrderItem oi ON o.orderID = oi.orderID
+    JOIN Listing l ON oi.listingID = l.listingID
+    WHERE l.sellerID = ?
+      AND l.listingStatus != 'removed'
+    ORDER BY o.dateCreated DESC;`);
+  const orders = query.all(req.sellerID);
+
+  res.json(orders);
+});
+
+// get one order
+router.get("/orders/:id", (req, res) => {
+  const query = db.prepare(`
+    SELECT
+    o.orderID,
+    o.dateCreated,
+    o.dateShipped,
+    o.orderStatus,
+    oi.orderItemID,
+    oi.listingID,
+    l.title AS listingTitle,
+    oi.price,
+    oi.itemQuantity,
+    oi.orderItemStatus,
+    u.name AS buyerName,
+    u.email AS buyerEmail,
+    sa.street AS shippingStreet,
+    sa.city AS shippingCity,
+    sa.state AS shippingState,
+    sa.zip AS shippingZip,
+    sa.country AS shippingCountry,
+    ba.street AS billingStreet,
+    ba.city AS billingCity,
+    ba.state AS billingState,
+    ba.zip AS billingZip,
+    ba.country AS billingCountry
+  FROM Orders o
+  JOIN Buyer b ON o.buyerID = b.buyerID
+  JOIN User u ON b.userID = u.userID
+  JOIN OrderItem oi ON o.orderID = oi.orderID
+  JOIN Listing l ON oi.listingID = l.listingID
+  JOIN Address sa ON o.shippingAddress = sa.addressID
+  JOIN Address ba ON o.billingAddress = ba.addressID
+  WHERE o.orderID = ?
+    AND l.sellerID = ?
+    AND l.listingStatus != 'removed'
+  `);
+
+  const order = query.all(req.params.id, req.sellerID);
+
+  if (order.length === 0) {
+    return res.status(404).json({ error: "Order not found" });
+  }
+
+  console.log(order);
+
+  res.json(order);
+});
+
+
+// get one order's general details
+router.get("/orders/details/:id", (req, res) => {
+  const query = db.prepare(`
+    SELECT
+      o.orderID,
+      o.dateCreated,
+      o.dateShipped,
+      o.orderStatus,
+      o.orderTotalCost,
+      o.shippingAddress,
+      u.name AS buyerName,
+      u.email AS buyerEmail
+    FROM Orders o
+    JOIN Buyer b ON o.buyerID = b.buyerID
+    JOIN User u ON b.userID = u.userID
+    JOIN OrderItem oi ON o.orderID = oi.orderID
+    JOIN Listing l ON oi.listingID = l.listingID
+    WHERE o.orderID = ?
+      AND l.sellerID = ?
+      AND l.listingStatus != 'removed'
+  `);
+
+  const details = query.all(req.params.id, req.sellerID);
+
+  if (details.length === 0) {
+    return res.status(404).json({ error: "Details not found" });
+  }
+
+
+  res.json(details);
+});
+
+// get returns for seller
+router.get("/returns", (req, res) => {
+  const query = db.prepare(`
+    SELECT
+      r.returnID,
+      r.orderID,
+      r.orderItemID,
+      l.title AS listingTitle,
+      oi.price,
+      r.returnQuantity,
+      u.name AS buyerName,
+      u.email AS buyerEmail,
+      r.reason,
+      r.returnStatus,
+      r.dateRequested
+    FROM Returns r
+    JOIN OrderItem oi ON r.orderItemID = oi.orderItemID
+    JOIN Listing l ON oi.listingID = l.listingID
+    JOIN Buyer b ON r.buyerID = b.buyerID
+    JOIN User u ON b.userID = u.userID
+    WHERE l.sellerID = ?
+    ORDER BY r.dateRequested DESC
+  `);
+
+  const returns = query.all(req.sellerID);
+
+  res.json(returns);
+});
+
+// get sales info
+router.get("/financial", (req, res) => {
+  const query = db.prepare(`
+    SELECT
+      o.orderID,
+      oi.orderItemID,
+      l.title AS listingTitle,
+      oi.itemQuantity,
+      oi.price,
+      o.dateCreated
+    FROM OrderItem oi
+    JOIN Orders o ON oi.orderID = o.orderID
+    JOIN Listing l ON oi.listingID = l.listingID
+    WHERE l.sellerID = ?
+      AND oi.orderItemStatus != 'canceled'
+    ORDER BY o.dateCreated DESC
+  `);
+
+  res.json(query.all(req.sellerID));
+});
+
 export default router;
-
-// view order history
-
-// view payment history

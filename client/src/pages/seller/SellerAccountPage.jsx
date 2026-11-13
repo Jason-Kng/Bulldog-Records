@@ -40,17 +40,39 @@ function SellerAccountPage() {
       <button
         type="button"
         className="seller-view-listings-button"
-        onClick={() => navigate("/seller")}
+        onClick={() => navigate("/seller/orders")}
       >
-        View Sales
+        View Orders
       </button>
       <button
         type="button"
         className="seller-view-listings-button"
-        onClick={() => navigate("/seller")}
+        onClick={() => navigate("/seller/returns")}
       >
-        View Returns
+        View Refunds
       </button>
+       <button
+        type="button"
+        className="seller-view-listings-button"
+        onClick={() => navigate("/seller/financial")}
+      >
+        Financial History
+      </button>
+      </div>
+
+      <div className="errors-containers">
+      {seller && seller.accountStatus !== "active" && (
+        <p className="error-message">Your account is {seller.accountStatus}. You cannot create new listings. Pending orders will still be processed.</p>
+        
+      )}
+
+      {seller && seller.approvalStatus == "pending" && (
+        <p className="error-message">Your seller account approval is {seller.approvalStatus}. You cannot create new listings.</p>
+      )}
+
+      {seller && seller.approvalStatus == "rejected" && (
+        <p className="error-message">Your seller account was {seller.approvalStatus}.</p>
+      )}
       </div>
 
       

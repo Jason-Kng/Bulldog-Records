@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminSellerApprovals({ token }) {
     const [sellers, setSellers] = useState([]);
@@ -6,6 +7,7 @@ export default function AdminSellerApprovals({ token }) {
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const [updatingID, setUpdatingID] = useState(null);
+    const navigate = useNavigate();
 
     const apiURL = 'http://localhost:3000/api/admin';
 
@@ -103,15 +105,30 @@ export default function AdminSellerApprovals({ token }) {
 
     return (
         <main className="admin-approvals">
-            <h2>Seller Approvals</h2>
+            <h2>New Seller Approvals</h2>
 
             {error && <p role="alert">{error}</p>}
             {message && <p role="status">{message}</p>}
             
-            <div className='refresh-pending-sellers-button-container'>
-            <button onClick={loadPendingSellers}>
+            <div class="listings-buttons-container">
+                <button
+                type="button"
+                className="seller-view-listings-button"
+                onClick={() => navigate("/admin")}
+                >
+                My Dashboard
+                </button>
+                
+                <button
+                type="button"
+                className="seller-view-listings-button"
+                onClick={loadPendingSellers}
+                >
                 Refresh list
-            </button>
+                </button>
+
+                
+
             </div>
 
             {!error && sellers.length ===0 && (
@@ -134,10 +151,8 @@ export default function AdminSellerApprovals({ token }) {
                         onClick={() =>
                             updateSeller(seller.sellerID, 'approved')
                         }
-                    >
-                        {updatingID === seller.sellerID
-                            ? 'Updating...'
-                            : 'Approve'}
+                    >Approve
+                        
                     </button>
 
                     <button 

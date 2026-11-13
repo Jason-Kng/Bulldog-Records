@@ -100,20 +100,100 @@ a {
   
 }
 
-.listings-container li {
+/* .listings-container li {
   border: 1px solid black;
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 50px;
   padding-right: 50px;
   border-radius: 30px;
+  background-color: var(--light-green);
+} */
+
+.listings-container-li {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
   background-color: var(--light-gray);
+}
+
+.listings-container-li.shipped {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: var(--light-blue);
+}
+
+.listings-container-li.active {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: var(--light-green);
+}
+
+.listings-container-li.pending {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: var(--light-orange);
+}
+
+.listings-container-li.canceled {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: var(--light-red);
+}
+
+.listings-container-li.deactivated {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: var(--light-red);
+}
+
+.listings-container-li.rejected {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: var(--light-gray) !important;
+}
+
+.listings-container-li.delivered {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: var(--light-green);
 }
 
 .listings-container a {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 
 }
 
@@ -140,6 +220,20 @@ a {
   align-items: center;
 }
 
+.status-circle.shipped {
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  background-color: var(--blue);
+}
+
+.status-circle.delivered {
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  background-color: var(--green);
+}
+
 .status-circle.active {
   border-radius: 50%;
   width: 7px;
@@ -154,7 +248,35 @@ a {
   background-color: var(--orange);
 }
 
+.status-circle.canceled {
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  background-color: var(--red);
+}
+
+
+.listing-page-status.canceled {
+  color: var(--red);
+  font-weight: bold;
+}
+
+.listing-page-status.deactivated {
+  color: var(--red);
+  font-weight: bold;
+}
+
+.listing-page-status.shipped {
+  color: var(--blue);
+  font-weight: bold;
+}
+
 .listing-page-status.active {
+  color: var(--green);
+  font-weight: bold;
+}
+
+.listing-page-status.delivered {
   color: var(--green);
   font-weight: bold;
 }
@@ -303,4 +425,176 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+/* Seller Listings Page */
+.seller-listings-divider {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+
+}
+
+.seller-listings-divider ul {
+  width: 100%;
+  overflow-y: auto;
+  max-height: 620px;
+
+}
+
+/* orders */
+.seller-view-listings-button { 
+  text-transform: capitalize; 
+}
+
+.seller-view-orders-button { 
+  text-transform: capitalize; 
+}
+
+.seller-view-orders-button {
+  position: relative;
+  width: 10%;
+  padding: 12px 24px;
+
+  border: none;
+  border-radius: 6px;
+
+  background-color: var(--light_maroon) !important;
+  color: var(--maroon) !important;
+
+  font-size: 16px;
+  font-weight: normal;
+  cursor: pointer;
+  display: block;
+  justify-self: center;
+  border: 1px solid var(--maroon);
+}
+
+.seller-view-orders-button {
+  background-color: var(--accent-bg);
+}
+
+.seller-view-orders-button.active {
+  /* background-color: var(--accent) !important;
+  color: white !important; */
+  background-color: var(--medium-dark-maroon) !important;
+  font-weight: bold;
+  border: 1.8px solid var(--maroon);
+}
+
+.seller-view-orders-button:hover {
+  opacity: 0.9;
+}
+
+.seller-orders-buttons-container {
+  display: flex;
+  flex-direction: row !important;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* returns */
+.return-reason {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* financial history */
+
+.listings-container table {
+  width: 100%;
+  text-align: left;
+  /* border: 1px solid var(--maroon); */
+  border-radius: 15px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  /* padding: 5px; */
+}
+
+
+
+.listings-container thead {
+  background-color: var(--light_maroon);
+  border-radius: 15px;
+}
+
+.listings-container th {
+  padding: 20px;
+}
+
+.listings-container td {
+  padding: 10px 20px;
+}
+
+.listings-container th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.listings-container th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.total-sales {
+  color: var(--green);
+  font-weight: bold;
+  background-color: var(--light-green);
+}
+
+.total-losses {
+  color: var(--red);
+  font-weight: bold;
+  background-color: var(--light-red);
+}
+
+.listings-container tfoot .total-sales td {
+  background-color: var(--light-green);
+
+}
+
+.listings-container tfoot .total-sales td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.listings-container tfoot .total-sales td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+
+.listings-container tfoot .total-losses td {
+  background-color: var(--light-red);
+
+}
+
+.listings-container tfoot .total-losses td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.listings-container tfoot .total-losses td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.net-sales {
+  display: flex;
+  background-color: var(--light_maroon);
+  border-radius: 6px;
+  padding: 12px 24px;
+  width: 100%;
+  justify-content: space-between;
+  font-weight: bold;
+  color: var(--maroon);
+  /* border: 1px solid var(--maroon); */
+  margin-top: 20px;
+}
+
+.error-message {
+  font-weight: bold;
+  color: var(--red);
+  margin-bottom: 0 !important;
+  margin-top: 10px;
+}
+
+.errors-containers {
+  margin-top: 15px;
 }

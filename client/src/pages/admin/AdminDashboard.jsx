@@ -5,42 +5,40 @@ const dashboardItems = [
     {
         title: 'Manage Users',
         description: 'View and manage buyer and seller accounts.',
-        path: 'admin/users',
+        path: '/admin/users',
         icon: '#',
     },
     {
-        title: 'Seller Approvals',
+        title: 'New Seller Approvals',
         description: 'Review pending seller applications.',
         path: '/admin/sellers',
         icon: '@',
     },
+     {
+        title: 'Manage Listings',
+        description: 'Manage listings posted by sellers.',
+        path: '/admin/manage-listings',
+        icon: '#',
+    },
     {
-        title: 'Listing Approvals',
+        title: 'New Listing Approvals',
         description: 'Review and approve pending product listings.',
         path: '/admin/listings',
         icon: '%',
     },
     {
-        title: 'Manage Reports',
-        description: 'Review reports submitted by users.',
-        path: '/admin/reports',
-        icon: '+',
+        title: 'Manage Orders',
+        description: 'Manage orders placed by buyers.',
+        path: '/admin/orders',
+        icon: '#',
     },
 ];
 
 function AdminDashboard() {
     return (
-        <main className="admin-dashboard">
-            <header className="admin-header">
-                <div>
-                    <h1>Bulldog-Records Admin</h1>
-                    <p>Placeholder text.</p>
-                </div>
-            </header>
-
-            <section className="admin-welcome">
+        <div className="seller-account-container">
+            <section className="">
                 <h2>Dashboard Overview</h2>
-                <p>Select a section to manage.</p>
             </section>
 
             <section className="admin-grid">
@@ -59,7 +57,7 @@ function AdminDashboard() {
                     </Link>
                 ))}
             </section>
-        </main>
+        </div>
     )
 }
 

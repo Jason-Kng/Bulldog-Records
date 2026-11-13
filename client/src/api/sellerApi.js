@@ -7,15 +7,15 @@ function authHeaders() {
 //   return fetch("/api/seller", { headers: authHeaders() }).then((res) => res.json());
 // }
 
-export function getSellerAccountInfo() {
+export async function getSellerAccountInfo() {
   return fetch("/api/seller", { headers: authHeaders() }).then((res) => res.json());
 }
 
-export function getListings() {
+export async function getListings() {
   return fetch("/api/seller/listings", { headers: authHeaders() }).then((res) => res.json());
 }
 
-export function getListing(id) {
+export async function getListing(id) {
   return fetch(`/api/seller/listings/${id}`, { headers: authHeaders() }).then((res) => res.json());
 }
 
@@ -51,7 +51,7 @@ export async function addListing(listing) {
     return data;
   });
 }
-export function updateListing(id, listing) {
+export async function updateListing(id, listing) {
   const formData = new FormData();
 
   formData.append("title", listing.title);
@@ -76,9 +76,31 @@ export function updateListing(id, listing) {
 }
 
 
-export function removeListing(id) {
+export async function removeListing(id) {
   return fetch(`/api/seller/listings/${id}`, {
     method: "DELETE",
     headers: authHeaders(),
   }).then((res) => res.json());
 }
+
+// orders
+export async function getOrders() {
+  return fetch("/api/seller/orders", { headers: authHeaders() }).then((res) => res.json());
+}
+
+export async function getOrder(id) {
+  return fetch(`/api/seller/orders/${id}`, { headers: authHeaders() }).then((res) => res.json());
+}
+
+export async function getOrderDetails(id) {
+  return fetch(`/api/seller/orders/details/${id}`, { headers: authHeaders() }).then((res) => res.json());
+}
+
+export async function getReturns() {
+  return fetch("/api/seller/returns", { headers: authHeaders() }).then((res) => res.json());
+}
+
+export async function getFinancial() {
+  return fetch("/api/seller/financial", { headers: authHeaders() }).then((res) => res.json());
+}
+

@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS "Orders" (
     "orderTotalCost" INTEGER,
     "shippingAddress"  INTEGER NOT NULL REFERENCES Address(addressID),
     "billingAddress"  INTEGER NOT NULL REFERENCES Address(addressID),
-    "orderStatus"     TEXT NOT NULL DEFAULT 'pending' CHECK ("orderStatus" IN ('pending', 'shipped', 'delivered')),
+    "orderStatus"     TEXT NOT NULL DEFAULT 'pending' CHECK ("orderStatus" IN ('pending', 'shipped', 'delivered', 'canceled')),
     PRIMARY KEY("orderID")
 );
 CREATE TABLE IF NOT EXISTS "OrderItem" (
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS "OrderItem" (
     "orderID" INTEGER NOT NULL REFERENCES Orders(orderID) on DELETE CASCADE,
     "price"     INTEGER NOT NULL CHECK (price>0),
     "itemQuantity" INTEGER NOT NULL CHECK (itemQuantity>0),
-    "orderItemStatus"     TEXT NOT NULL DEFAULT 'pending' CHECK ("orderItemStatus" IN ('pending', 'shipped', 'delivered', 'returned')),
+    "orderItemStatus"     TEXT NOT NULL DEFAULT 'pending' CHECK ("orderItemStatus" IN ('pending', 'shipped', 'delivered', 'returned', 'canceled')),
     PRIMARY KEY("orderItemID"),
     UNIQUE ("orderID", "listingID")
 );
