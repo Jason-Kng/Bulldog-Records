@@ -188,6 +188,9 @@
   justify-content: flex-start;
   gap: 10px;
   user-select: none;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  border-style: hidden hidden solid hidden;
   /* flex-direction: column; */
 }
 
@@ -212,6 +215,27 @@
 
 .dropdown-arrow.open {
   transform: rotate(-90deg);
+}
+
+
+.suggested-listings-scroll {
+  display: flex;
+  gap: 20px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding: 10px 0;
+
+  scroll-behavior: smooth;
+}
+
+.suggested-listings-scroll .card-container {
+  flex: 0 0 auto;
+}
+
+.suggested-listings-scroll .card-container:hover {
+  cursor: pointer;
 }
 
 /* @media (prefers-color-scheme: dark) { */

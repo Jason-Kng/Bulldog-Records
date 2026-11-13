@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getListing } from "../../api/buyerApi";
+import { getListing, getSuggestions } from "../../api/buyerApi";
 import "./ListingDetails.css";
+import Card from "../../components/buyer/ListingCard";
 
 function ListingDetails() {
   let navigate = useNavigate();
@@ -10,6 +11,7 @@ function ListingDetails() {
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const [suggested, setSuggested] = useState([]);
   // console.log(params);
 
   useEffect(() => {
@@ -25,6 +27,11 @@ function ListingDetails() {
         }
       });
   }, [params.id, navigate]);
+
+  useEffect(() => {
+    getSuggestions(params.id)
+      .then((data) => { setSuggested(data); })
+  }, [isVisible, params.id, listing.genre, listing.artist]);
 
   const handleAdd = () => {
     fetch("/api/cart/items/", {
@@ -65,6 +72,8 @@ function ListingDetails() {
     navigate(-1);
   };
 
+  console.log(listing);
+
   return (
     <>
       <div className="listing-details-page">
@@ -99,7 +108,7 @@ function ListingDetails() {
                   <strong>Stock:</strong> {listing.stock}
                 </p>
                 <p>
-                  <strong>Seller:</strong> {listing.sellerName}
+                  <strong>Seller:</strong> {listing.Sellername}
                 </p>
               </div>
             </div>
@@ -152,7 +161,14 @@ function ListingDetails() {
 
           {isVisible && (
             <div className="suggested-listings-menu">
-              <p>hidden or visible?</p>
+              <div className='suggested-listings-scroll'>
+                {suggested.length === 0 ? (
+                  <p>No similar listings found.</p>
+                ) : (suggested.map((suggest) => (
+                  <Card key={suggest.listingID} listingID={suggest.listingID} image={suggest.photo} title={suggest.title} artist={suggest.artist} price={suggest.price} seller={suggest.name} />
+                )))}
+
+              </div>
             </div>
           )}
         </div>

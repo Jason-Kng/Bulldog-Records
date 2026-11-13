@@ -5,7 +5,28 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
 
-  const stmt = db.prepare("SELECT Listing.title, Listing.artist, Listing.listingID, Listing.price, Listing.photo, Listing.sellerID, User.name, Seller.accountStatus, Seller.approvalStatus FROM Listing JOIN Seller ON Listing.sellerID = Seller.sellerID JOIN User ON Seller.userID = User.userID WHERE Listing.listingStatus NOT IN ('pending', 'deactivated', 'removed') AND Seller.accountStatus = 'active' AND Seller.approvalStatus = 'approved' ORDER BY RANDOM() LIMIT 15");
+  const stmt = db.prepare(`
+        SELECT
+            Listing.Title,
+            Listing.Artist,
+            Listing.ListingID,
+            Listing.Price,
+            Listing.Photo,
+            Listing.SellerID,
+            User.Name,
+            Seller.Accountstatus,
+            Seller.Approvalstatus
+        FROM Listing
+        JOIN Seller ON Listing.SellerID = Seller.SellerID
+        JOIN User ON Seller.UserID = User.UserID
+        WHERE
+            Listing.Listingstatus NOT IN ('pending', 'deactivated', 'removed')
+            AND Seller.Accountstatus = 'active'
+            AND Seller.Approvalstatus = 'approved'
+        ORDER BY RANDOM()
+        LIMIT 15
+        `
+  );
   try {
     const results = stmt.all();
 
@@ -17,7 +38,15 @@ router.get('/', (req, res) => {
 
 router.get('/details/:id', (req, res) => {
   const id = req.params;
-  const stmt = db.prepare("SELECT Listing.*, User.name AS sellerName FROM Listing INNER JOIN User ON Listing.sellerID = User.userID WHERE Listing.listingID = ?");
+  const stmt = db.prepare(`
+        SELECT
+            Listing.*,
+            User.Name AS Sellername
+        FROM Listing
+        INNER JOIN User ON Listing.SellerID = User.UserID
+        WHERE Listing.ListingID = ?
+        `
+  );
 
   try {
     const results = stmt.get(id.id);
@@ -35,7 +64,18 @@ router.get('/details/:id', (req, res) => {
 router.get('/search', (req, res) => {
   const query = req.query.query
 
-  const stmt = db.prepare("SELECT Listing.*, User.name FROM Listing JOIN Seller ON Listing.sellerID = Seller.sellerID JOIN User ON Seller.userID = User.userID WHERE (Listing.title LIKE ? OR Listing.artist LIKE ?) AND listingStatus NOT IN ('pending', 'deactivated', 'removed') ");
+  const stmt = db.prepare(`
+        SELECT
+            Listing.*,
+            User.Name
+        FROM Listing
+        JOIN Seller ON Listing.SellerID = Seller.SellerID
+        JOIN User ON Seller.UserID = User.UserID
+        WHERE
+            (Listing.Title LIKE ? OR Listing.Artist LIKE ?)
+            AND Listingstatus NOT IN ('pending', 'deactivated', 'removed')
+        `
+  );
 
   try {
     const results = stmt.all(`%${query}%`, `%${query}`);
@@ -45,6 +85,43 @@ router.get('/search', (req, res) => {
   }
 
 });
+
+router.get('/:id/suggest', (req, res) => {
+  const id = req.params;
+  const stmt = db.prepare(`
+        SELECT
+            Listing.Title,
+            Listing.Artist,
+            Listing.ListingID,
+            Listing.Price,
+            Listing.Photo,
+            Listing.SellerID,
+			Listing.genre,
+            User.Name,
+            Seller.Accountstatus,
+            Seller.Approvalstatus
+        FROM Listing
+        JOIN Seller ON Listing.SellerID = Seller.SellerID
+        JOIN User ON Seller.UserID = User.UserID
+        WHERE (
+            genre = (SELECT Listing.genre FROM Listing WHERE ListingID = ?)
+            OR artist = (SELECT Listing.artist FROM Listing WHERE ListingID = ?)
+          )
+            AND Listing.Listingstatus = 'active'
+            AND Seller.Accountstatus = 'active'
+            AND Seller.Approvalstatus = 'approved'
+			AND listingID != ?
+			AND Listing.stock > 0
+        `
+  );
+
+  try {
+    const results = stmt.all(id.id, id.id, id.id);
+    return res.status(200).json(results);
+  } catch (e) {
+    res.status(500).json("error: ", "Server Error");
+  }
+})
 
 
 export default router;

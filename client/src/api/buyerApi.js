@@ -41,6 +41,12 @@ export async function searchListings(query) {
   return response.json();
 }
 
+export async function getSuggestions(id) {
+  const response = await fetch(`/api/listing/${id}/suggest`);
+
+  return response.json();
+}
+
 export async function getOrder(id) {
   const response = await fetch(`/api/orders/${id}`, {
     headers: {
