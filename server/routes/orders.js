@@ -11,7 +11,7 @@ router.get('/', authenticateToken, (req, res) => {
                           JOIN Listing ON OrderItem.listingID = Listing.listingID 
                           JOIN Seller ON Listing.sellerID = Seller.sellerID 
                           JOIN User ON Seller.userID = User.userID
-                          WHERE Buyer.userID = ? AND OrderItem.orderItemStatus != 'returned'`);
+                          WHERE Buyer.userID = ?`);
 
   try {
     const results = stmt.all(req.user.userID);
@@ -25,13 +25,13 @@ router.get('/', authenticateToken, (req, res) => {
 
 router.get('/:id', authenticateToken, (req, res) => {
   const id = req.params;
-  const stmt = db.prepare(`SELECT Orders.*, Listing.title, Listing.artist, Listing.photo, Listing.listingID, Listing.price, OrderItem.orderItemID, OrderItem.itemQuantity, User.name AS sellerName FROM Orders
+  const stmt = db.prepare(`SELECT Orders.*, Listing.title, Listing.artist, Listing.photo, Listing.listingID, Listing.price, OrderItem.orderItemID, OrderItem.itemQuantity, OrderItem.orderItemStatus, User.name AS sellerName FROM Orders
                           JOIN Buyer ON Orders.buyerID = Buyer.buyerID
                           JOIN OrderItem ON orderItem.orderID = Orders.orderID
                           JOIN Listing ON OrderItem.listingID = Listing.listingID 
                           JOIN Seller ON Listing.sellerID = Seller.sellerID 
                           JOIN User ON Seller.userID = User.userID
-                          WHERE Buyer.userID = ? AND Orders.orderID = ? AND OrderItem.orderItemStatus != 'returned'`);
+                          WHERE Buyer.userID = ? AND Orders.orderID = ?`);
   try {
     const results = stmt.all(req.user.userID, id.id);
     console.log("Order id: ", results);

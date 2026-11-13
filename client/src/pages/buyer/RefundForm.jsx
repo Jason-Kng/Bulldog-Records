@@ -8,12 +8,12 @@ function RefundForm() {
   const { order, item } = location.state || {};
   console.log("order: ", order);
 
-  const [listingID, setListingID] = useState("");
+  const [listingID, setListingID] = useState(String(item ?? ""));
   const [quantity, setQuantity] = useState(1);
   const [reason, setReason] = useState("");
   const [message, setMessage] = useState("");
 
-  const selectedItem = order?.items?.find((orderItem) => String(orderItem.listingID) === String(item));
+  const selectedItem = order?.items?.find((orderItem) => String(orderItem.listingID) === listingID);
 
   const reasons = [
     "Item arrived damaged",
@@ -36,6 +36,11 @@ function RefundForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!selectedItem) {
+      setMessage("Please select an item to return.");
+      return;
+    }
+
     const returnObj = {
       orderID: order.orderID,
       orderItemID: selectedItem.orderItemID,
@@ -46,13 +51,13 @@ function RefundForm() {
 
     try {
       await postReturn(returnObj);
+      setMessage("Your refund request has been submitted.");
       navigate("/order-history")
     } catch (e) {
       setMessage(e.message);
     }
 
     console.log("Return Obj: ", returnObj);
-    setMessage("Your refund request has been submitted.");
   };
 
   return (
@@ -65,7 +70,7 @@ function RefundForm() {
             <label>Item</label>
             <select
               value={listingID}
-              onChange={(e) => setListingID(e.target.value)}
+              onChange={(e) => { setListingID(e.target.value); setQuantity(1) }}
               required
             >
               <option value="">Choose an item</option>

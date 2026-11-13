@@ -8,7 +8,11 @@ async function handleResp(response) {
   }
 
   if (!response.ok) {
-    const error = new Error(data?.error || `Request failed with status ${response.status}`);
+    const error = new Error(
+      data?.error ||
+      data?.message ||
+      `Request failed with status ${response.status}`
+    );
 
     error.status = response.status;
     throw error;
@@ -18,7 +22,7 @@ async function handleResp(response) {
 }
 
 export async function getListings() {
-  const response = await fetch('api/listing/');
+  const response = await fetch('/api/listing/');
 
 
   if (!response.ok) {
@@ -38,13 +42,13 @@ export async function getListing(id) {
 export async function searchListings(query) {
   const response = await fetch(`/api/listing/search?query=${encodeURIComponent(query)}`);
 
-  return response.json();
+  return handleResp(response);
 }
 
 export async function getSuggestions(id) {
   const response = await fetch(`/api/listing/${id}/suggest`);
 
-  return response.json();
+  return handleResp(response);
 }
 
 export async function getOrder(id) {
@@ -79,7 +83,8 @@ export async function getOrder(id) {
         sellerName: item.sellerName,
         price: item.price,
         quantity: item.itemQuantity,
-        orderItemID: item.orderItemID
+        orderItemID: item.orderItemID,
+        orderItemStatus: item.orderItemStatus
       });
 
       return acc;
@@ -97,12 +102,6 @@ export async function getOrders() {
     }
   });
 
-  /*
-  if (!response.ok) {
-    throw new Error("Failed to get orders");
-  }*/
-
-  // console.log("HandleResponse");
   const data = await handleResp(response);
 
   const groupedOrders = Object.values(
@@ -131,7 +130,6 @@ export async function getOrders() {
     }, {})
   );
 
-  // console.log("Orders: ", groupedOrders);
   return groupedOrders;
 
 }

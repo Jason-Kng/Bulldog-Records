@@ -10,41 +10,45 @@ function Search() {
   const search = searchParams.get("query");
   const [listings, setListings] = useState([]);
   const [loadedSearch, setLoadedSearch] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!search) {
+    if (!search?.trim()) {
       return;
     }
 
+    let cancelled = false;
+
+
     searchListings(search)
       .then(data => {
-        console.log("Client data: ", data);
-        setListings(data);
-        setLoadedSearch(search)
+        if (!cancelled) {
+          setListings(data);
+          setError(null);
+        }
+      })
+      .catch(e => {
+        if (!cancelled) {
+          setError(e.message);
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setLoadedSearch(search)
+        }
       });
+
+    return () => {
+      cancelled = true;
+    };
+
   }, [search]);
 
   const loading = search && loadedSearch !== search;
 
-  // if (search && listings.length) {
-  //   return (
-  //     <>
-  //       <div>
-  //         <div className='listing-section'>
-  //           <h2>Search Listings</h2>
-  //           <div className='search-results'>
-  //             {listings.map((listing) => (
-  //               <SearchCard key={listing.listingID} listingID={listing.listingID} image={listing.photo} title={listing.title} artist={listing.artist} price={listing.price} seller={listing.name} />
-  //             ))}
-  //
-  //           </div>
-  //         </div>
-  //       </div>
-  //
-  //
-  //     </>
-  //   );
-  // }
+  if (error) {
+    return <p>Unable to load search results: {error}</p>;
+  }
 
   if (!search || search.trim() === "") {
     return (

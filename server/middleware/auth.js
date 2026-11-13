@@ -8,7 +8,7 @@ function authenticateToken(req, res, next) {
   if (token == null) return res.status(401).json({ message: "Invalid Token" });
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, usr) => {
-    if (err) return res.sendStatus(403).json({ message: "Invalid or expired token" });
+    if (err) return res.status(403).json({ error: "Invalid or expired token" });
 
     req.user = usr
     next()

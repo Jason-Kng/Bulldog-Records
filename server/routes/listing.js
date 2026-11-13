@@ -43,7 +43,8 @@ router.get('/details/:id', (req, res) => {
             Listing.*,
             User.Name AS Sellername
         FROM Listing
-        INNER JOIN User ON Listing.SellerID = User.UserID
+        JOIN Seller ON Listing.sellerID = Seller.sellerID
+        JOIN User ON Seller.userID = User.userID
         WHERE Listing.ListingID = ?
         `
   );
@@ -69,16 +70,16 @@ router.get('/search', (req, res) => {
             Listing.*,
             User.Name
         FROM Listing
-        JOIN Seller ON Listing.SellerID = Seller.SellerID
-        JOIN User ON Seller.UserID = User.UserID
+        JOIN Seller ON Listing.sellerID = Seller.sellerID
+        JOIN User ON Seller.userID = User.userID
         WHERE
-            (Listing.Title LIKE ? OR Listing.Artist LIKE ?)
+            (Listing.title LIKE ? OR Listing.artist LIKE ?)
             AND Listingstatus NOT IN ('pending', 'deactivated', 'removed')
         `
   );
 
   try {
-    const results = stmt.all(`%${query}%`, `%${query}`);
+    const results = stmt.all(`%${query}%`, `%${query}%`);
     return res.status(200).json(results);
   } catch (e) {
     return res.status(500).json({ error: "Server Error" });

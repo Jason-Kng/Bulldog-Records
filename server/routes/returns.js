@@ -16,10 +16,26 @@ router.post("/", authenticateToken, (req, res) => {
 
   const returnQuery = db.transaction(() => {
     //const updateQuery = db.prepare(`UPDATE OrderItem SET orderItemStatus = 'returned', itemQuantity = (IIF(OrderItem.itemQuantity > 1, OrderItem.itemQuantity - ?, OrderItem.itemQuantity)) WHERE orderID = ? AND listingID = ?`);
-    const updateQuery = db.prepare(`UPDATE OrderItem SET orderItemStatus = 'returned' WHERE orderID = ? AND listingID = ?`);
-    const insertQuery = db.prepare(`INSERT INTO Returns (orderID, orderItemID, buyerID, reason, returnQuantity, returnStatus)  VALUES(?, ?, (SELECT buyerID FROM Buyer WHERE userID = ?), ?, ?, ?)`);
+    const updateQuery = db.prepare(`
+                                    UPDATE OrderItem SET orderItemStatus = 'returned'
+                                    WHERE orderID = ? AND listingID = ? AND orderID IN (
+                                        SELECT Orders.orderID
+                                        FROM Orders
+                                        JOIN Buyer ON Orders.buyerID = Buyer.buyerID
+                                        WHERE Buyer.userID = ?
+                                    )
+                                  `);
+    const insertQuery = db.prepare(`
+                                    INSERT INTO Returns (
+                                        orderID, orderItemID, buyerID, reason, returnQuantity, returnStatus
+                                    ) VALUES (?, ?, (
+                                        SELECT buyerID FROM Buyer
+                                        WHERE userID = ?
+                                    ), ?, ?, ?)
+                                  `);
+
+    updateQuery.run(orderObj.orderID, orderObj.listingID, req.user.userID);
     insertQuery.run(orderObj.orderID, orderObj.orderItemID, req.user.userID, orderObj.reason, orderObj.quantity, 'refunded');
-    updateQuery.run(orderObj.orderID, orderObj.listingID);
   })
 
   try {

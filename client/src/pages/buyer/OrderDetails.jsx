@@ -76,13 +76,13 @@ function OrderDetails() {
 
               <div className="item-info-left">
                 <p>Price: ${(item.price / 100).toFixed(2)}</p>
-                {order.orderStatus === "delivered" ? (
-                  <button disabled={order.orderStatus !== "delivered"} onClick={() => returnItem(item.listingID)}>Return</button>
+                {order.orderStatus === "delivered" && item.orderItemStatus !== "returned" ? (
+                  <button disabled={item.orderItemStatus !== "delivered"} onClick={() => returnItem(item.listingID)}>Return</button>
 
-                ) : order.orderStatus === "returned" ? (
+                ) : item.orderItemStatus === "returned" ? (
                   <p>Item has already been returned.</p>
                 ) : (
-                  <p>{order.orderStatus}</p>
+                  <p>{item.orderItemStatus}</p>
                 )}              </div>
             </div>
           ))}

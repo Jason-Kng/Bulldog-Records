@@ -23,6 +23,7 @@ function OrderHistoryCard({ orderObj }) {
       <div className="order-history-card-top">
         {orderObj.orderID && <h2 className="order-history-card-title">Order #{orderObj.orderID}</h2>}
         {dateFormat && <p className="order-history-card-date">Placed {dateFormat}</p>}
+        <span className="order-history-card-status">{orderObj.orderStatus}</span>
       </div>
       <div className="order-history-card-middle">
         {orderObj.items.map(item => (
@@ -36,7 +37,7 @@ function OrderHistoryCard({ orderObj }) {
 
       </div>
       <div className="order-history-card-bottom">
-        <p className="order-total">Order total</p>
+        <p className="order-total">Order total:</p>
         <h2>${(orderObj.orderTotalCost / 100).toFixed(2)}</h2>
 
       </div>

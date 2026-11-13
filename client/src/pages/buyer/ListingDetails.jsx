@@ -11,8 +11,8 @@ function ListingDetails() {
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState("");
   const [isVisible, setIsVisible] = useState(false);
-  const [suggested, setSuggested] = useState([]);
-  // console.log(params);
+  const [suggested, setSuggested] = useState(null);
+  const [suggestionError, setSuggestionError] = useState(null);
 
   useEffect(() => {
     getListing(params.id)
@@ -29,9 +29,19 @@ function ListingDetails() {
   }, [params.id, navigate]);
 
   useEffect(() => {
+    if (!isVisible) return;
+
+
     getSuggestions(params.id)
-      .then((data) => { setSuggested(data); })
-  }, [isVisible, params.id, listing.genre, listing.artist]);
+      .then((data) => {
+        setSuggested(data);
+        setSuggestionError(null);
+      })
+      .catch((error) => {
+        console.error("Error fetching suggestions: ", error);
+        setSuggestionError("Unable to load suggested listings.")
+      });
+  }, [isVisible, params.id]);
 
   const handleAdd = () => {
     fetch("/api/cart/items/", {
@@ -72,7 +82,6 @@ function ListingDetails() {
     navigate(-1);
   };
 
-  console.log(listing);
 
   return (
     <>
@@ -162,7 +171,9 @@ function ListingDetails() {
           {isVisible && (
             <div className="suggested-listings-menu">
               <div className='suggested-listings-scroll'>
-                {suggested.length === 0 ? (
+                {suggestionError ? (
+                  <p>{suggestionError}</p>
+                ) : !suggested ? (
                   <p>No similar listings found.</p>
                 ) : (suggested.map((suggest) => (
                   <Card key={suggest.listingID} listingID={suggest.listingID} image={suggest.photo} title={suggest.title} artist={suggest.artist} price={suggest.price} seller={suggest.name} />

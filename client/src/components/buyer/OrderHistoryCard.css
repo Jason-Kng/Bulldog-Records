@@ -1,65 +1,109 @@
 .order-history-card-container {
   display: flex;
   flex-direction: column;
-
-  width:100%;
+  width: 100%;
 
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
+  background-color: var(--surface);
 
-  margin: 8px;
 }
 
 .order-history-card-container:hover {
   cursor: pointer;
+  border-color: var(--accent-border);
+}
+
+
+.order-history-card-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 6px 16px;
+
+  margin: 18px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.order-history-card-title {
+  font-size: 20px;
+  color: var(--text-h);
 }
 
 .order-history-card-date {
-  opacity: 70%;
+  grid-column: 1;
+  font-size: 14px;
+  opacity: 0.7;
 }
 
-.order-history-card-top {
-  border: 1px var(--border);
-  border-style: hidden hidden solid hidden;
-  padding-bottom: 15px;
-  margin: 15px;
+.order-history-card-status {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-h);
+  text-transform: capitalize;
 }
 
 .order-history-images {
-  width: 10%;
-  height: 10%;
-  border-radius: 15px;
-  margin: 8px;
+  width: 75px;
+  height: 75px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .order-history-card-middle {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 
-  margin-right: 15px;
-  margin-left: 15px;
-  margin-bottom: 15px;
-  border: 1px var(--border);
-  border-style: hidden hidden solid hidden;
-  padding-bottom: 8px;
+  margin: 0 18px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
 }
 
 .order-history-middle-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.order-history-num-items {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-h);
 }
 
 .order-history-titles {
-  font-size: 13px;
-  opacity: 80%;
+  font-size: 14px;
+  opacity: 0.8;
+  overflow-wrap: anywhere;
 }
 
 
 .order-history-card-bottom {
-  margin: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 18px;
 }
-.order-total{
 
+.order-total {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.order-history-card-bottom h2 {
+  font-size: 20px;
+  color: var(--text-h);
 }
