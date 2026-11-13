@@ -61,7 +61,7 @@ const populateData = db.transaction(() => {
   listingQuery.run(seller2.lastInsertRowid, "good kid, m.A.A.d city", "Kendrick Lamar", "2012-10-22", "cd", "rap", "602537192268", "new", 6, 1600, "active", "/uploads/1793815719073.jpg");
   listingQuery.run(seller2.lastInsertRowid, "The Dark Side of the Moon", "Pink Floyd", "1973-03-01", "vinyl", "rock", "888751842619", "new", 3, 4200, "active", "/uploads/1793815774427.jpg");
   listingQuery.run(seller2.lastInsertRowid, "Back to Black", "Amy Winehouse", "2006-10-27", "cd", "soul", "602517341296", "used", 4, 1300, "active", "/uploads/1793815789600.png");
-  listingQuery.run(seller2.lastInsertRowid, "To Pimp a Butterfly", "Kendrick Lamar", "2015-03-15", "vinyl", "rap", "602547311009", "new", 2, 3600, "active", "/uploads/placeholder.png");
+  listingQuery.run(seller2.lastInsertRowid, "To Pimp a Butterfly", "Kendrick Lamar", "2015-03-15", "vinyl", "rap", "602547311009", "new", 2, 3600, "active", "/uploads/1794519965325.jpg");
   listingQuery.run(seller2.lastInsertRowid, "Long Way From Home", "JD Clayton", "2023-01-27", "vinyl", "country", "0197342060745", "new", 2, 2500, "active", "/uploads/lwfh.jpg");
   listingQuery.run(seller2.lastInsertRowid, "GUTS", "Olivia Rodrigo", "2023-09-08", "cd", "pop", null, "used", 3, 1500, "active", "/uploads/1793815820101.jpg");
   listingQuery.run(seller2.lastInsertRowid, "30", "Adele", "2021-11-19", "vinyl", "pop", null, "open", 2, 3000, "active", "/uploads/1793815840122.png");

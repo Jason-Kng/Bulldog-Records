@@ -2,6 +2,7 @@
   min-height: calc(100vh - 90px);
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -174,3 +175,47 @@
   text-align: center;
   margin: 0;
 }
+
+.suggested-listings-dropdown {
+  width: 100%;
+  max-width: 1050px;
+}
+
+.suggested-listings-title {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  user-select: none;
+  /* flex-direction: column; */
+}
+
+.suggested-listings-title h2 {
+  margin: 0;
+}
+
+.dropdown-arrow {
+  display: inline-block;
+  width: 24px;
+  height: 33.6px;
+  flex-shrink: 0;
+
+  background-color: var(--maroon);
+
+
+  mask: url("../../assets/arrow-left-5-svgrepo-com.svg") center / contain no-repeat;
+
+  transform: rotate(180deg);
+
+}
+
+.dropdown-arrow.open {
+  transform: rotate(-90deg);
+}
+
+/* @media (prefers-color-scheme: dark) { */
+/* .dropdown-arrow { */
+/* filter: invert(1); */
+/* } */
+/* } */

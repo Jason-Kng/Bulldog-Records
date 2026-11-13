@@ -9,6 +9,7 @@ function ListingDetails() {
   const [listing, setListing] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
   // console.log(params);
 
   useEffect(() => {
@@ -143,7 +144,20 @@ function ListingDetails() {
             <p className="cart-message">{message}</p>
           </div>
         </div>
+        <div className="suggested-listings-dropdown">
+          <div className="suggested-listings-title">
+            <h2 onClick={() => { setIsVisible(!isVisible) }}>More Like This</h2>
+            <span className={`dropdown-arrow ${isVisible ? "open" : ""}`} aria-hidden="true" />
+          </div>
+
+          {isVisible && (
+            <div className="suggested-listings-menu">
+              <p>hidden or visible?</p>
+            </div>
+          )}
+        </div>
       </div>
+
     </>
   );
 }
