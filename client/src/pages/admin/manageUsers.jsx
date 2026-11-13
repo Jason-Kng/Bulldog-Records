@@ -52,10 +52,11 @@ function ManageUsersPage() {
         <ul>
           <h3>Sellers</h3>
           {sellers.map((seller) => (
-            <li key={seller.id} className={`listings-container-li ${seller.accountStatus}`}>
+            <li key={seller.id} className={`listings-container-li ${seller.accountStatus} ${seller.approvalStatus}`}>
               <p className="listing-page-title">{seller.name}</p>
               <p className="listing-page-stock">{seller.email}</p>
-              <p className={`listing-page-status ${seller.accountStatus}`}>{seller.accountStatus}</p>
+              <p className={`listing-page-status ${seller.accountStatus}`}>Account Status: {seller.accountStatus}</p>
+              <p className={`users-page-status ${seller.approvalStatus}`}>{seller.approvalStatus}</p>
               <div className="users-buttons-container">
      
                 {seller.accountStatus === "active" ? (
@@ -87,7 +88,7 @@ function ManageUsersPage() {
                 <div>
                 <p className="listing-page-title">{buyer.name}</p>
                 <p className="listing-page-stock">{buyer.email}</p>
-                <p className={`listing-page-status ${buyer.accountStatus}`}>{buyer.accountStatus}</p>
+                <p className={`listing-page-status ${buyer.accountStatus}`}>Account Status: {buyer.accountStatus}</p>
 
                 <div className="users-buttons-container">
      
@@ -95,14 +96,14 @@ function ManageUsersPage() {
                     <button
                     type="button"
                     className="manage-users-button" 
-                    onClick={() => changeStatus("seller", buyer.id, "deactivated")}>
+                    onClick={() => changeStatus("buyer", buyer.id, "deactivated")}>
                       Deactivate
                     </button>
                   ) : (
                     <button 
                     type="button"
                     className="manage-users-button"
-                    onClick={() => changeStatus("seller", buyer.id, "active")}>
+                    onClick={() => changeStatus("buyer", buyer.id, "active")}>
                       Activate
                     </button>
                   )}

@@ -170,6 +170,16 @@ a {
   background-color: var(--light-red);
 }
 
+.listings-container-li.rejected {
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 20px;
+  background-color: var(--light-gray) !important;
+}
+
 .listings-container-li.delivered {
   border: 1px solid black;
   padding-top: 30px;

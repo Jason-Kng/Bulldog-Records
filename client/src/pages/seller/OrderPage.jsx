@@ -105,7 +105,7 @@ function OrderPage() {
               <p class="listing-page-stock">Item Status: {item.orderItemStatus}</p>
 
               <p class="listing-page-stock">Quantity: {item.itemQuantity}</p>
-              <p class="listing-page-stock">Price: ${(item.price / 100).toFixed(2)}</p>
+              <p class="listing-page-stock">{item.itemQuantity} x ${(item.price / 100).toFixed(2)} = ${((item.price * item.itemQuantity)/100).toFixed(2)}</p>
             </li>
             
           ))

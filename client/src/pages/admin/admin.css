@@ -13,3 +13,18 @@
   display: flex;
   flex-direction: column;
 }
+
+.users-page-status {
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid black;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.users-page-status.canceled {
+  color: var(--red);
+  font-weight: bold;
+}

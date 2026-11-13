@@ -17,7 +17,7 @@ function ListingPage() {
 
   function confirmRemove() {
 
-    if (!window.confirm("Remove Listing")) {
+    if (!window.confirm("Are you sure you want to remove this listing?")) {
       return;
     }
 
@@ -32,7 +32,18 @@ function ListingPage() {
   }
 
   return (
-    <>
+    <div class="listings-container">
+
+    {/* <div class="listings-buttons-container">
+        <button
+          type="button"
+          className="seller-view-listings-button"
+          onClick={() => navigate("/seller/listings")}
+        >
+          Back to Listings
+        </button>
+    </div> */}
+
       <div className="listing-details-page">
         <div className="listing-details-container">
           <div className="listing-details-image">
@@ -97,7 +108,7 @@ function ListingPage() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

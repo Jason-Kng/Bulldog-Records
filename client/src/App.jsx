@@ -25,6 +25,10 @@ import NotFound from "./pages/NotFound.jsx";
 import ApproveListings from "./pages/admin/listingApproval";
 import OrderPage from "./pages/seller/OrderPage.jsx";
 import ManageUsersPage from "./pages/admin/manageUsers.jsx";
+import ManageListingsPage from "./pages/admin/manageListings.jsx";
+import AdminListingPage from "./pages/admin/AdminListingPage.jsx";
+import AdminOrderPage from "./pages/admin/AdminOrderPage.jsx";
+import AdminOrdersPage from "./pages/admin/manageOrders.jsx";
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -92,26 +96,42 @@ function App() {
         <Route path="/seller/orders" element={<ProtectedRoute isAuth={auth} Component={SellerOrdersPage} allowedUsers={["seller"]} />} />
         <Route path="/seller/financial" element={<ProtectedRoute isAuth={auth} Component={SellerFinancialPage} allowedUsers={["seller"]} />} />
         <Route path="/seller/returns" element={<ProtectedRoute isAuth={auth} Component={SellerReturnsPage} allowedUsers={["seller"]} />} />
-        <Route path="/seller/listings/add" element={<AddListingPage />} />
-        <Route path="/seller/listings/:id" element={<ListingPage />} />
-        <Route path="/seller/orders/:id" element={ <OrderPage />} />
-        <Route path="/seller/listings/:id/edit" element={<EditListingPage />} />
-        <Route path="/seller/returns" element={<SellerReturnsPage />} />
-        <Route path="/seller/financial" element={<SellerFinancialPage />} />
+        <Route path="/seller/listings/add" element={<ProtectedRoute isAuth={auth}  Component={AddListingPage} allowedUsers={["seller"]} />} />
+        <Route path="/seller/listings/:id" element={<ProtectedRoute isAuth={auth}  Component={ListingPage} allowedUsers={["seller"]} />} />
+        <Route path="/seller/orders/:id" element={< ProtectedRoute isAuth={auth}  Component={OrderPage} allowedUsers={["seller"]} />} />
+        <Route path="/seller/listings/:id/edit" element={<ProtectedRoute isAuth={auth}  Component={EditListingPage} allowedUsers={["seller"]} />} />
+        <Route path="/seller/returns" element={<ProtectedRoute isAuth={auth}  Component={SellerReturnsPage} allowedUsers={["seller"]} />} />
+        <Route path="/seller/financial" element={<ProtectedRoute isAuth={auth}  Component={SellerFinancialPage} allowedUsers={["seller"]} />} />
 
         {/* Admin routes */}
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin" element={<AdminDashboard />} allowedUsers={["admin"]}/>
         <Route
           path="/admin/sellers"
-          element={<AdminSellerApprovals token={token} />}
+          element={<AdminSellerApprovals token={token} allowedUsers={["admin"]}/>}
         />
         <Route
           path="/admin/listings"
-          element={<ApproveListings token={token} />}
+          element={<ApproveListings token={token} allowedUsers={["admin"]}/>}
         />
          <Route
           path="/admin/users"
-          element={<ManageUsersPage token={token} />}
+          element={<ManageUsersPage token={token} allowedUsers={["admin"]}/>}
+        />
+        <Route
+          path="/admin/manage-listings"
+          element={<ManageListingsPage token={token} allowedUsers={["admin"]} />}
+        />
+        <Route
+          path="/admin/manage-listings/:id"
+          element={<AdminListingPage token={token} allowedUsers={["admin"]} />}
+        />
+        <Route
+          path="/admin/orders"
+          element={<AdminOrdersPage token={token} allowedUsers={["admin"]} />}
+        />
+        <Route
+          path="/admin/orders/:id"
+          element={<AdminOrderPage token={token} allowedUsers={["admin"]} />}
         />
       </Routes>
     </>

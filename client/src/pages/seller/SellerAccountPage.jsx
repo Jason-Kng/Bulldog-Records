@@ -62,17 +62,16 @@ function SellerAccountPage() {
 
       <div className="errors-containers">
       {seller && seller.accountStatus !== "active" && (
-        <p className="error-message">Your account is {seller.accountStatus}.</p>
+        <p className="error-message">Your account is {seller.accountStatus}. You cannot create new listings. Pending orders will still be processed.</p>
         
       )}
 
-      {seller && seller.accountStatus !== "active" && (
-        <p className="error-message">You cannot create new listings. Active listings will not be shown to customers.</p>
-        
+      {seller && seller.approvalStatus == "pending" && (
+        <p className="error-message">Your seller account approval is {seller.approvalStatus}. You cannot create new listings.</p>
       )}
 
-      {seller && seller.accountStatus == "deactivated" && (
-        <p className="error-message">Pending orders will still be processed.</p>
+      {seller && seller.approvalStatus == "rejected" && (
+        <p className="error-message">Your seller account was {seller.approvalStatus}.</p>
       )}
       </div>
 

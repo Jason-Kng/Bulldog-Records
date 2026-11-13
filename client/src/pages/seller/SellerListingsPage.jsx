@@ -47,7 +47,7 @@ function SellerListingsPage() {
         <button
           type="button"
           className="seller-view-listings-button"
-          disabled={!seller || seller.accountStatus !== "active" || seller.approvalStatus == "pending"}
+          disabled={!seller || seller.accountStatus !== "active" || seller.approvalStatus == "pending" || seller.approvalStatus == "rejected"}
           onClick={() => navigate("/seller/listings/add")}
         >
           Add Listing
@@ -62,9 +62,14 @@ function SellerListingsPage() {
         <p className="error-message">Your account is {seller.accountStatus}. You cannot create new listings. Active listings will not be shown to customers.</p>
       )}
 
-      {seller && seller.approvalStatus == "pending" && (
+      {seller && (seller.approvalStatus == "pending") && (
         <p className="error-message">Your account approval status is {seller.approvalStatus}. You cannot create new listings.</p>
       )}
+
+      {seller && seller.approvalStatus == "rejected" && (
+        <p className="error-message">Your seller account was {seller.approvalStatus}.</p>
+      )}
+
 
 
       <div className="seller-listings-divider">
