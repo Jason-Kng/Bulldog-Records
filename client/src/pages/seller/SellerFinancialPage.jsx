@@ -153,7 +153,7 @@ function SellerFinancialPage() {
       <table>
         <thead>
           <tr>
-            <th>Return ID</th>
+            <th>Refund ID</th>
             <th>Order ID</th>
             <th>Order Item ID</th>
             <th>Listing</th>

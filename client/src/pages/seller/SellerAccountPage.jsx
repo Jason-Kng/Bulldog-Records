@@ -49,7 +49,7 @@ function SellerAccountPage() {
         className="seller-view-listings-button"
         onClick={() => navigate("/seller/returns")}
       >
-        View Returns
+        View Refunds
       </button>
        <button
         type="button"

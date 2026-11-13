@@ -25,7 +25,7 @@ function SellerReturnsPage() {
   return (
     <div class="listings-container">
     
-      <h2>Returns</h2>
+      <h2>Refunds</h2>
 
       <div class="listings-buttons-container">
         {/* <button
@@ -45,7 +45,7 @@ function SellerReturnsPage() {
 
       </div>
 
-      {returns.length === 0 && <p>No returns yet</p>}
+      {returns.length === 0 && <p>No refunds yet</p>}
 
       <ul>
         {returns.map((item) => (
@@ -57,7 +57,7 @@ function SellerReturnsPage() {
             <p className="listing-page-stock">Buyer Name: {item.buyerName}</p>
             <p className="listing-page-stock">Buyer Email: {item.buyerEmail}</p>
             <p className="listing-page-stock">Date Requested: {item.dateRequested}</p>
-            <p className="return-reason">Return Reason:</p>
+            <p className="return-reason">Refund Reason:</p>
             <p className="listing-page-stock">{item.reason}</p>
           </li>
         ))}
