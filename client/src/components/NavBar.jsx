@@ -13,7 +13,7 @@ function getHomeRoute() {
 
   const decoded = jwtDecode(token);
 
-  if (decoded.exp > Date.now()) {
+  if (decoded.exp * 1000 <= Date.now()) {
     localStorage.removeItem("accessToken");
     return "/";
   }
@@ -33,6 +33,8 @@ function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
   const isLoginPage = location.pathname === "/";
+  const token = localStorage.getItem("accessToken");
+  const userType = token ? jwtDecode(token).userType : null;
 
   const [search, setSearch] = useState("");
 
@@ -68,15 +70,18 @@ function NavBar() {
             </form>
 
             <div className="navbar-links">
-              <Link to="/cart" className="nav-link">
-                Cart
-              </Link>
-              <Link to="/order-history" className="nav-link">
-                Orders
-              </Link>
-              {/* <Link to="/" className="nav-link"> */}
-              {/* Account */}
-              {/* </Link> */}
+              {userType === "buyer" && (
+                <>
+                  <Link to="/cart" className="nav-link">
+                    Cart
+                  </Link>
+                  <Link to="/order-history" className="nav-link">
+                    Orders
+                  </Link>
+                </>
+              )}
+
+
               <button
                 type="button"
                 onClick={handleLogout}

@@ -62,7 +62,7 @@ h2 {
   color: var(--maroon);
   font-size: 25px;
   margin-bottom: 20px;
-} 
+}
 
 button {
   border: 1px solid var(--maroon);
@@ -82,7 +82,7 @@ button:hover {
 }
 
 a {
-  color: black;
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -90,6 +90,16 @@ a {
 .listings-container {
   padding: 30px;
 }
+
+.listings-container a {
+  color: var(--text);
+}
+
+.listings-container-li {
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
 .listings-container ul {
   list-style: none;
   padding: 0px;
@@ -97,7 +107,6 @@ a {
   flex-direction: column;
   gap: 15px;
 
-  
 }
 
 /* .listings-container li {
@@ -111,7 +120,7 @@ a {
 } */
 
 .listings-container-li {
-  border: 1px solid black;
+  border: 1px solid var(--border);
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 50px;
@@ -121,7 +130,7 @@ a {
 }
 
 .listings-container-li.shipped {
-  border: 1px solid black;
+  border: 1px solid var(--border);
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 50px;
@@ -131,7 +140,7 @@ a {
 }
 
 .listings-container-li.active {
-  border: 1px solid black;
+  border: 1px solid var(--border);
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 50px;
@@ -141,7 +150,7 @@ a {
 }
 
 .listings-container-li.pending {
-  border: 1px solid black;
+  border: 1px solid var(--border);
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 50px;
@@ -151,7 +160,7 @@ a {
 }
 
 .listings-container-li.canceled {
-  border: 1px solid black;
+  border: 1px solid var(--border);
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 50px;
@@ -161,7 +170,7 @@ a {
 }
 
 .listings-container-li.deactivated {
-  border: 1px solid black;
+  border: 1px solid var(--border);
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 50px;
@@ -171,7 +180,7 @@ a {
 }
 
 .listings-container-li.rejected {
-  border: 1px solid black;
+  border: 1px solid var(--border);
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 50px;
@@ -181,7 +190,7 @@ a {
 }
 
 .listings-container-li.delivered {
-  border: 1px solid black;
+  border: 1px solid var(--border);
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 50px;
@@ -322,6 +331,7 @@ a {
 .add-listing-form-container {
   padding: 30px;
 }
+
 .add-listing-form form p {
   display: flex;
   flex-direction: column;
@@ -444,12 +454,12 @@ button:hover {
 }
 
 /* orders */
-.seller-view-listings-button { 
-  text-transform: capitalize; 
+.seller-view-listings-button {
+  text-transform: capitalize;
 }
 
-.seller-view-orders-button { 
-  text-transform: capitalize; 
+.seller-view-orders-button {
+  text-transform: capitalize;
 }
 
 .seller-view-orders-button {
