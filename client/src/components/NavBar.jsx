@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import "./NavBar.css";
 
@@ -50,6 +50,16 @@ function NavBar() {
     localStorage.removeItem("accessToken");
     navigate("/", { replace: true });
   };
+
+  useEffect(() => {
+    if (location.pathname !== "/search" || !search.trim()) return;
+
+    const timer = setTimeout(() => {
+      navigate(`/search?query=${encodeURIComponent(search.trim())}`, { replace: true });
+    }, 400)
+
+    return () => clearTimeout(timer);
+  }, [search, navigate, location.pathname])
 
   return (
     <>
