@@ -1,0 +1,2264 @@
+{
+  "info": {
+    "_postman_id": "d79e01aa-393b-4aa0-800b-01ad22891b58",
+    "name": "Bulldog Records API Unit Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59281283",
+    "_collection_link": "https://go.postman.co/collection/59281283-d79e01aa-393b-4aa0-800b-01ad22891b58?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "01 Admin Login - Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst data = pm.response.json();\r\n\r\npm.test(\"Response contains access token\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data).to.have.property(\"accessToken\");\r\n});\r\n\r\npm.collectionVariables.set(\"adminToken\", data.accessToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"admin@bulldogrecords.com\",\r\n    \"password\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/auth/login",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "02 Buyer Login - Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst data = pm.response.json();\r\n\r\npm.test(\"Response contains access token\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data).to.have.property(\"accessToken\");\r\n});\r\n\r\npm.collectionVariables.set(\"buyerToken\", data.accessToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"buyer1@bulldogrecords.com\",\r\n    \"password\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/auth/login",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "03 Seller Login - Valid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst data = pm.response.json();\r\n\r\npm.test(\"Response contains access token\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data).to.have.property(\"accessToken\");\r\n});\r\n\r\npm.collectionVariables.set(\"sellerToken\", data.accessToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"test.seller@example.com\",\r\n    \"password\": \"TestPassword123!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/auth/login",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "04 Login - Invalid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {\r\n    pm.response.to.have.status(401);\r\n});\r\n\r\npm.test(\"Login was rejected\", function () {\r\n    const data = pm.response.json();\r\n\r\n    pm.expect(data).to.have.property(\"message\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"fakeuser@example.com\",\r\n    \"password\": \"BadPassword456!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/auth/login",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "05 Login - Missing Fields",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {\r\n    pm.response.to.have.status(401);\r\n});\r\n\r\npm.test(\"Missing password is rejected\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.message).to.eql(\"Invalid email or password\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"password\": \"randomPassword321\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/auth/login",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin - Seller Approvals",
+      "item": [
+        {
+          "name": "06 Get Pending Sellers",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response in an array\", function () {\r\n    pm.expect(pm.response.json()).to.be.an(\"array\");\r\n});\r\n\r\npm.test(\"All sellers are pending\", function () {\r\n    const sellers = pm.response.json();\r\n\r\n    sellers.forEach(seller => {\r\n        pm.expect(seller.approvalStatus).to.eql(\"pending\");\r\n    });\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/pending",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "pending"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "07 Get Pending Sellers - No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response in an array\", function () {\r\n    pm.expect(pm.response.json()).to.be.an(\"array\");\r\n});\r\n\r\npm.test(\"All sellers are pending\", function () {\r\n    const sellers = pm.response.json();\r\n\r\n    sellers.forEach(seller => {\r\n        pm.expect(seller.approvalStatus).to.eql(\"pending\");\r\n    });\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/pending",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "pending"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "08 Get Pending Sellers - Seller Access",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response in an array\", function () {\r\n    pm.expect(pm.response.json()).to.be.an(\"array\");\r\n});\r\n\r\npm.test(\"All sellers are pending\", function () {\r\n    const sellers = pm.response.json();\r\n\r\n    sellers.forEach(seller => {\r\n        pm.expect(seller.approvalStatus).to.eql(\"pending\");\r\n    });\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/pending",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "pending"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "09 Get Pending Sellers - Buyer Access",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response in an array\", function () {\r\n    pm.expect(pm.response.json()).to.be.an(\"array\");\r\n});\r\n\r\npm.test(\"All sellers are pending\", function () {\r\n    const sellers = pm.response.json();\r\n\r\n    sellers.forEach(seller => {\r\n        pm.expect(seller.approvalStatus).to.eql(\"pending\");\r\n    });\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{buyerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/pending",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "pending"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "10 Approve Seller",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Seller was approved\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.approvalStatus).to.eql(\"approved\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"approvalStatus\": \"approved\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/6/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "6",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "11 Approve Seller - Seller Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Seller was approved\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.approvalStatus).to.eql(\"approved\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"approvalStatus\": \"approved\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/6/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "6",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "12 Approve Seller - Buyer Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Seller was approved\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.approvalStatus).to.eql(\"approved\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{buyerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"approvalStatus\": \"approved\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/6/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "6",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "13 Approve Seller - No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Seller was approved\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.approvalStatus).to.eql(\"approved\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"approvalStatus\": \"approved\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/6/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "6",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "14 Reject Seller",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Seller was approved\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.approvalStatus).to.eql(\"approved\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"approvalStatus\": \"rejected\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/5/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "5",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "15 Reject Seller - Seller Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Seller was approved\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.approvalStatus).to.eql(\"approved\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"approvalStatus\": \"rejected\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/5/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "5",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "16 Reject Seller - Buyer Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Seller was approved\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.approvalStatus).to.eql(\"approved\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{buyerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"approvalStatus\": \"rejected\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/5/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "5",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "17 Reject Seller - No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Seller was approved\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.approvalStatus).to.eql(\"approved\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"approvalStatus\": \"approved\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/admin/sellers/6/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "sellers",
+                "6",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin - Listing Approvals",
+      "item": [
+        {
+          "name": "18 Get Pending Listings",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response is an array\", function () {\r\n    pm.expect(pm.response.json()).to.be.an(\"array\");\r\n});\r\n\r\npm.test(\"All listings are pending\", function () {\r\n    const listings = pm.response.json();\r\n\r\n    listings.forEach(listing => {\r\n        pm.expect(listing.listingStatus).to.aql(\"pending\");\r\n    });\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/listings/pending",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "listings",
+                "pending"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "19 Get Pending Listings - No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response is an array\", function () {\r\n    pm.expect(pm.response.json()).to.be.an(\"array\");\r\n});\r\n\r\npm.test(\"All listings are pending\", function () {\r\n    const listings = pm.response.json();\r\n\r\n    listings.forEach(listing => {\r\n        pm.expect(listing.listingStatus).to.aql(\"pending\");\r\n    });\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/listings/pending",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "listings",
+                "pending"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "20 Get Pending Listings - Buyer Access",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response is an array\", function () {\r\n    pm.expect(pm.response.json()).to.be.an(\"array\");\r\n});\r\n\r\npm.test(\"All listings are pending\", function () {\r\n    const listings = pm.response.json();\r\n\r\n    listings.forEach(listing => {\r\n        pm.expect(listing.listingStatus).to.aql(\"pending\");\r\n    });\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{buyerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/listings/pending",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "listings",
+                "pending"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "21 Get Pending Listings - Seller Access",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response is an array\", function () {\r\n    pm.expect(pm.response.json()).to.be.an(\"array\");\r\n});\r\n\r\npm.test(\"All listings are pending\", function () {\r\n    const listings = pm.response.json();\r\n\r\n    listings.forEach(listing => {\r\n        pm.expect(listing.listingStatus).to.aql(\"pending\");\r\n    });\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/listings/pending",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "listings",
+                "pending"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "22 Approve Listing",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Listing status is active\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.listingStatus).to.eql(\"active\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/listings/1/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "listings",
+                "1",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "23 Approve Listing - Buyer Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Listing status is active\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.listingStatus).to.eql(\"active\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{buyerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/listings/10/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "listings",
+                "10",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "24 Approve Listing - Seller Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Listing status is active\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.listingStatus).to.eql(\"active\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/listings/10/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "listings",
+                "10",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "25 Approve Listing - No Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Listing status is active\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.listingStatus).to.eql(\"active\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/admin/listings/10/status",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "listings",
+                "10",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cart and Checkout",
+      "item": [
+        {
+          "name": "26 View Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{buyerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"admin@bulldogrecords.com\",\r\n    \"password\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/cart",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "cart"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "27 View Cart - No Token",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"admin@bulldogrecords.com\",\r\n    \"password\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/cart",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "cart"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "28 Add Item",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{buyerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"listingID\": 1,\r\n    \"quantity\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/cart/items",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "cart",
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "29 Add Item - No Token",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"listingID\": 1,\r\n    \"quantity\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/cart/items",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "cart",
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "30 Add Item - Invalid Quantity",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{buyerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"listingID\": 1,\r\n    \"quantity\": -1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/cart/items",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "cart",
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "31 Add Item - Missing ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{buyerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"quantity\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/cart/items",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "cart",
+                "items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "32 Delete From Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{buyerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/cart/items/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "cart",
+                "items",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "33 Delete From Cart - No Token",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/cart/items/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "cart",
+                "items",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Account Creation",
+      "item": [
+        {
+          "name": "34 Buyer Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Registration successful\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.Status).to.eql(\"Registered\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Test Buyer\",\r\n    \"email\": \"test.buyer@example.com\",\r\n    \"password\": \"TestPassword123!\",\r\n    \"userType\": \"buyer\",\r\n    \"street\": \"123 College Street\",\r\n    \"city\": \"Starkville\",\r\n    \"state\": \"MS\",\r\n    \"zip\": \"39759\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/auth/register",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "35 Buyer Register - Missing Fields",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Registration successful\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.Status).to.eql(\"Registered\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Incomplete Buyer\",\r\n    \"email\": \"incomplete.buyer@example.com\",\r\n    \"password\": \"TestPassword123!\",\r\n    \"userType\": \"buyer\",\r\n    \"street\": \"123 College Street\",\r\n    \"city\": \"Starkville\",\r\n    \"zip\": \"39759\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/auth/register",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "36 Seller Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Registration successful\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.Status).to.eql(\"Registered\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Test Seller\",\r\n    \"email\": \"test.seller@example.com\",\r\n    \"password\": \"TestPassword123!\",\r\n    \"userType\": \"seller\",\r\n    \"street\": \"321 College Street\",\r\n    \"city\": \"Starkville\",\r\n    \"state\": \"MS\",\r\n    \"zip\": \"39759\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/auth/register",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "37 Seller Register - Missing Fields",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Registration successful\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.Status).to.eql(\"Registered\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Incomplete Buyer\",\r\n    \"password\": \"TestPassword123!\",\r\n    \"userType\": \"buyer\",\r\n    \"street\": \"123 College Street\",\r\n    \"city\": \"Starkville\",\r\n    \"state\": \"MS\",\r\n    \"zip\": \"39759\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/auth/register",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Listings",
+      "item": [
+        {
+          "name": "38 Create Listing",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Test Album",
+                  "type": "text"
+                },
+                {
+                  "key": "artist",
+                  "value": "Test Artist",
+                  "type": "text"
+                },
+                {
+                  "key": "releaseDate",
+                  "value": "2020-05-15",
+                  "type": "text"
+                },
+                {
+                  "key": "mediaType",
+                  "value": "vinyl",
+                  "type": "text"
+                },
+                {
+                  "key": "genre",
+                  "value": "Rock",
+                  "type": "text"
+                },
+                {
+                  "key": "EAN",
+                  "value": "1234567890123",
+                  "type": "text"
+                },
+                {
+                  "key": "condition",
+                  "value": "new",
+                  "type": "text"
+                },
+                {
+                  "key": "stock",
+                  "value": "5",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "2499",
+                  "type": "text"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/timpe/OneDrive/Documents/GitHub/Bulldog-Records/server/uploads/placeholder.png"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/seller/listings",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "39 Create Listing - Admin Token",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Test Album",
+                  "type": "text"
+                },
+                {
+                  "key": "artist",
+                  "value": "Test Artist",
+                  "type": "text"
+                },
+                {
+                  "key": "releaseDate",
+                  "value": "2020-05-15",
+                  "type": "text"
+                },
+                {
+                  "key": "mediaType",
+                  "value": "vinyl",
+                  "type": "text"
+                },
+                {
+                  "key": "genre",
+                  "value": "Rock",
+                  "type": "text"
+                },
+                {
+                  "key": "EAN",
+                  "value": "1234567890123",
+                  "type": "text"
+                },
+                {
+                  "key": "condition",
+                  "value": "new",
+                  "type": "text"
+                },
+                {
+                  "key": "stock",
+                  "value": "5",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "2499",
+                  "type": "text"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/timpe/OneDrive/Documents/GitHub/Bulldog-Records/server/uploads/placeholder.png"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/seller/listings",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "40 Create Listing - Buyer Token",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{buyerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Test Album",
+                  "type": "text"
+                },
+                {
+                  "key": "artist",
+                  "value": "Test Artist",
+                  "type": "text"
+                },
+                {
+                  "key": "releaseDate",
+                  "value": "2020-05-15",
+                  "type": "text"
+                },
+                {
+                  "key": "mediaType",
+                  "value": "vinyl",
+                  "type": "text"
+                },
+                {
+                  "key": "genre",
+                  "value": "Rock",
+                  "type": "text"
+                },
+                {
+                  "key": "EAN",
+                  "value": "1234567890123",
+                  "type": "text"
+                },
+                {
+                  "key": "condition",
+                  "value": "new",
+                  "type": "text"
+                },
+                {
+                  "key": "stock",
+                  "value": "5",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "2499",
+                  "type": "text"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/timpe/OneDrive/Documents/GitHub/Bulldog-Records/server/uploads/placeholder.png"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/seller/listings",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "41 Create Listing - No Token",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Test Album",
+                  "type": "text"
+                },
+                {
+                  "key": "artist",
+                  "value": "Test Artist",
+                  "type": "text"
+                },
+                {
+                  "key": "releaseDate",
+                  "value": "2020-05-15",
+                  "type": "text"
+                },
+                {
+                  "key": "mediaType",
+                  "value": "vinyl",
+                  "type": "text"
+                },
+                {
+                  "key": "genre",
+                  "value": "Rock",
+                  "type": "text"
+                },
+                {
+                  "key": "EAN",
+                  "value": "1234567890123",
+                  "type": "text"
+                },
+                {
+                  "key": "condition",
+                  "value": "new",
+                  "type": "text"
+                },
+                {
+                  "key": "stock",
+                  "value": "5",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "2499",
+                  "type": "text"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/timpe/OneDrive/Documents/GitHub/Bulldog-Records/server/uploads/placeholder.png"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/seller/listings",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "42 Create Listing - Missing Field",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Test Album",
+                  "type": "text"
+                },
+                {
+                  "key": "artist",
+                  "value": "Test Artist",
+                  "type": "text"
+                },
+                {
+                  "key": "releaseDate",
+                  "value": "2020-05-15",
+                  "type": "text"
+                },
+                {
+                  "key": "mediaType",
+                  "value": "vinyl",
+                  "type": "text"
+                },
+                {
+                  "key": "genre",
+                  "value": "Rock",
+                  "type": "text"
+                },
+                {
+                  "key": "EAN",
+                  "value": "1234567890123",
+                  "type": "text"
+                },
+                {
+                  "key": "condition",
+                  "value": "new",
+                  "type": "text"
+                },
+                {
+                  "key": "stock",
+                  "value": "5",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "2499",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/seller/listings",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "43 Create Listing - Price <= 0",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Test Album",
+                  "type": "text"
+                },
+                {
+                  "key": "artist",
+                  "value": "Test Artist",
+                  "type": "text"
+                },
+                {
+                  "key": "releaseDate",
+                  "value": "2020-05-15",
+                  "type": "text"
+                },
+                {
+                  "key": "mediaType",
+                  "value": "vinyl",
+                  "type": "text"
+                },
+                {
+                  "key": "genre",
+                  "value": "Rock",
+                  "type": "text"
+                },
+                {
+                  "key": "EAN",
+                  "value": "1234567890123",
+                  "type": "text"
+                },
+                {
+                  "key": "condition",
+                  "value": "new",
+                  "type": "text"
+                },
+                {
+                  "key": "stock",
+                  "value": "5",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "-1",
+                  "type": "text"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/timpe/OneDrive/Documents/GitHub/Bulldog-Records/server/uploads/placeholder.png"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/seller/listings",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "44 Create Listing - Negative Stock",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Test Album",
+                  "type": "text"
+                },
+                {
+                  "key": "artist",
+                  "value": "Test Artist",
+                  "type": "text"
+                },
+                {
+                  "key": "releaseDate",
+                  "value": "2020-05-15",
+                  "type": "text"
+                },
+                {
+                  "key": "mediaType",
+                  "value": "vinyl",
+                  "type": "text"
+                },
+                {
+                  "key": "genre",
+                  "value": "Rock",
+                  "type": "text"
+                },
+                {
+                  "key": "EAN",
+                  "value": "1234567890123",
+                  "type": "text"
+                },
+                {
+                  "key": "condition",
+                  "value": "new",
+                  "type": "text"
+                },
+                {
+                  "key": "stock",
+                  "value": "-1",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "2499",
+                  "type": "text"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/timpe/OneDrive/Documents/GitHub/Bulldog-Records/server/uploads/placeholder.png"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/seller/listings",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "45 Create Listing - Invalid Release Date",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Test Album",
+                  "type": "text"
+                },
+                {
+                  "key": "artist",
+                  "value": "Test Artist",
+                  "type": "text"
+                },
+                {
+                  "key": "releaseDate",
+                  "value": "2020",
+                  "type": "text"
+                },
+                {
+                  "key": "mediaType",
+                  "value": "vinyl",
+                  "type": "text"
+                },
+                {
+                  "key": "genre",
+                  "value": "Rock",
+                  "type": "text"
+                },
+                {
+                  "key": "EAN",
+                  "value": "1234567890123",
+                  "type": "text"
+                },
+                {
+                  "key": "condition",
+                  "value": "new",
+                  "type": "text"
+                },
+                {
+                  "key": "stock",
+                  "value": "5",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "2499",
+                  "type": "text"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/timpe/OneDrive/Documents/GitHub/Bulldog-Records/server/uploads/placeholder.png"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/seller/listings",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "seller",
+                "listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "46 Get Listings",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/listing",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "listing"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseURL",
+      "value": ""
+    },
+    {
+      "key": "adminToken",
+      "value": ""
+    },
+    {
+      "key": "buyerToken",
+      "value": ""
+    },
+    {
+      "key": "sellerToken",
+      "value": ""
+    }
+  ]
+}
